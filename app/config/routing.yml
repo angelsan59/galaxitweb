@@ -1,0 +1,23 @@
+san_user:
+    resource: "@SanUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+san_offres:
+    resource: "@SanOffresBundle/Resources/config/routing.yml"
+    prefix:   /
+
+san_event:
+    resource: "@SanEventBundle/Resources/config/routing.yml"
+    prefix:   /
+
+san_core:
+    resource: "@SanCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+san_admin:
+    resource: "@SanAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

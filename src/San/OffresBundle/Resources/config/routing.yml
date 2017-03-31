@@ -1,0 +1,3 @@
+san_offres_homepage:
+    path:     /
+    defaults: { _controller: SanOffresBundle:Default:index }
