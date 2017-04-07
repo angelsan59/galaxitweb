@@ -4,20 +4,22 @@
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Galax-IT Administration{% endblock %}</title>
-    
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
     {% block stylesheets %}
     {# On charge le CSS de bootstrap depuis le site directement #}
      <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <!-- Bootstrap CSS File -->
- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <!-- Bootstrap CSS File -->
+  <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate-css/animate.min.css" rel="stylesheet">
+  <link href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('lib/animate-css/animate.min.css') }}" rel="stylesheet">
+  
+  <!-- Main Stylesheet File -->
+  <link href="{{ asset('css/adminstyle.css') }}" rel="stylesheet">
   {% endblock %}
   
   </head>
@@ -101,8 +103,7 @@
 		<div class="col-md-9 content">
                      {% block body %}
     {% endblock %}
-    
-            
+
 		</div>
 		<footer class="pull-left footer">
 			<p class="col-md-12">
@@ -111,5 +112,8 @@
 			</p>
 		</footer>
 	</div>
+<!-- Required JavaScript Libraries -->
+  <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
     </body>
 </html>

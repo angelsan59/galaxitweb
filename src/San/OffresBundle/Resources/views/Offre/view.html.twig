@@ -11,7 +11,14 @@
 
   <div class="well">
     {{ offre.content }}
-    
+    </div>
+    <div class="well">
+    {{ offre.formation }}
+    </div>
+ <div class="well">
+    {{ offre.mission }}
+    </div>
+     <div class="well">
     {# On vérifie qu'une image soit bien associée à l'annonce #}
 {% if offre.image is not null %}
   <img src="{{ asset(offre.image.webPath) }}" alt="{{ offre.image.alt }}">
