@@ -1,0 +1,21 @@
+{% extends "SanCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+ 
+ 
+{% block body %}
+{{ include("SanCoreBundle:Core:menu.html.twig") }}
+<h2><a href="admin">Section Administration</a>
+  <h2>Page d'accueil</h2>
+
+{{ include("SanEventBundle:Event:index.html.twig") }}
+      {# On affiche tous les messages flash dont le nom est « info » #}
+      {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">Message flash : {{ message }}</div>
+      {% endfor %}
+    
+
+{% endblock %}

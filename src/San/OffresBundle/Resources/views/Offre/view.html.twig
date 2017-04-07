@@ -1,0 +1,43 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Offre - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ offre.titre }}</h2>
+  <i>Par {{ offre.auteurid }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
+
+  <div class="well">
+    {{ offre.content }}
+    
+    {# On vérifie qu'une image soit bien associée à l'annonce #}
+{% if offre.image is not null %}
+  <img src="{{ asset(offre.image.webPath) }}" alt="{{ offre.image.alt }}">
+{% endif %}
+
+{% if not offre.categories.empty %}
+  <div class="label label-primary small">
+    Catégories :
+    {% for category in offre.categories %}
+      {{ category.nom }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+  </div>
+
+  <p>
+    
+    <a href="{{ path('san_offre_edit', {'id': offre.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'offre
+    </a>
+    <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'offre
+    </a>
+  </p>
+
+{% endblock %}

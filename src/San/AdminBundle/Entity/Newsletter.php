@@ -1,7 +1,7 @@
 <?php
 
 namespace San\AdminBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Newsletter
 {
+      public function __construct()
+    {
+        $this->pubDate = new \Datetime();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
    * @ORM\ManyToMany(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
    */
@@ -47,6 +52,12 @@ class Newsletter
      */
     private $content;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="auteur_id", type="integer")
+     */
+    private $auteurid;
 
     /**
      * Get id
@@ -129,14 +140,7 @@ class Newsletter
     {
         return $this->content;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
+   
     /**
      * Add user
      *
@@ -169,5 +173,29 @@ class Newsletter
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set auteurid
+     *
+     * @param integer $auteurid
+     *
+     * @return Newsletter
+     */
+    public function setAuteurid($auteurid)
+    {
+        $this->auteurid = $auteurid;
+
+        return $this;
+    }
+
+    /**
+     * Get auteurid
+     *
+     * @return integer
+     */
+    public function getAuteurid()
+    {
+        return $this->auteurid;
     }
 }

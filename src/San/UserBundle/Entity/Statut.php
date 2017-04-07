@@ -1,7 +1,7 @@
 <?php
 
 namespace San\UserBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Statut
 {
+     public function __construct()
+    {
+       $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->modDate = new \Datetime();
+    }
      /**
    * @ORM\ManyToMany(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
    */
@@ -40,6 +45,12 @@ class Statut
      */
     private $content;
 
+     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="mod_date", type="datetimetz")
+     */
+    private $modDate;
 
     /**
      * Get id
@@ -98,13 +109,7 @@ class Statut
     {
         return $this->content;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    
 
     /**
      * Add user
@@ -138,5 +143,29 @@ class Statut
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set modDate
+     *
+     * @param \DateTime $modDate
+     *
+     * @return Statut
+     */
+    public function setModDate($modDate)
+    {
+        $this->modDate = $modDate;
+
+        return $this;
+    }
+
+    /**
+     * Get modDate
+     *
+     * @return \DateTime
+     */
+    public function getModDate()
+    {
+        return $this->modDate;
     }
 }

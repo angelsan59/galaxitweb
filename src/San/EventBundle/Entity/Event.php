@@ -35,9 +35,16 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255, unique=true)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="auteur_id", type="integer")
+     */
+    private $auteurid;
 
     /**
      * @var string
@@ -60,6 +67,10 @@ class Event
      */
     private $fin;
 
+    /**
+    * @ORM\Column(name="published", type="boolean")
+    */
+    private $published = true;
 
     /**
      * Get id
@@ -196,6 +207,7 @@ class Event
     public function __construct()
     {
         $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        
     }
 
     /**
@@ -230,5 +242,53 @@ class Event
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Event
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set auteurid
+     *
+     * @param integer $auteurid
+     *
+     * @return Event
+     */
+    public function setAuteurid($auteurid)
+    {
+        $this->auteurid = $auteurid;
+
+        return $this;
+    }
+
+    /**
+     * Get auteurid
+     *
+     * @return integer
+     */
+    public function getAuteurid()
+    {
+        return $this->auteurid;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace San\OffresBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,11 +12,36 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Offre
 {
+     public function __construct()
+    {
+        $this->pubDate = new \Datetime();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->competences = new ArrayCollection();
+    }
+    
+       /**
+   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Competence", cascade={"persist"})
+   */
+  private $competences;
+  
+    /**
+   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Categorie", cascade={"persist"})
+   */
+  private $categories;
+  
      /**
    * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image")
    * @ORM\JoinColumn(nullable=true)
    */
   private $image;
+  
+    /**
+   * @ORM\ManyToOne(targetEntity="San\OffresBundle\Entity\Contrat")
+   * @ORM\JoinColumn(nullable=true)
+   */
+  private $contrat;
+  
   
     /**
      * @var int
@@ -34,6 +59,13 @@ class Offre
      */
     private $titre;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="auteur_id", type="integer")
+     */
+    private $auteurid;
+    
     /**
      * @var string
      *
@@ -58,13 +90,6 @@ class Offre
     /**
      * @var string
      *
-     * @ORM\Column(name="contrat", type="string", length=255)
-     */
-    private $contrat;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="mission", type="text")
      */
     private $mission;
@@ -76,6 +101,10 @@ class Offre
      */
     private $formation;
 
+    /**
+    * @ORM\Column(name="published", type="boolean")
+    */
+    private $published = true;
 
     /**
      * Get id
@@ -184,30 +213,6 @@ class Offre
     }
 
     /**
-     * Set contrat
-     *
-     * @param string $contrat
-     *
-     * @return Offre
-     */
-    public function setContrat($contrat)
-    {
-        $this->contrat = $contrat;
-
-        return $this;
-    }
-
-    /**
-     * Get contrat
-     *
-     * @return string
-     */
-    public function getContrat()
-    {
-        return $this->contrat;
-    }
-
-    /**
      * Set mission
      *
      * @param string $mission
@@ -277,5 +282,145 @@ class Offre
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Offre
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set auteurid
+     *
+     * @param integer $auteurid
+     *
+     * @return Offre
+     */
+    public function setAuteurid($auteurid)
+    {
+        $this->auteurid = $auteurid;
+
+        return $this;
+    }
+
+    /**
+     * Get auteurid
+     *
+     * @return integer
+     */
+    public function getAuteurid()
+    {
+        return $this->auteurid;
+    }
+
+    /**
+     * Set contrat
+     *
+     * @param \San\CoreBundle\Entity\Contrat $contrat
+     *
+     * @return Offre
+     */
+    public function setContrat(\San\CoreBundle\Entity\Contrat $contrat = null)
+    {
+        $this->contrat = $contrat;
+
+        return $this;
+    }
+
+    /**
+     * Get contrat
+     *
+     * @return \San\CoreBundle\Entity\Contrat
+     */
+    public function getContrat()
+    {
+        return $this->contrat;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \San\OffresBundle\Entity\Categorie $category
+     *
+     * @return Offre
+     */
+    public function addCategory(\San\OffresBundle\Entity\Categorie $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \San\OffresBundle\Entity\Categorie $category
+     */
+    public function removeCategory(\San\OffresBundle\Entity\Categorie $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Add competence
+     *
+     * @param \San\OffresBundle\Entity\Competence $competence
+     *
+     * @return Offre
+     */
+    public function addCompetence(\San\OffresBundle\Entity\Competence $competence)
+    {
+        $this->competences[] = $competence;
+
+        return $this;
+    }
+
+    /**
+     * Remove competence
+     *
+     * @param \San\OffresBundle\Entity\Competence $competence
+     */
+    public function removeCompetence(\San\OffresBundle\Entity\Competence $competence)
+    {
+        $this->competences->removeElement($competence);
+    }
+
+    /**
+     * Get competences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
     }
 }

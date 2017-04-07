@@ -1,0 +1,35 @@
+
+{% extends "SanCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil offres - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Liste des annonces</h2>
+
+  <ul>
+    {% for offre in listOffres %}
+      <li>
+        
+          {{ offre.titre }}
+        
+        par {{ offre.auteurid }},
+        le {{ offre.pubDate|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'annonces</li>
+    {% endfor %}
+  </ul>
+
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_offres_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

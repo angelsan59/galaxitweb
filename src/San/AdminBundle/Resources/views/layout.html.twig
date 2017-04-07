@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Galax-IT Administration{% endblock %}</title>
+    
+    {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+     <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <!-- Bootstrap CSS File -->
+ <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate-css/animate.min.css" rel="stylesheet">
+  {% endblock %}
+  
+  </head>
+<body>
+        <nav class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ path('san_admin_homepage') }}"><img src="{{ asset('img/logo.png') }}" height="30px" alt="GalaxIT"/>
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
+			<form class="navbar-form navbar-left" method="GET" role="search">
+				<div class="form-group">
+					<input type="text" name="q" class="form-control" placeholder="rechercher">
+				</div>
+				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{{ path('san_core_homepage') }}" target="_blank">Visiter le Site</a></li>
+				<li class="dropdown ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Account
+						<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="dropdown-header">SETTINGS</li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class=""><a href="#">Other Link</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="container-fluid main-container">
+            <div class="col-md-3 sidebar">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Offres d'emploi<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('san_offre_add') }}">Nouvelle offre</a></li>
+                            <li><a href="#">Gestion des offres</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidats<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Gestion des candidats</a></li>
+                            <li><a href="#">Nouveaux Candidats</a></li>
+                            <li><a href="#">Candidats à appeller</a></li>
+                            <li><a href="#">Candidats à voir</a></li>
+                            <li><a href="#">Candidats retenus</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Evènements<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Nouvel évènement</a></li>
+                            <li><a href="#">Gestion des évènements</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateurs<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Gestion des utilisateurs</a></li>
+                            <li><a href="#">Abonnés à la newsletter</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">CVthèque</a></li>
+		</ul>
+                    
+		</div>
+		<div class="col-md-9 content">
+                     {% block body %}
+    {% endblock %}
+    
+            
+		</div>
+		<footer class="pull-left footer">
+			<p class="col-md-12">
+				<hr class="divider">
+				Copyright &COPY; 2017 <a href="http://technosan.online.fr">San</a>
+			</p>
+		</footer>
+	</div>
+    </body>
+</html>

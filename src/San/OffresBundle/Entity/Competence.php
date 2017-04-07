@@ -1,7 +1,7 @@
 <?php
 
 namespace San\OffresBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Competence
 {
+    public function __construct()
+  {
+    $this->categories = new ArrayCollection();
+  }
+    /**
+   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Categorie", cascade={"persist"})
+   */
+  private $categories;
+
     /**
      * @var int
      *
@@ -93,5 +102,38 @@ class Competence
     {
         return $this->content;
     }
-}
 
+    /**
+     * Add category
+     *
+     * @param \San\OffresBundle\Entity\Categorie $category
+     *
+     * @return Competence
+     */
+    public function addCategory(\San\OffresBundle\Entity\Categorie $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \San\OffresBundle\Entity\Categorie $category
+     */
+    public function removeCategory(\San\OffresBundle\Entity\Categorie $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+}

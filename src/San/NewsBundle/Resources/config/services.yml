@@ -1,0 +1,4 @@
+services:
+#    san_news.example:
+#        class: San\NewsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

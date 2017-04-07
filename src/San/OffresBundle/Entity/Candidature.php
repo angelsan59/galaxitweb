@@ -12,10 +12,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Candidature
 {
-     /**
+   /**
    * @ORM\ManyToMany(targetEntity="San\UserBundle\Entity\Statut", cascade={"persist"})
    */
-  private $statut;
+    private $statut;
+  
+    /**
+    * @ORM\ManyToOne(targetEntity="San\OffresBundle\Entity\Offre")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $offre;
+  
+    /**
+    * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $user;
   
     /**
      * @var int
@@ -571,5 +583,53 @@ class Candidature
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * Set offre
+     *
+     * @param \San\OffresBundle\Entity\Offre $offre
+     *
+     * @return Candidature
+     */
+    public function setOffre(\San\OffresBundle\Entity\Offre $offre)
+    {
+        $this->offre = $offre;
+
+        return $this;
+    }
+
+    /**
+     * Get offre
+     *
+     * @return \San\OffresBundle\Entity\Offre
+     */
+    public function getOffre()
+    {
+        return $this->offre;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \San\UserBundle\Entity\User $user
+     *
+     * @return Candidature
+     */
+    public function setUser(\San\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \San\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

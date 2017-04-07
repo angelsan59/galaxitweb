@@ -1,3 +1,3 @@
 san_core_homepage:
-    path:     /
-    defaults: { _controller: SanCoreBundle:Default:index }
+    path:     /index
+    defaults: { _controller: SanCoreBundle:Core:index }
