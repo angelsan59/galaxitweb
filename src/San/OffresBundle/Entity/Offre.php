@@ -15,12 +15,11 @@ class Offre
      public function __construct()
     {
         $this->pubDate = new \Datetime();
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->competences = new ArrayCollection();
     }
     
-       /**
+   /**
    * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Competence", cascade={"persist"})
    */
   private $competences;
@@ -31,17 +30,21 @@ class Offre
   private $categories;
   
      /**
-   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image")
+   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
   private $image;
+  
+    /**
+   * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
+   */
+    private $user;
   
     /**
    * @ORM\ManyToOne(targetEntity="San\OffresBundle\Entity\Contrat")
    * @ORM\JoinColumn(nullable=true)
    */
   private $contrat;
-  
   
     /**
      * @var int
@@ -59,13 +62,6 @@ class Offre
      */
     private $titre;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="auteur_id", type="integer")
-     */
-    private $auteurid;
-    
     /**
      * @var string
      *
@@ -153,7 +149,6 @@ class Offre
 
         return $this;
     }
-
     /**
      * Get content
      *
@@ -283,7 +278,7 @@ class Offre
     {
         return $this->image;
     }
-
+    
     /**
      * Set published
      *
@@ -309,37 +304,13 @@ class Offre
     }
 
     /**
-     * Set auteurid
-     *
-     * @param integer $auteurid
-     *
-     * @return Offre
-     */
-    public function setAuteurid($auteurid)
-    {
-        $this->auteurid = $auteurid;
-
-        return $this;
-    }
-
-    /**
-     * Get auteurid
-     *
-     * @return integer
-     */
-    public function getAuteurid()
-    {
-        return $this->auteurid;
-    }
-
-    /**
      * Set contrat
      *
-     * @param \San\CoreBundle\Entity\Contrat $contrat
+     * @param \San\OffresBundle\Entity\Contrat $contrat
      *
      * @return Offre
      */
-    public function setContrat(\San\CoreBundle\Entity\Contrat $contrat = null)
+    public function setContrat(\San\OffresBundle\Entity\Contrat $contrat = null)
     {
         $this->contrat = $contrat;
 
@@ -349,11 +320,46 @@ class Offre
     /**
      * Get contrat
      *
-     * @return \San\CoreBundle\Entity\Contrat
+     * @return \San\OffresBundle\Entity\Contrat
      */
     public function getContrat()
     {
         return $this->contrat;
+    }
+
+
+    /**
+     * Add competence
+     *
+     * @param \San\OffresBundle\Entity\Competence $competence
+     *
+     * @return Offre
+     */
+    public function addCompetence(\San\OffresBundle\Entity\Competence $competence)
+    {
+        $this->competences[] = $competence;
+
+        return $this;
+    }
+
+    /**
+     * Remove competence
+     *
+     * @param \San\OffresBundle\Entity\Competence $competence
+     */
+    public function removeCompetence(\San\OffresBundle\Entity\Competence $competence)
+    {
+        $this->competences->removeElement($competence);
+    }
+
+    /**
+     * Get competences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
     }
 
     /**
@@ -391,36 +397,26 @@ class Offre
     }
 
     /**
-     * Add competence
+     * Set user
      *
-     * @param \San\OffresBundle\Entity\Competence $competence
+     * @param \San\UserBundle\Entity\User $user
      *
      * @return Offre
      */
-    public function addCompetence(\San\OffresBundle\Entity\Competence $competence)
+    public function setUser(\San\UserBundle\Entity\User $user = null)
     {
-        $this->competences[] = $competence;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Remove competence
+     * Get user
      *
-     * @param \San\OffresBundle\Entity\Competence $competence
+     * @return \San\UserBundle\Entity\User
      */
-    public function removeCompetence(\San\OffresBundle\Entity\Competence $competence)
+    public function getUser()
     {
-        $this->competences->removeElement($competence);
-    }
-
-    /**
-     * Get competences
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCompetences()
-    {
-        return $this->competences;
+        return $this->user;
     }
 }

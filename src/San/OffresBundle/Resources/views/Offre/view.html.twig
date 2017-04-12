@@ -7,8 +7,12 @@
 {% block body %}
 
   <h2>{{ offre.titre }}</h2>
-  <i>Par {{ offre.auteurid }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
-
+  <i>Par {{ offre.user.username }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
+ {% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
   <div class="well">
     {{ offre.content }}
     </div>
@@ -29,6 +33,15 @@
     Catégories :
     {% for category in offre.categories %}
       {{ category.nom }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+<br/>
+{% if not offre.competences.empty %}
+  <div class="label label-primary small">
+    Compétences :
+    {% for competence in offre.competences %}
+      {{ competence.nom }}{% if not loop.last %}, {% endif %}
     {% endfor %}
   </div>
 {% endif %}

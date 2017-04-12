@@ -18,6 +18,10 @@ class News
         $this->newscats = new ArrayCollection();
     }
     
+      /**
+   * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
+   */
+  private $user;
        /**
    * @ORM\ManyToMany(targetEntity="San\NewsBundle\Entity\newscat", cascade={"persist"})
    */
@@ -50,13 +54,6 @@ class News
      */
     private $titre;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="auteur_id", type="integer")
-     */
-    private $auteurid;
-
     /**
      * @var string
      *
@@ -202,30 +199,6 @@ class News
     }
 
     /**
-     * Set auteurid
-     *
-     * @param integer $auteurid
-     *
-     * @return News
-     */
-    public function setAuteurid($auteurid)
-    {
-        $this->auteurid = $auteurid;
-
-        return $this;
-    }
-
-    /**
-     * Get auteurid
-     *
-     * @return integer
-     */
-    public function getAuteurid()
-    {
-        return $this->auteurid;
-    }
-
-    /**
      * Add newscat
      *
      * @param \San\NewsBundle\Entity\newscat $newscat
@@ -257,5 +230,29 @@ class News
     public function getNewscats()
     {
         return $this->newscats;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \San\UserBundle\Entity\User $user
+     *
+     * @return News
+     */
+    public function setUser(\San\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \San\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

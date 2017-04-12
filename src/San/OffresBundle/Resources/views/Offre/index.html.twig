@@ -1,5 +1,5 @@
 
-{% extends "SanCoreBundle::layout.html.twig" %}
+{% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
   Accueil offres - {{ parent() }}
@@ -7,27 +7,27 @@
 
 {% block body %}
 
-  <h2>Liste des annonces</h2>
-
+  <h2>Liste des offres</h2>
+<div class="well">
   <ul>
     {% for offre in listOffres %}
       <li>
         
-          {{ offre.titre }}
+          <a href="{{ path('san_offre_view', {'id': offre.id}) }}">{{ offre.titre }}</a>
         
-        par {{ offre.auteurid }},
+        par {{ offre.user.username }},
         le {{ offre.pubDate|date('d/m/Y') }}
       </li>
     {% else %}
-      <li>Pas (encore !) d'annonces</li>
+      <li>Pas (encore !) d'offres</li>
     {% endfor %}
   </ul>
-
+</div>
   <ul class="pagination">
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
     {% for p in range(1, nbPages) %}
       <li{% if p == page %} class="active"{% endif %}>
-        <a href="{{ path('san_offres_homepage', {'page': p}) }}">{{ p }}</a>
+        <a href="{{ path('san_offre_homepage', {'page': p}) }}">{{ p }}</a>
       </li>
     {% endfor %}
   </ul>

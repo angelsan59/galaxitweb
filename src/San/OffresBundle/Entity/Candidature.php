@@ -12,8 +12,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Candidature
 {
+     public function __construct()
+    {
+        $this->pubDate = new \Datetime();
+        $this->categories = new ArrayCollection();
+        $this->competences = new ArrayCollection();
+    }
+    
    /**
-   * @ORM\ManyToMany(targetEntity="San\UserBundle\Entity\Statut", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\Statut", cascade={"persist"})
    */
     private $statut;
   
@@ -23,11 +30,15 @@ class Candidature
     */
     private $offre;
   
+     /**
+   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Competence", cascade={"persist"})
+   */
+  private $competences;
+  
     /**
-    * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User")
-    * @ORM\JoinColumn(nullable=false)
-    */
-    private $user;
+   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Categorie", cascade={"persist"})
+   */
+  private $categories;
   
     /**
      * @var int
@@ -44,6 +55,13 @@ class Candidature
      * @ORM\Column(name="date_dispo", type="datetime")
      */
     private $dateDispo;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pubdate", type="datetime")
+     */
+    private $pubdate;
 
     /**
      * @var string
@@ -543,47 +561,6 @@ class Candidature
     {
         return $this->spontane;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->statut = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add statut
-     *
-     * @param \San\UserBundle\Entity\Statut $statut
-     *
-     * @return Candidature
-     */
-    public function addStatut(\San\UserBundle\Entity\Statut $statut)
-    {
-        $this->statut[] = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Remove statut
-     *
-     * @param \San\UserBundle\Entity\Statut $statut
-     */
-    public function removeStatut(\San\UserBundle\Entity\Statut $statut)
-    {
-        $this->statut->removeElement($statut);
-    }
-
-    /**
-     * Get statut
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
 
     /**
      * Set offre
@@ -610,26 +587,118 @@ class Candidature
     }
 
     /**
-     * Set user
+     * Set pubdate
      *
-     * @param \San\UserBundle\Entity\User $user
+     * @param \DateTime $pubdate
      *
      * @return Candidature
      */
-    public function setUser(\San\UserBundle\Entity\User $user)
+    public function setPubdate($pubdate)
     {
-        $this->user = $user;
+        $this->pubdate = $pubdate;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get pubdate
      *
-     * @return \San\UserBundle\Entity\User
+     * @return \DateTime
      */
-    public function getUser()
+    public function getPubdate()
     {
-        return $this->user;
+        return $this->pubdate;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param \San\UserBundle\Entity\Statut $statut
+     *
+     * @return Candidature
+     */
+    public function setStatut(\San\UserBundle\Entity\Statut $statut = null)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return \San\UserBundle\Entity\Statut
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Add competence
+     *
+     * @param \San\OffresBundle\Entity\Competence $competence
+     *
+     * @return Candidature
+     */
+    public function addCompetence(\San\OffresBundle\Entity\Competence $competence)
+    {
+        $this->competences[] = $competence;
+
+        return $this;
+    }
+
+    /**
+     * Remove competence
+     *
+     * @param \San\OffresBundle\Entity\Competence $competence
+     */
+    public function removeCompetence(\San\OffresBundle\Entity\Competence $competence)
+    {
+        $this->competences->removeElement($competence);
+    }
+
+    /**
+     * Get competences
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompetences()
+    {
+        return $this->competences;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \San\OffresBundle\Entity\Categorie $category
+     *
+     * @return Candidature
+     */
+    public function addCategory(\San\OffresBundle\Entity\Categorie $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \San\OffresBundle\Entity\Categorie $category
+     */
+    public function removeCategory(\San\OffresBundle\Entity\Categorie $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

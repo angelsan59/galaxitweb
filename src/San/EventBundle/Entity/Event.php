@@ -12,14 +12,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Event
 {
+     public function __construct()
+    {
+        $this->pubDate = new \Datetime();
+    }
+    
     /**
-   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image")
+   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
   private $image;
   
    /**
-   * @ORM\ManyToMany(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
    */
   private $user;
   
@@ -33,19 +38,19 @@ class Event
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="pub_date", type="datetimetz")
+     */
+    private $pubDate;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
     
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="auteur_id", type="integer")
-     */
-    private $auteurid;
-
     /**
      * @var string
      *
@@ -201,48 +206,6 @@ class Event
     {
         return $this->image;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
-        
-    }
-
-    /**
-     * Add user
-     *
-     * @param \San\UserBundle\Entity\User $user
-     *
-     * @return Event
-     */
-    public function addUser(\San\UserBundle\Entity\User $user)
-    {
-        $this->user[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \San\UserBundle\Entity\User $user
-     */
-    public function removeUser(\San\UserBundle\Entity\User $user)
-    {
-        $this->user->removeElement($user);
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
     /**
      * Set published
@@ -268,27 +231,52 @@ class Event
         return $this->published;
     }
 
+
     /**
-     * Set auteurid
+     * Set pubDate
      *
-     * @param integer $auteurid
+     * @param \DateTime $pubDate
      *
      * @return Event
      */
-    public function setAuteurid($auteurid)
+    public function setPubDate($pubDate)
     {
-        $this->auteurid = $auteurid;
+        $this->pubDate = $pubDate;
 
         return $this;
     }
 
     /**
-     * Get auteurid
+     * Get pubDate
      *
-     * @return integer
+     * @return \DateTime
      */
-    public function getAuteurid()
+    public function getPubDate()
     {
-        return $this->auteurid;
+        return $this->pubDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \San\UserBundle\Entity\User $user
+     *
+     * @return Event
+     */
+    public function setUser(\San\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \San\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

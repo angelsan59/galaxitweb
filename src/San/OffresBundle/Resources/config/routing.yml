@@ -1,6 +1,10 @@
 san_offre_homepage:
     path:     /offres/{page}
-    defaults: { _controller: SanOffresBundle:Offre:index }
+    defaults:
+        _controller: SanOffresBundle:Offre:index
+        page: 1
+    requirements:
+        page: \d*
 
 san_offre_view:
     path: /offre/{id}
@@ -15,14 +19,14 @@ san_offre_add:
         _controller: SanOffresBundle:Offre:add
         
 san_offre_edit:
-    path: /offre/edit/{id}
+    path: /admin/offre/edit/{id}
     defaults:
         _controller: SanOffresBundle:Offre:edit
     requirements:
         id: \d+
         
 san_offre_delete:
-    path: /offre/delete/{id}
+    path: /admin/offre/delete/{id}
     defaults:
         _controller: SanOffresBundle:Offre:delete
     requirements:

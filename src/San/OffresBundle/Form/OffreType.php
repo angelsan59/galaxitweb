@@ -3,6 +3,8 @@
 namespace San\OffresBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use San\CoreBundle\Form\ImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -27,9 +29,25 @@ class OffreType extends AbstractType
             ->add('content',   TextareaType::class)
             ->add('mission',   TextareaType::class)
             ->add('formation',   TextareaType::class)
+            ->add('image',     ImageType::class)
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
-            ->add('Enregistrer',      SubmitType::class)
-            ->add('auteurid', HiddenType::class, array('data' => '1'));
+            ->add('contrat', EntityType::class, array(
+                    'class'        => 'SanOffresBundle:Contrat',
+                    'choice_label' => 'nom',
+                    'multiple'     => false,
+            ))
+            ->add('categories', EntityType::class, array(
+                    'class'        => 'SanOffresBundle:Categorie',
+                    'choice_label' => 'nom',
+                    'multiple'     => true,
+            ))
+            ->add('competences', EntityType::class, array(
+                    'class'        => 'SanOffresBundle:Competence',
+                    'choice_label' => 'nom',
+                    'multiple'     => true,
+            ))
+           
+            ->add('Enregistrer',      SubmitType::class);
     }
     
     /**

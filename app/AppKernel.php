@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new San\EventBundle\SanEventBundle(),
             new San\OffresBundle\SanOffresBundle(),
             new San\UserBundle\SanUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new San\NewsBundle\SanNewsBundle(),
         ];
 

@@ -1,0 +1,22 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier une offre - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Modifier une offre</h2>
+
+  {{ include("SanOffresBundle:Offre:form.html.twig") }}
+
+
+  <p>
+    <a href="{{ path('san_offre_view', {'id': offre.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'offre
+    </a>
+  </p>
+
+{% endblock %}
