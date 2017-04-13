@@ -1,23 +1,23 @@
+
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Ajouter un évènement - {{ parent() }}
+  Modifier un evenement - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h2>Ajouter un évènement</h2>
+  <h2>Modifier un évènement</h2>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
   {{ include("SanEventBundle:Event:form.html.twig") }}
 
-  
 
   <p>
-    <a href="" class="btn btn-default">
+    <a href="{{ path('san_event_view', {'id': event.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la liste
+      Retour à l'évènement
     </a>
   </p>
 

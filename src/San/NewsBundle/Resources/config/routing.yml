@@ -1,28 +1,32 @@
 san_news_homepage:
-    path:     /newse/{page}
-    defaults: { _controller: SanNewsBundle:News:index }
+    path:     /admin/newse/{page}
+    defaults:
+        _controller: SanNewsBundle:News:index
+        page: 1
+    requirements:
+        page: \d*
 
 san_news_view:
-    path: /news/{id}
+    path: /admin/news/{id}
     defaults:
         _controller: SanNewsBundle:News:view
     requirements:
         id: \d+
         
 san_news_add:
-    path: /news/add
+    path: /admin/news/add
     defaults:
         _controller: SanNewsBundle:News:add
         
 san_news_edit:
-    path: /news/edit/{id}
+    path: /admin/news/edit/{id}
     defaults:
         _controller: SanNewsBundle:News:edit
     requirements:
         id: \d+
         
 san_news_delete:
-    path: /news/delete/{id}
+    path: /admin/news/delete/{id}
     defaults:
         _controller: SanNewsBundle:News:delete
     requirements:

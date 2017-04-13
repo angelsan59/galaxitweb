@@ -69,7 +69,7 @@ class OffreController extends Controller
         $em->persist($offre);
         $em->flush();
 
-        $request->getSession()->getFlashBag()->add('notice', 'Offre bien enregistrée.');
+        $this->addFlash('notice', 'Offre bien enregistrée.');
 
         return $this->redirectToRoute('san_offre_view', array('id' => $offre->getId()));
       }
@@ -124,7 +124,7 @@ class OffreController extends Controller
       $em->remove($offre);
       $em->flush();
 
-      $request->getSession()->getFlashBag()->add('info', "L'offre a bien été supprimée.");
+      $this->addFlash('info', "L'offre a bien été supprimée.");
 
       return $this->redirectToRoute('san_offre_homepage');
     }

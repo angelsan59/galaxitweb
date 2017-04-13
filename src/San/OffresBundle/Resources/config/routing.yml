@@ -1,5 +1,5 @@
 san_offre_homepage:
-    path:     /offres/{page}
+    path:     /admin/offres/{page}
     defaults:
         _controller: SanOffresBundle:Offre:index
         page: 1
@@ -7,7 +7,7 @@ san_offre_homepage:
         page: \d*
 
 san_offre_view:
-    path: /offre/{id}
+    path: /admin/offre/{id}
     defaults:
         _controller: SanOffresBundle:Offre:view
     requirements:

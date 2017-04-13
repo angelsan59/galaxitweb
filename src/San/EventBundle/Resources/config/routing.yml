@@ -1,28 +1,32 @@
 san_event_homepage:
-    path:     /events
-    defaults: { _controller: SanEventBundle:Event:index }
+    path:     /admin/events/{page}
+    defaults:
+        _controller: SanEventBundle:Event:index
+        page: 1
+    requirements:
+        page: \d*
 
 san_event_view:
-    path: /event/{id}
+    path: /admin/event/{id}
     defaults:
         _controller: SanEventBundle:Event:view
     requirements:
         id: \d+
             
 san_event_add:
-    path: /event/add
+    path: /admin/event/add
     defaults:
         _controller: SanEventBundle:Event:add
         
 san_event_edit:
-    path: /event/edit/{id}
+    path: /admin/event/edit/{id}
     defaults:
         _controller: SanEventBundle:Event:edit
     requirements:
         id: \d+
         
 san_event_delete:
-    path: /event/delete/{id}
+    path: /admin/event/delete/{id}
     defaults:
         _controller: SanEventBundle:Event:delete
     requirements:

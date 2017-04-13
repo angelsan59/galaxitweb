@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new San\UserBundle\SanUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new San\NewsBundle\SanNewsBundle(),
+            
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,5 +1,35 @@
-{% block menu %}
 
-  <h2>Evènements</h2>
-  <p>Les évènements du moment</p>
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil Evenements - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Liste des évènements</h2>
+<div class="well">
+  <ul>
+    {% for event in listEvents %}
+      <li>
+        
+          <a href="{{ path('san_event_view', {'id': event.id}) }}">{{ event.titre }}</a>
+        
+        par {{ event.user.username }},
+        le {{ event.pubDate|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'évènement</li>
+    {% endfor %}
+  </ul>
+</div>
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_event_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
 {% endblock %}
