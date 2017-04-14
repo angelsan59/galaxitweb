@@ -1,16 +1,16 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Ajouter une offre - {{ parent() }}
+  Ajouter une news - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h2>Ajouter une offre</h2>
+  <h2>Ajouter une news</h2>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
-  {{ include("SanOffresBundle:Offre:form.html.twig") }}
+  {{ include("SanNewsBundle:News:form.html.twig") }}
 
   
 
