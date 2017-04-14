@@ -7,10 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 use San\EventBundle\Entity\Event;
 use San\EventBundle\Form\EventType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class EventController extends Controller
 {
-    public function indexAction()
+    public function indexAction($page)
     {
     if($page<1){
     throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
@@ -28,8 +29,8 @@ class EventController extends Controller
     if ($page > $nbPages) {
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
-     return $this->render('SanEventBundle:Events:index.html.twig', array(
-      'list>Events' => $listEvents,
+     return $this->render('SanEventBundle:Event:index.html.twig', array(
+      'listEvents' => $listEvents,
       'nbPages'     => $nbPages,
       'page'        => $page,
     ));
@@ -58,7 +59,7 @@ class EventController extends Controller
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $event->getImage()->upload();
-     $event>setUser($this->getUser());
+     $event->setUser($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($event);
         $em->flush();

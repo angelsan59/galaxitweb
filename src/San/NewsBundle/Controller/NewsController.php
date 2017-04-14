@@ -3,13 +3,15 @@
 namespace San\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use San\NewsBundle\Entity\News;
 use San\NewsBundle\Form\NewsType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class NewsController extends Controller
 {
-    public function indexAction()
+    public function indexAction($page)
     {
       if($page<1){
     throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
@@ -57,7 +59,7 @@ class NewsController extends Controller
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $news->getImage()->upload();
-     $news>setUser($this->getUser());
+     $news->setUser($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($news);
         $em->flush();

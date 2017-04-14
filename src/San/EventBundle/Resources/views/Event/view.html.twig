@@ -6,57 +6,33 @@
 
 {% block body %}
 
-  <h2>{{ offre.titre }}</h2>
-  <i>Par {{ offre.user.username }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
+  <h2>{{ event.titre }}</h2>
+  <i>Par {{ event.user.username }}, le {{ event.pubDate|date('d/m/Y') }}</i>
  {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="flash-notice">
         {{ flash_message }}
     </div>
 {% endfor %}
   <div class="well">
-    {{ offre.content }}
-    </div>
-    <div class="well">
-    {{ offre.formation }}
-    </div>
- <div class="well">
-    {{ offre.mission }}
+    {{ event.content }}
     </div>
      <div class="well">
-    {# On vérifie qu'une image soit bien associée à l'annonce #}
-{% if offre.image is not null %}
-  <img src="{{ asset(offre.image.webPath) }}" alt="{{ offre.image.alt }}">
-{% endif %}
-
-{% if not offre.categories.empty %}
-  <div class="label label-primary small">
-    Catégories :
-    {% for category in offre.categories %}
-      {{ category.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  </div>
-{% endif %}
-<br/>
-{% if not offre.competences.empty %}
-  <div class="label label-primary small">
-    Compétences :
-    {% for competence in offre.competences %}
-      {{ competence.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  </div>
+    {# On vérifie qu'une image soit bien associée à l'evenement #}
+{% if event.image is not null %}
+  <img src="{{ asset(event.image.webPath) }}" alt="{{ event.image.alt }}">
 {% endif %}
 
   </div>
 
   <p>
     
-    <a href="{{ path('san_offre_edit', {'id': offre.id}) }}" class="btn btn-default">
+    <a href="{{ path('san_event_edit', {'id': event.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'offre
+      Modifier l'évènement
     </a>
-    <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" class="btn btn-danger">
+    <a href="{{ path('san_event_delete', {'id': event.id}) }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'offre
+      Supprimer l'évènement
     </a>
   </p>
 
