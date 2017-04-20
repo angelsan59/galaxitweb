@@ -36,4 +36,21 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
     return new Paginator($query, true);
    
   }
+  
+  public function getLastEvents()
+  {
+     $query = $this->createQueryBuilder('a')
+      // Jointure sur l'attribut image
+      ->leftJoin('a.image', 'i')
+      ->addSelect('i')
+      ->andWhere('a.eventDate >= :date')   
+      ->setParameter('date', new \Datetime())       
+      ->orderBy('a.pubDate', 'DESC')
+      ->getQuery()
+    ;
+return $query
+    
+    ->getResult()
+  ;
+  }
 }

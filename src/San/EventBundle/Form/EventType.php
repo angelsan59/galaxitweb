@@ -25,6 +25,7 @@ class EventType extends AbstractType
             ->add('eventDate', DateType::class, array('label' => 'Date', 'widget' => 'single_text'))
             ->add('fin', DateType::class, array('label' => 'Fin de validité', 'widget' => 'single_text'))
             ->add('titre',     TextType::class)
+            ->add('adresse',     TextType::class)
             ->add('content',   TextareaType::class)
             ->add('image',     ImageType::class)
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))

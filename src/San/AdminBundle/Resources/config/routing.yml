@@ -1,3 +1,37 @@
 san_admin_homepage:
     path:     /admin
     defaults: { _controller: SanAdminBundle:Admin:index }
+
+san_newsletter_homepage:
+    path:     /admin/newsletters/{page}
+    defaults:
+        _controller: SanAdminBundle:Newsletter:index
+        page: 1
+    requirements:
+        page: \d*
+
+san_newsletter_view:
+    path: /admin/newsletter/{id}
+    defaults:
+        _controller: SanAdminBundle:Newsletter:view
+    requirements:
+        id: \d+
+        
+san_newsletter_add:
+    path: /admin/newsletter/add
+    defaults:
+        _controller: SanAdminBundle:Newsletter:add
+        
+san_newsletter_edit:
+    path: /admin/newsletter/edit/{id}
+    defaults:
+        _controller: SanAdminBundle:Newsletter:edit
+    requirements:
+        id: \d+
+        
+san_newsletter_delete:
+    path: /admin/newsletter/delete/{id}
+    defaults:
+        _controller: SanAdminBundle:Newsletter:delete
+    requirements:
+        id: \d+

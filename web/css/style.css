@@ -53,6 +53,11 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 5px;
     padding-top:20px;
 }
+
+input[type=password]{
+    width:50px;
+    font-size:12px;
+}
 /* Prelaoder */
 #preloader {
   position: fixed;
@@ -255,6 +260,7 @@ h2 .rotating {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Nav Menu Essentials */
+
 .nav-menu, .nav-menu * {
   margin: 0;
   padding: 0;
@@ -294,7 +300,7 @@ h2 .rotating {
 
 /* Nav Menu Arrows */
 .sf-arrows .sf-with-ul {
-  padding-right: 30px;
+  padding-right: 10px;
 }
 
 .sf-arrows .sf-with-ul:after {
@@ -314,6 +320,7 @@ h2 .rotating {
 #nav-menu-container {
   float: right;
   margin: 5px 0;
+  
 }
 
 @media (max-width: 768px) {
@@ -324,7 +331,7 @@ h2 .rotating {
 
 /* Nav Meu Styling */
 .nav-menu a {
-  padding: 10px 15px;
+  padding: 5px 5px;
   text-decoration: none;
   display: inline-block;
   color: #fff;

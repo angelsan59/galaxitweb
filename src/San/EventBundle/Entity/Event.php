@@ -65,6 +65,12 @@ class Event
      */
     private $eventDate;
 
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255)
+     */
+    private $adresse;
     /**
      * @var \DateTime
      *
@@ -278,5 +284,29 @@ class Event
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Event
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }

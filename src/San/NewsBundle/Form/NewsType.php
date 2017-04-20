@@ -29,8 +29,9 @@ class NewsType extends AbstractType
             ->add('image',     ImageType::class)
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
             ->add('newscats', EntityType::class, array(
-                    'class'        => 'SanNewsBundle:NewsCat',
+                    'class'        => 'SanNewsBundle:Newscat',
                     'choice_label' => 'nom',
+                    'label' => 'Catégorie',
                     'multiple'     => true,
             ))
            
@@ -43,7 +44,7 @@ class NewsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'San\OffresBundle\Entity\Offre'
+            'data_class' => 'San\NewsBundle\Entity\News'
         ));
     }
 
@@ -52,7 +53,7 @@ class NewsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'san_offresbundle_offre';
+        return 'san_newsbundle_news';
     }
 
 

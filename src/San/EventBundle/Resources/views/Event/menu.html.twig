@@ -1,0 +1,18 @@
+
+  {% for event in listEvents %}
+<div class="panel panel-primary">
+      <div class="panel-heading"><b>{{ event.titre }}</b></div>
+    <div class="panel-body">
+        {% if event.image is not null %}
+  <img src="{{ asset(event.image.webPath) }}" alt="{{ event.image.alt }}" align="right" hspace="5">
+{% endif %}
+        {{ event.content }}
+     <br/><br/><button type="button" class="btn btn-info" data-toggle="modal" data-target="#eve1-modal">Inscrivez-vous</button>
+  
+    </div>
+    
+      <div class="panel-footer">
+        {{ event.eventDate|date('d/m/Y') }} - {{ event.adresse }} 
+      </div></div>  
+
+{% endfor %}

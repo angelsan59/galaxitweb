@@ -2,22 +2,22 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier une offre - {{ parent() }}
+  Modifier une news - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h2>Modifier une offre</h2>
+  <h2>Modifier une news</h2>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
-  {{ include("SanOffresBundle:Offre:form.html.twig") }}
+  {{ include("SanNewsBundle:News:form.html.twig") }}
 
 
   <p>
-    <a href="{{ path('san_offre_view', {'id': offre.id}) }}" class="btn btn-default">
+    <a href="{{ path('san_news_view', {'id': news.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'offre
+      Retour à la news
     </a>
   </p>
 

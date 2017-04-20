@@ -1,62 +1,50 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Offre - {{ parent() }}
+  News - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h2>{{ offre.titre }}</h2>
-  <i>Par {{ offre.user.username }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
+  <h2>{{ news.titre }}</h2>
+  <i>Par {{ news.user.username }}, le {{ news.pubDate|date('d/m/Y') }}</i>
  {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="flash-notice">
         {{ flash_message }}
     </div>
 {% endfor %}
   <div class="well">
-    {{ offre.content }}
+    {{ news.content }}
     </div>
-    <div class="well">
-    {{ offre.formation }}
-    </div>
- <div class="well">
-    {{ offre.mission }}
-    </div>
+   
      <div class="well">
-    {# On vérifie qu'une image soit bien associée à l'annonce #}
-{% if offre.image is not null %}
-  <img src="{{ asset(offre.image.webPath) }}" alt="{{ offre.image.alt }}">
+    {# On vérifie qu'une image soit bien associée à la news #}
+{% if news.image is not null %}
+  <img src="{{ asset(news.image.webPath) }}" alt="{{ news.image.alt }}">
 {% endif %}
 
-{% if not offre.categories.empty %}
+{% if not news.newscats.empty %}
   <div class="label label-primary small">
     Catégories :
-    {% for category in offre.categories %}
-      {{ category.nom }}{% if not loop.last %}, {% endif %}
+    {% for newscat in news.newscats %}
+      {{ newscat.nom }}{% if not loop.last %}, {% endif %}
     {% endfor %}
   </div>
 {% endif %}
-<br/>
-{% if not offre.competences.empty %}
-  <div class="label label-primary small">
-    Compétences :
-    {% for competence in offre.competences %}
-      {{ competence.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  </div>
-{% endif %}
+
+
 
   </div>
 
   <p>
     
-    <a href="{{ path('san_offre_edit', {'id': offre.id}) }}" class="btn btn-default">
+    <a href="{{ path('san_news_edit', {'id': news.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'offre
+      Modifier la news
     </a>
-    <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" class="btn btn-danger">
+    <a href="{{ path('san_news_delete', {'id': news.id}) }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'offre
+      Supprimer la news
     </a>
   </p>
 

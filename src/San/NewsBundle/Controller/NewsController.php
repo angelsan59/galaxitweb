@@ -22,7 +22,7 @@ class NewsController extends Controller
     $listNews = $this->getDoctrine()
       ->getManager()
       ->getRepository('SanNewsBundle:News')
-      ->getOffres($page, $nbPerPage)
+      ->getNews($page, $nbPerPage)
     ;
     
     $nbPages = ceil(count($listNews) / $nbPerPage);
@@ -54,7 +54,7 @@ class NewsController extends Controller
          $news= new News();
 
     // On crée le FormBuilder grâce au service form factory
-    $form = $this->get('form.factory')->create(NewsType::class, $event);
+    $form = $this->get('form.factory')->create(NewsType::class, $news);
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {

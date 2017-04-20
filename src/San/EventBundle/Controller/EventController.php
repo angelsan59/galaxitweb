@@ -129,4 +129,17 @@ class EventController extends Controller
       'form'   => $form->createView(),
     ));
   }
+  
+   public function menuAction()
+    {  
+    $listEvents = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanEventBundle:Event')
+      ->getLastEvents()
+    ;
+    
+     return $this->render('SanEventBundle:Event:menu.html.twig', array(
+      'listEvents' => $listEvents,
+    ));
+    }
 }

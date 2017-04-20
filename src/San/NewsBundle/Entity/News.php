@@ -23,12 +23,12 @@ class News
    */
   private $user;
        /**
-   * @ORM\ManyToMany(targetEntity="San\NewsBundle\Entity\newscat", cascade={"persist"})
+   * @ORM\ManyToMany(targetEntity="San\NewsBundle\Entity\Newscat", cascade={"persist"})
    */
   private $newscats;
   
       /**
-   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image")
+   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
   private $image;

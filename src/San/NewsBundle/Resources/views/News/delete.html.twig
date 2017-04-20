@@ -2,24 +2,24 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Supprimer une offre - {{ parent() }}
+  Supprimer une news - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h2>Supprimer une offre</h2>
+  <h2>Supprimer une news</h2>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
   <p>
-    Etes-vous certain de vouloir supprimer l'offre "{{ offre.titre }}" ?
+    Etes-vous certain de vouloir supprimer la news "{{ news.titre }}" ?
   </p>
 
-  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
-  <form action="{{ path('san_offre_delete', {'id': offre.id}) }}" method="post">
-    <a href="{{ path('san_offre_view', {'id': offre.id}) }}" class="btn btn-default">
+  {# On met l'id de la news dans la route de l'action du formulaire #}
+  <form action="{{ path('san_news_delete', {'id': news.id}) }}" method="post">
+    <a href="{{ path('san_news_view', {'id': news.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'offre
+      Retour à la news
     </a>
     {# Ici j'ai écrit le bouton de soumission à la main #}
     <input type="submit" value="Supprimer" class="btn btn-danger" />
