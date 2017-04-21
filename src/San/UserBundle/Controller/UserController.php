@@ -1,0 +1,133 @@
+<?php
+
+namespace San\UserBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use San\UserBundle\Entity\User;
+use San\UserBundle\Form\UserType;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+class UserController extends Controller
+{
+    public function indexAction($page)
+    {
+    if($page<1){
+    throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
+        }
+        
+    $nbPerPage = 10;
+        
+    $listUsers = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanUserBundle:User')
+      ->getUsers($page, $nbPerPage)
+    ;
+    
+    $nbPages = ceil(count($listUsers) / $nbPerPage);
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+    }
+     return $this->render('SanUserBundle:User:index.html.twig', array(
+      'listUsers' => $listUsers,
+      'nbPages'     => $nbPages,
+      'page'        => $page,
+    ));
+    }
+    
+    public function viewAction($id){
+     $em = $this->getDoctrine()->getManager();
+     
+     $user = $em->getRepository('SanUserBundle:User')->find($id);
+     
+     if (null === $user){
+         throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+     }
+      
+    return $this->render('SanUserBundle:User:view.html.twig', array(
+      'user' => $user  
+    ));
+    }
+    
+    public function addAction(Request $request){
+         $user= new User();
+
+    // On crée le FormBuilder grâce au service form factory
+    $form = $this->get('form.factory')->create(UserType::class, $user);
+
+     // Si la requête est en POST
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $user->getImage()->upload();
+     $user->setEnabled(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash('notice', 'Utilisateur bien enregistré.');
+
+        return $this->redirectToRoute('san_user_view', array('id' => $user->getId()));
+      }
+
+    return $this->render('SanUserBundle:User:add.html.twig', array(
+      'form' => $form->createView(),
+    ));
+    }
+    
+    public function editAction($id, Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $user = $em->getRepository('SanUserBundle:User')->find($id);
+
+    if (null === $event) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+
+    $form = $this->get('form.factory')->create(UserType::class, $user);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+      $em->flush();
+ 
+      $this->addFlash('notice', 'Utilisateur bien modifié.');
+
+      return $this->redirectToRoute('san_user_view', array('id' => $user->getId()));
+    }
+
+    return $this->render('SanUserBundle:User:edit.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+  
+   public function deleteAction(Request $request, $id)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $user = $em->getRepository('SanUserBundle:User')->find($id);
+
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+
+    // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+    // Cela permet de protéger la suppression d'annonce contre cette faille
+    $form = $this->get('form.factory')->create();
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em->remove($user);
+      $em->flush();
+
+      $this->addFlash('info', "L'utilisateur a bien été supprimé.");
+
+      return $this->redirectToRoute('san_user_homepage');
+    }
+    
+    return $this->render('SanUserBundle:User:delete.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+  
+}

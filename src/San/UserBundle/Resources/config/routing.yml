@@ -1,6 +1,10 @@
 san_user_homepage:
-    path:     /user
-    defaults: { _controller: SanUserBundle:User:index }
+    path:     admin/users/{page}
+    defaults:
+        _controller: SanUserBundle:User:index
+        page: 1
+    requirements:
+        page: \d*
 
 san_user_view:
     path: /user/{id}

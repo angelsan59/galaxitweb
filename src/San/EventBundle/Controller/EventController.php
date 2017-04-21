@@ -125,7 +125,7 @@ class EventController extends Controller
     }
     
     return $this->render('SanEventBundle:Event:delete.html.twig', array(
-      'event' => event,
+      'event' => $event,
       'form'   => $form->createView(),
     ));
   }
