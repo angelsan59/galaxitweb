@@ -27,7 +27,7 @@ class EventType extends AbstractType
             ->add('titre',     TextType::class)
             ->add('adresse',     TextType::class)
             ->add('content',   TextareaType::class)
-            ->add('image',     ImageType::class)
+            ->add('image',     ImageType::class, array('required' => false))
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
             ->add('Enregistrer',      SubmitType::class);
     }

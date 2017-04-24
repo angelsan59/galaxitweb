@@ -7,22 +7,29 @@
 {% block body %}
 
   <h2>{{ user.nom }} - {{ user.prenom }}</h2>
-  <i>inscrit le {{ user.dateMod|date('d/m/Y') }}</i>
+  <i>Inscription le {{ user.dateInsc|date('d/m/Y') }} et Modification le {{ user.dateMod|date('d/m/Y') }}</i>
  {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="flash-notice">
         {{ flash_message }}
     </div>
 {% endfor %}
-  <div class="well">
-    {{ user.username }}
+  <div class="row">
+    <div class="col-md-6 well">  
+    <ul>
+        <li>UserName : {{ user.username }}</li>
+        <li>Adresse email : {{ user.email }}</li>
+        <li>Société : {{ user.societe }}</li>
+        <li>Téléphone : {{ user.telephone }}</li>
+        <li>Portable : {{ user.portable }}</li>
+    </ul> 
     </div>
-     <div class="well">
-    {# On vérifie qu'une image soit bien associée à l'evenement #}
-{% if user.image is not null %}
-  <img src="{{ asset(user.image.webPath) }}" alt="{{ user.image.alt }}">
-{% endif %}
-
+    {% if user.image is not null %}
+  <div class="col-md-6">
+      <img src="{{ asset(user.image.webPath) }}" alt="{{ user.image.alt }}" width="200px">
   </div>
+{% endif %}
+    </div>
+    
 
   <p>
     

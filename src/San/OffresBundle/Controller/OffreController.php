@@ -93,6 +93,7 @@ class OffreController extends Controller
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       // Inutile de persister ici, Doctrine connait déjà notre annonce
+      $offre->getImage()->upload();
       $em->flush();
  
       $this->addFlash('notice', 'Offre bien modifiée.');

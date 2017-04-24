@@ -1,7 +1,7 @@
 san_user_homepage:
     path:     admin/users/{page}
     defaults:
-        _controller: SanUserBundle:User:index
+        _controller: SanUserBundle:User:list
         page: 1
     requirements:
         page: \d*

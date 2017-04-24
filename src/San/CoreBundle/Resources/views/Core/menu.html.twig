@@ -43,9 +43,13 @@
         -</span>
     <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
 {% else %}
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#menu-modal">Inscrivez-vous</button>
-    <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-<a href="{{ path('fos_user_registration_register') }}">register</a>
+<li class="menu-has-children"><a href="#metiers"><b>Connexion</b></a>
+                <ul>
+                  <li><button type="button" class="btn btn-link" data-toggle="modal" data-target="#menu-modal">Login in</button></li>
+                  <li><button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Inscription</button></li>
+                
+                </ul>
+              </li>
 {% endif %}
 
             </li>
@@ -55,7 +59,7 @@
        
     </div>
   </header><!-- #header -->
- <!-- Modal -->
+ <!-- Modal login -->
 <div id="menu-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -68,14 +72,15 @@
         {{ render(controller("FOSUserBundle:Security:login")) }}
            </div>
         <div class="modal-footer">
-            <p> <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#register-modal">Inscrivez-vous</button></p>
+            <p> <button type="button" class="btn btn-link" data-toggle="modal" data-dismiss="modal" href="#register-modal">Pas encore inscrit? Inscrivez-vous !</button></p>
         </div>
     </div>
 
   </div>
 </div> 
   <!-- fin modal -->  
-  <!-- Modal -->
+  
+  <!-- Modal inscription-->
 <div id="register-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -88,7 +93,8 @@
         {{ render(controller("FOSUserBundle:Registration:register")) }}
            </div>
         <div class="modal-footer">
-            <p> <a href="{{ path('san_offre_homepage') }}">Pas encore inscrit? Inscrivez-vous !</a></p>
+             <p> <button type="button" class="btn btn-link" data-toggle="modal" data-dismiss="modal" href="#menu-modal">Déjà inscrit? Connectez-vous !</button></p>
+             
         </div>
     </div>
 

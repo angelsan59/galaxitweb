@@ -4,6 +4,7 @@ h1.page-header {
 
 .sidebar {
     padding-left: 0;
+    
 }
 
 .main-container { 
@@ -21,13 +22,19 @@ h1.page-header {
     font-weight:bold;
    padding:10px;}
 .dark{
-    background:#011f4b;
+    background:#1a355d;
     color:#fff;
     font-weight:bold;
    padding:10px;
 }
 .clear{
-    background:#e5e8ed;
+    background:#b9c4db;
     color:#000;
+    padding:10px;
+}
+
+.bgblue{
+    background-color:#005b96;
+    color:#fff;
     padding:10px;
 }

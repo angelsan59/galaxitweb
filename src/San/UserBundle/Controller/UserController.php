@@ -11,9 +11,9 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
-    public function indexAction($page)
+    public function listAction($page)
     {
-    if($page<1){
+   if($page<1){
     throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
         }
         
@@ -29,7 +29,7 @@ class UserController extends Controller
     if ($page > $nbPages) {
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
-     return $this->render('SanUserBundle:User:index.html.twig', array(
+     return $this->render('SanUserBundle:User:listusers.html.twig', array(
       'listUsers' => $listUsers,
       'nbPages'     => $nbPages,
       'page'        => $page,
@@ -52,13 +52,14 @@ class UserController extends Controller
     
     public function addAction(Request $request){
          $user= new User();
-
+        $dateInsc = new \Datetime();
     // On crée le FormBuilder grâce au service form factory
     $form = $this->get('form.factory')->create(UserType::class, $user);
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       $user->getImage()->upload();
+      $user->setDateInsc($dateInsc);
      $user->setEnabled(true);
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
@@ -77,10 +78,10 @@ class UserController extends Controller
     public function editAction($id, Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-
+$dateMod = new \Datetime();
     $user = $em->getRepository('SanUserBundle:User')->find($id);
 
-    if (null === $event) {
+    if (null === $user) {
       throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
     }
 
@@ -88,6 +89,8 @@ class UserController extends Controller
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       // Inutile de persister ici, Doctrine connait déjà notre annonce
+      $user->getImage()->upload();
+      $user->setDateMod($dateMod);
       $em->flush();
  
       $this->addFlash('notice', 'Utilisateur bien modifié.');

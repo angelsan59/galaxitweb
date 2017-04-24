@@ -21,19 +21,6 @@ class UserType extends AbstractType
         $builder
                 ->add('nom')
                 ->add('prenom')
-                ->add('societe')
-                ->add('dateInsc')
-                ->add('dateMod')
-                ->add('portable')
-                ->add('telephone')
-                ->add('competences', EntityType::class, array(
-                    'class'        => 'SanOffresBundle:Competence',
-                    'choice_label' => 'nom',
-                    'multiple'     => true,
-            ))
-                ->add('image',     ImageType::class)
-                ->add('candidature')
-                ->add('Enregistrer',      SubmitType::class)
                 ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
@@ -42,7 +29,12 @@ class UserType extends AbstractType
                 'first_options' => array('label' => 'form.password'),
                 'second_options' => array('label' => 'form.password_confirmation'),
                 'invalid_message' => 'fos_user.password.mismatch',
-            ));
+            ))
+                ->add('societe')
+                ->add('portable')
+                ->add('telephone')
+                ->add('image',     ImageType::class, array('required' => false))
+                ->add('Enregistrer',      SubmitType::class);
     }
     
     /**

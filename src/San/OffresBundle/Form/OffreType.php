@@ -29,7 +29,7 @@ class OffreType extends AbstractType
             ->add('content',   TextareaType::class)
             ->add('mission',   TextareaType::class)
             ->add('formation',   TextareaType::class)
-            ->add('image',     ImageType::class)
+            ->add('image',     ImageType::class, array('required' => false))
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
             ->add('contrat', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Contrat',

@@ -6,20 +6,29 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+
 class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titre',     TextType::class);
+        $builder
+                
+               ->add('nom',     TextType::class, array('label' => 'Votre nom'))
+                ->add('prenom',     TextType::class, array('label' => 'Votre prénom'))
+                ->add('societe',     TextType::class, array('label' => 'Société'))
+                ->add('telephone',     TextType::class, array('label' => 'Téléphone'))
+                ->add('portable',     TextType::class, array('label' => 'Portable'))
+        ->add('dateInsc');
     }
 
-    public function getParent()
+     public function getParent()
     {
-        return 'fos_user_registration';
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
-    public function getNom()
+     public function getBlockPrefix()
     {
         return 'app_user_registration';
     }
+
 }

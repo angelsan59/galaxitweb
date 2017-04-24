@@ -26,7 +26,7 @@ class NewsType extends AbstractType
 
             ->add('titre',     TextType::class)
             ->add('content',   TextareaType::class)
-            ->add('image',     ImageType::class)
+            ->add('image',     ImageType::class, array('required' => false))
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
             ->add('newscats', EntityType::class, array(
                     'class'        => 'SanNewsBundle:Newscat',

@@ -1,0 +1,28 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil Utilisateurs - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Liste des utilisateurs</h2>
+<div class="well">
+  <ul>
+    {% for user in listUsers %}
+      <li>
+        
+          <a href="{{ path('san_user_view', {'id': user.id}) }}">{{ user.prenom }} {{ user.nom }} - {{ user.username }}</a>
+        
+        
+        le {{ user.dateMod|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) d'utilisateur</li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+{% endblock %}

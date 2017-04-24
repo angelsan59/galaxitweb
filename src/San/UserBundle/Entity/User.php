@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="San\UserBundle\Repository\UserRepository")
  * 
  */
 class User extends BaseUser
@@ -17,17 +18,13 @@ class User extends BaseUser
       public function __construct()
     {
         $this->dateMod = new \Datetime();
-        $this->competences = new ArrayCollection();
+        
         parent::__construct();
     }
     
-      /**
-   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Competence", cascade={"persist"})
-   */
-  private $competences;
-  
      /**
    * @ORM\OneToOne(targetEntity="San\CoreBundle\Entity\Image", cascade={"persist", "remove"})
+   * @ORM\JoinColumn(nullable=true)
    */
   private $image;
   
@@ -303,41 +300,6 @@ class User extends BaseUser
     public function getImage()
     {
         return $this->image;
-    }
-
-
-    /**
-     * Add competence
-     *
-     * @param \San\OffresBundle\Entity\Competence $competence
-     *
-     * @return User
-     */
-    public function addCompetence(\San\OffresBundle\Entity\Competence $competence)
-    {
-        $this->competences[] = $competence;
-
-        return $this;
-    }
-
-    /**
-     * Remove competence
-     *
-     * @param \San\OffresBundle\Entity\Competence $competence
-     */
-    public function removeCompetence(\San\OffresBundle\Entity\Competence $competence)
-    {
-        $this->competences->removeElement($competence);
-    }
-
-    /**
-     * Get competences
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCompetences()
-    {
-        return $this->competences;
     }
 
     /**
