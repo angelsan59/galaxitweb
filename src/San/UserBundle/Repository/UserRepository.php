@@ -16,9 +16,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
       public function getUsers($page, $nbPerPage)
   {
      $query = $this->createQueryBuilder('a')
-      // Jointure sur l'attribut image
-      ->leftJoin('a.image', 'i')
-      ->addSelect('i')
       ->orderBy('a.dateMod', 'DESC')
       ->getQuery()
      ;

@@ -19,8 +19,8 @@
    
      <div class="well">
     {# On vérifie qu'une image soit bien associée à la news #}
-{% if news.image is not null %}
-  <img src="{{ asset(news.image.webPath) }}" alt="{{ news.image.alt }}">
+{% if news.imageName is not null %}
+  <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}">
 {% endif %}
 
 {% if not news.newscats.empty %}

@@ -3,12 +3,14 @@
 namespace San\NewsBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * News
  *
  * @ORM\Table(name="news")
  * @ORM\Entity(repositoryClass="San\NewsBundle\Repository\NewsRepository")
+ * * @Vich\Uploadable
  */
 class News
 {
@@ -26,12 +28,6 @@ class News
    * @ORM\ManyToMany(targetEntity="San\NewsBundle\Entity\Newscat", cascade={"persist"})
    */
   private $newscats;
-  
-      /**
-   * @ORM\ManyToOne(targetEntity="San\CoreBundle\Entity\Image", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=true)
-   */
-  private $image;
   
    /**
     * @ORM\Column(name="published", type="boolean")
@@ -150,37 +146,6 @@ class News
         return $this->pubDate;
     }
 
-    /**
-     * Set image
-     *
-     * @param \San\CoreBundle\Entity\Image $image
-     *
-     * @return News
-     */
-    public function setImage(\San\CoreBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \San\CoreBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set published
-     *
-     * @param boolean $published
-     *
-     * @return News
-     */
     public function setPublished($published)
     {
         $this->published = $published;
@@ -254,5 +219,104 @@ class News
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="news_image", fileNameProperty="imageName", size="imageSize")
+     * 
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string
+     */
+    private $imageName;
+
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return News
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+        
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param string $imageName
+     *
+     * @return News
+     */
+    public function setImageName($imageName)
+    {
+        $this->imageName = $imageName;
+        
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return News
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

@@ -81,3 +81,23 @@ fos_user:
     registration:
         form:
             type: San\UserBundle\Form\RegistrationType    
+            
+vich_uploader:
+    db_driver: orm
+    
+    mappings:
+        offre_image:
+            uri_prefix:         /galaxitweb/web/images/offres
+            upload_destination: '%kernel.root_dir%/../web/images/offres'
+        event_image:
+            uri_prefix:         /galaxitweb/web/images/events
+            upload_destination: '%kernel.root_dir%/../web/images/events' 
+        news_image:
+            uri_prefix:         /galaxitweb/web/images/news
+            upload_destination: '%kernel.root_dir%/../web/images/news' 
+        user_image:
+            uri_prefix:         /galaxitweb/web/images/users
+            upload_destination: '%kernel.root_dir%/../web/images/users'  
+        candidature_cv:
+            uri_prefix:         /galaxitweb/web/images/candidatures
+            upload_destination: '%kernel.root_dir%/../web/images/candidatrures'    

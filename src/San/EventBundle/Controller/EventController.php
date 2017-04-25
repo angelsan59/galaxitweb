@@ -58,7 +58,7 @@ class EventController extends Controller
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $event->getImage()->upload();
+     
      $event->setUser($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($event);
@@ -88,7 +88,7 @@ class EventController extends Controller
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       // Inutile de persister ici, Doctrine connait déjà notre annonce
-       $event->getImage()->upload();
+      
        $em->flush();
  
       $this->addFlash('notice', 'Evènement bien modifié.');

@@ -16,9 +16,6 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
      public function getNews($page, $nbPerPage)
   {
      $query = $this->createQueryBuilder('a')
-      // Jointure sur l'attribut image
-      ->leftJoin('a.image', 'i')
-      ->addSelect('i')
       ->orderBy('a.pubDate', 'DESC')
       ->getQuery()
     ;

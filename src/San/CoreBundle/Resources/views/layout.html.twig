@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}Galax-IT{% endblock %}</title>
-    
+   
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -51,6 +51,7 @@
      <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
     
   <!-- Required JavaScript Libraries -->
+  
   <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('lib/jquery/jquery-migrate.min.js') }}"></script>
   <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -60,7 +61,11 @@
   <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
   <script src="{{ asset('lib/stickyjs/sticky.js') }}"></script>
   <script src="{{ asset('lib/easing/easing.js') }}"></script>
-  
+   <script type="text/javascript">
+    $(window).on('load',function(){
+        $('#confirmed').modal('show');
+    });
+</script>
   <!-- Template Specisifc Custom Javascript File -->
   <script src="{{ asset('js/custom.js') }}"></script>
   </body>

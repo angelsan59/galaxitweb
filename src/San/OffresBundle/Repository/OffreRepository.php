@@ -17,9 +17,7 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository
     public function getOffres($page, $nbPerPage)
   {
      $query = $this->createQueryBuilder('a')
-      // Jointure sur l'attribut image
-      ->leftJoin('a.image', 'i')
-      ->addSelect('i')
+      
       // Jointure sur l'attribut categories
       ->leftJoin('a.categories', 'c')
       ->addSelect('c')

@@ -24,6 +24,13 @@ class Candidature
    */
     private $statut;
   
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User")
+   
+    */
+    private $user;
+    
     /**
     * @ORM\ManyToOne(targetEntity="San\OffresBundle\Entity\Offre")
     * @ORM\JoinColumn(nullable=false)
@@ -700,5 +707,29 @@ class Candidature
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \San\UserBundle\Entity\User $user
+     *
+     * @return Candidature
+     */
+    public function setUser(\San\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \San\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

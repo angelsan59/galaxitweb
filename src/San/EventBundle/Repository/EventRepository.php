@@ -17,9 +17,6 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
      public function getEvents($page, $nbPerPage)
   {
      $query = $this->createQueryBuilder('a')
-      // Jointure sur l'attribut image
-      ->leftJoin('a.image', 'i')
-      ->addSelect('i')
       ->orderBy('a.pubDate', 'DESC')
       ->getQuery()
     ;
@@ -40,9 +37,6 @@ class EventRepository extends \Doctrine\ORM\EntityRepository
   public function getLastEvents()
   {
      $query = $this->createQueryBuilder('a')
-      // Jointure sur l'attribut image
-      ->leftJoin('a.image', 'i')
-      ->addSelect('i')
       ->andWhere('a.eventDate >= :date')   
       ->setParameter('date', new \Datetime())       
       ->orderBy('a.pubDate', 'DESC')

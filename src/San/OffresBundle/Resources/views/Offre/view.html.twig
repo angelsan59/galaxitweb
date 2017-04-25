@@ -24,8 +24,8 @@
     </div>
      <div class="well">
     {# On vérifie qu'une image soit bien associée à l'annonce #}
-{% if offre.image is not null %}
-  <img src="{{ asset(offre.image.webPath) }}" alt="{{ offre.image.alt }}">
+{% if offre.imageName is not null %}
+  <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}">
 {% endif %}
 
 {% if not offre.categories.empty %}

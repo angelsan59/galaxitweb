@@ -4,9 +4,9 @@
   Accueil - {{ parent() }}
 {% endblock %}
 
- 
- 
 {% block body %}
+      {% block fos_user_content %}
+      {% endblock fos_user_content %}
     <h2><a href="admin">Section Administration</a></h2>
       {# On affiche tous les messages flash dont le nom est « info » #}
       {% for message in app.session.flashbag.get('info') %}

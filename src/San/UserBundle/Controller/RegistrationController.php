@@ -7,6 +7,9 @@ use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use San\UserBundle\Entity\User;
 
 class RegistrationController extends BaseController
 {
@@ -22,7 +25,7 @@ class RegistrationController extends BaseController
         $user = $userManager->createUser();
         $user->setEnabled(true);
         $dateinsc = new \Datetime();
-        $user->setDateInsc($dateinsc);
+        
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
 
@@ -41,13 +44,6 @@ class RegistrationController extends BaseController
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
-
-                /*****************************************************
-                 * Add new functionality (e.g. log the registration) *
-                 *****************************************************/
-                $this->container->get('logger')->info(
-                    sprintf("New user registration: %s", $user)
-                );
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->generateUrl('fos_user_registration_confirmed');
@@ -71,4 +67,5 @@ class RegistrationController extends BaseController
             'form' => $form->createView(),
         ));
     }
+    
 }

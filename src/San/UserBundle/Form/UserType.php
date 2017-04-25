@@ -4,12 +4,15 @@ namespace San\UserBundle\Form;
 
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\Form\AbstractType;
-use San\CoreBundle\Form\ImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -33,7 +36,7 @@ class UserType extends AbstractType
                 ->add('societe')
                 ->add('portable')
                 ->add('telephone')
-                ->add('image',     ImageType::class, array('required' => false))
+                ->add('imagefile', FileType::class, array('label' => 'Image', 'required' => false))
                 ->add('Enregistrer',      SubmitType::class);
     }
     

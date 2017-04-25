@@ -58,7 +58,7 @@ class UserController extends Controller
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $user->getImage()->upload();
+
       $user->setDateInsc($dateInsc);
      $user->setEnabled(true);
         $em = $this->getDoctrine()->getManager();
@@ -89,7 +89,7 @@ $dateMod = new \Datetime();
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       // Inutile de persister ici, Doctrine connait déjà notre annonce
-      $user->getImage()->upload();
+   
       $user->setDateMod($dateMod);
       $em->flush();
  

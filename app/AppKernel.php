@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new San\OffresBundle\SanOffresBundle(),
             new San\UserBundle\SanUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
             new San\NewsBundle\SanNewsBundle(),
             
         ];

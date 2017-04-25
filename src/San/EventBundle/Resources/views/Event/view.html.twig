@@ -18,8 +18,8 @@
     </div>
      <div class="well">
     {# On vérifie qu'une image soit bien associée à l'evenement #}
-{% if event.image is not null %}
-  <img src="{{ asset(event.image.webPath) }}" alt="{{ event.image.alt }}">
+{% if event.imageName is not null %}
+  <img src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.imageName }}">
 {% endif %}
 
   </div>
