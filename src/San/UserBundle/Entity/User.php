@@ -21,7 +21,9 @@ class User extends BaseUser
     {
         $this->dateMod = new \Datetime();
         $this->dateInsc = new \Datetime();
+        
         parent::__construct();
+        $this->enabled = true;
     }
     
     /**

@@ -39,7 +39,7 @@ class Inscription
      *
      * @ORM\Column(name="venue", type="boolean")
      */
-    private $venue;
+    private $venue = true;
 
 /**
      * @var \DateTime

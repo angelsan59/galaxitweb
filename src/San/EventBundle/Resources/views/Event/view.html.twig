@@ -1,7 +1,7 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Offre - {{ parent() }}
+  Evenement - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -13,16 +13,31 @@
         {{ flash_message }}
     </div>
 {% endfor %}
-  <div class="well">
+<div class="row">
+  <div class="col-md-6">
+      <div class="well">
     {{ event.content }}
+      </div>
+    {% if listinscrits|length > 0 %}
+    <div class="well">
+        <h4>Voici la liste des gens inscrits à l'évènement :</h4>
+      <ul>
+        {% for inscrit in listinscrits %}
+            <li><a href="{{ path('san_user_view', {'id': inscrit.user.id}) }}">{{ inscrit.user.prenom }} {{ inscrit.user.nom }}</a> </li>
+        {% endfor %}
+      </ul>
     </div>
-     <div class="well">
+  {% endif %}
+    </div>
+     <div class="col-md-6">
     {# On vérifie qu'une image soit bien associée à l'evenement #}
 {% if event.imageName is not null %}
   <img src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.imageName }}">
 {% endif %}
 
   </div>
+</div>
+ 
 
   <p>
     
@@ -33,6 +48,10 @@
     <a href="{{ path('san_event_delete', {'id': event.id}) }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
       Supprimer l'évènement
+    </a>
+       <a href="{{ path('san_insc_add', {'id': event.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Inscription à l'évènement
     </a>
   </p>
 

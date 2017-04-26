@@ -41,12 +41,19 @@ class EventController extends Controller
      
      $event = $em->getRepository('SanEventBundle:Event')->find($id);
      
+     // Récupération des inscrits à l'évènement
+    $listinscrits = $em
+      ->getRepository('SanEventBundle:Inscription')
+      ->findBy(array('event' => $event))
+    ;
+    
      if (null === $event){
          throw new NotFoundHttpException("L'évènement d'id ".$id." n'existe pas.");
      }
       
     return $this->render('SanEventBundle:Event:view.html.twig', array(
-      'event' => $event  
+      'event' => $event,
+        'listinscrits' => $listinscrits
     ));
     }
     

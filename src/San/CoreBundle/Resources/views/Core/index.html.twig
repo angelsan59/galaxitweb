@@ -7,6 +7,7 @@
 {% block body %}
       {% block fos_user_content %}
       {% endblock fos_user_content %}
+      
     <h2><a href="admin">Section Administration</a></h2>
       {# On affiche tous les messages flash dont le nom est « info » #}
       {% for message in app.session.flashbag.get('info') %}
@@ -108,23 +109,7 @@ Mise à disposition de compétences informatiques et Maintenance et service aux 
      Venez- voir comment démarrer et ce que nous pouvons faire pour vous en dégustant un bon café (et des croissants !)
      <br/><br/><button type="button" class="btn btn-info" data-toggle="modal" data-target="#eve1-modal">Inscrivez-vous</button>
 
-<!-- Modal -->
-<div id="eve1-modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
 
-       <div class="loginmodal-container">
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h1 class="modal-title">Entrez vos détails</h1>
-        {{ render(controller("FOSUserBundle:Security:login")) }}
-       
-       
-          <p> Déjà inscrit? Loggez-vous !</p>
-     
-    </div>
-
-  </div>
-</div> 
-  <!-- fin modal -->    
   
     </div>
     

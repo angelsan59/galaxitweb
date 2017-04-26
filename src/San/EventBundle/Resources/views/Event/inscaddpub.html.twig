@@ -1,0 +1,20 @@
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+{% block body %}
+     <h3 class="section-title">Inscription aux évènements</h3>
+   <div class="section-title-divider"></div>
+   {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">Message flash : {{ message }}</div>
+      {% endfor %}
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <p class="section-description">Connecté en tant que {{ app.user.username }}
+        -
+    <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></p>
+  <p class="section-description">Voulez vous vous inscrire à l'évènement "{{ event.titre }}" ?</p>
+
+{% else %}
+    <div class="container"> 
+        <p class="section-description"> Vous devez d'abord vous inscrire pour pouvoir Déjà inscrit? Loggez-vous !</p>   
+ {% endif %}  
+<p class="section-description">{{ form(form) }}</p></div>
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Inscription Evenement - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+      <h2>Vous êtes bien inscrit pour l'évènement {{ inscription.event.titre }}</h2>
+     
+
+ {% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+  <div class="well">
+   Vous pouvez consulter et modifier cette inscription à tout moment sur votre profil.
+    </div>
+     
+
+  <p>
+    
+    <a href="{{ path('san_event_edit', {'id': inscription.event.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'évènement
+    </a>
+    <a href="{{ path('san_event_delete', {'id': inscription.event.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'évènement
+    </a>
+      
+  </p>
+
+{% endblock %}
+

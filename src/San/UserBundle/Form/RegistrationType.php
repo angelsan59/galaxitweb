@@ -18,7 +18,6 @@ class RegistrationType extends AbstractType
                 ->add('societe',     TextType::class, array('label' => 'Société'))
                 ->add('telephone',     TextType::class, array('label' => 'Téléphone'))
                 ->add('portable',     TextType::class, array('label' => 'Portable'))
-       // ->add('dateInsc')
        ;
     }
 

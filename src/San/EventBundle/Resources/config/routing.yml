@@ -31,3 +31,53 @@ san_event_delete:
         _controller: SanEventBundle:Event:delete
     requirements:
         id: \d+
+        
+san_insc_homepage:
+    path:     /admin/inscriptions/{page}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:index
+        page: 1
+    requirements:
+        page: \d*
+
+san_insc_view:
+    path: /admin/inscription/{id}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:view
+    requirements:
+        id: \d+
+        
+san_insc_viewpub:
+    path: /inscription/{id}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:viewpub
+    requirements:
+        id: \d+
+        
+san_insc_add:
+    path: /admin/inscription/add/{id}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:add
+    requirements:
+        id: \d+   
+        
+san_insc_addpub:
+    path: /inscription/add/{id}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:addpub
+    requirements:
+        id: \d+         
+        
+san_insc_edit:
+    path: /admin/inscription/edit/{id}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:edit
+    requirements:
+        id: \d+
+        
+san_insc_delete:
+    path: /admin/inscription/delete/{id}
+    defaults:
+        _controller: SanEventBundle:InscriptionEvent:delete
+    requirements:
+        id: \d+        
