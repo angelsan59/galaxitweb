@@ -5,3 +5,7 @@ san_core_homepage:
 san_vue_offre:
     path:     /vueoffre
     defaults: { _controller: SanCoreBundle:Core:vueoffre }    
+
+san_core_test:
+    path:     /test
+    defaults: { _controller: SanCoreBundle:Core:sendmail } 

@@ -32,4 +32,17 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
     return new Paginator($query, true);
    
   }
+  
+  public function getLastNews()
+  {
+     $query = $this->createQueryBuilder('a')     
+      ->orderBy('a.pubDate', 'DESC')
+      ->setMaxResults(5)
+      ->getQuery()
+    ;
+return $query
+    
+    ->getResult()
+  ;
+  }
 }

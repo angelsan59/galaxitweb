@@ -15,13 +15,15 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#hero">Accueil</a></li>
+          <li><a href="#news">News</a></li>
           <li class="menu-has-children"><a href="#about">Qui sommes-nous ?</a>
           <ul>
               <li><a href="#societe">La Société</a></li>
               <li><a href="#team">Notre équipe</a></li>
           </ul></li>
-          <li><a href="carriere.html">Rejoignez-nous</a></li>
           <li><a href="#evenements">Evènements</a></li>
+          <li><a href="carriere.html"><b>Rejoignez-nous</b></a></li>
+          
           <li class="menu-has-children"><a href="#services">Nos activités</a>
             <ul>
               <li><a href="#secteurs">Nos Secteurs</a></li>
@@ -37,22 +39,23 @@
             </ul>
           </li>
           <li><a href="#contact">Contactez-nous</a></li>
-           <li>
-               {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    <span style="color:#ccc;">Connecté en tant que {{ app.user.username }}
-        -</span>
-    <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-{% else %}
-<li class="menu-has-children"><a href="#metiers"><b>Connexion</b></a>
-                <ul>
-                  <li><button type="button" class="btn btn-link" data-toggle="modal" data-target="#menu-modal">Login in</button></li>
-                  <li><button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Inscription</button></li>
-                
-                </ul>
-              </li>
-{% endif %}
-
-            </li>
+         
+<li class="menu-has-children">
+    <a href="#connect"><i class="fa fa-user-o"></i><b>Compte</b></a>
+            <ul>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li class="compte">Connecté en tant que {{ app.user.username }}</li>
+                        <li class="compte"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <li><a href="admin"><i class="fa fa-lock"></i> Section Administration</a></li>
+                    {% endif %}
+                    {% else %}    
+                  <li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#menu-modal">Login in</button></li>
+                  <li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Inscription</button></li>
+                {% endif %}
+            </ul>
+</li>
+        </ul>
              
            
       </nav><!-- #nav-menu-container -->

@@ -14,12 +14,12 @@ body {
 }
 
 a {
-  color: #03C4EB;
+  color: #01768d;
   transition: 0.5s;
 }
 
 a:hover, a:active, a:focus {
-  color: #03c5ec;
+  color: #01768d;
   outline: none;
   text-decoration: none;
 }
@@ -193,8 +193,9 @@ h2 .rotating {
 }
 
 #hero .btn-get-started {
-  background: #03C4EB;
-  border: 2px solid #03C4EB;
+  background: #01768d;
+  border: 2px solid #03C4EB ;
+  border-radius: 20px;
   color: #fff;
 }
 
@@ -219,8 +220,8 @@ h2 .rotating {
 --------------------------------------------------------------*/
 #header {
   background: #111;
-  padding: 20px 0;
-  height: 90px;
+  padding: 15px 0;
+  height: 70px;
 }
 
 #header #logo {
@@ -248,9 +249,9 @@ h2 .rotating {
   max-height: 50px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1280px) {
   #header {
-    height: 80px;
+    height: 100px;
   }
   #header #logo h1 {
     font-size: 26px;
@@ -270,7 +271,7 @@ h2 .rotating {
 /* Nav Menu Essentials */
 
 .nav-menu, .nav-menu * {
-  margin: 0;
+  margin-right: 10px;
   padding: 0;
   list-style: none;
 }
@@ -278,9 +279,9 @@ h2 .rotating {
 .nav-menu ul {
   position: absolute;
   display: none;
-  top: 100%;
-  left: 0;
-  z-index: 99;
+  top: 80%;
+  right: -5px;
+  z-index: 999;
 }
 
 .nav-menu li {
@@ -308,14 +309,14 @@ h2 .rotating {
 
 /* Nav Menu Arrows */
 .sf-arrows .sf-with-ul {
-  padding-right: 30px;
+  padding-right: 10px;
   
 }
 
 .sf-arrows .sf-with-ul:after {
   content: "\f107";
   position: absolute;
-  right: 15px;
+  right: 5px;
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
@@ -345,11 +346,14 @@ h2 .rotating {
   display: inline-block;
   color: #fff;
   font-family: 'Raleway', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 14px;
   outline: none;
 }
 
+.compte{
+  padding: 5px 5px;
+}
 .nav-menu a:hover, .nav-menu li:hover > a, .nav-menu .menu-active > a {
   color: #03C4EB;
 }
@@ -360,7 +364,7 @@ h2 .rotating {
 }
 
 .nav-menu ul li {
-  background: #fff;
+  background: #f6f6f6;
   border-top: 1px solid #f4f4f4;
 }
 
@@ -369,7 +373,7 @@ h2 .rotating {
 }
 
 .nav-menu ul li:hover {
-  background: #f6f6f6;
+  background: #e5f9fd;
 }
 
 .nav-menu ul li a {
@@ -524,6 +528,12 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 40px 0;
 }
 
+#news{
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6)), url("../img/news-bg.jpeg") fixed center center;
+  background-size: cover;
+  padding: 40px 0 40px 0;
+}
+
 #about {
   background: #fff;
   padding: 40px 0;
@@ -562,7 +572,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .panel-footer{
-    background-color: #d1e1ec;
+    background-color: #01768d;
 }
 /* Services Section
 --------------------------------*/
@@ -725,8 +735,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Testimonials Section
 --------------------------------*/
 #testimonials {
-  background: #f6f6f6;
-  padding: 40px 0;
+ background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url("../img/news-bg.jpeg") fixed center center;
+  background-size: cover;
+  padding: 40px 0 40px 0;
 }
 
 #testimonials .profile {
@@ -787,7 +798,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Team Section
 --------------------------------*/
 #team {
-  background: #fff;
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6)), url("../img/about-img.jpg") fixed center center;
+  background-size: cover;
   padding: 40px 0 40px 0;
 }
 
@@ -944,7 +956,7 @@ span.input-group-addon i {
 }
 /****** LOGIN MODAL ******/
 .loginmodal-container {
-  padding: 30px;
+  padding: 20px;
   max-width: 350px;
   width: 100% !important;
   background-color: #F7F7F7;
@@ -1041,7 +1053,7 @@ span.input-group-addon i {
 .flip-card {
   display: block;
   position: relative;
-  z-index: 1000;
+  z-index: 900;
 width: 260px;
   height: 260px;
 }

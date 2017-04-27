@@ -15,4 +15,23 @@ class CoreController extends Controller
     {
         return $this->render('SanCoreBundle:Core:offre.html.twig');
     }
+    
+    public function sendmailAction()
+    {
+        $name = 'moi';
+        $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('send@example.com')
+        ->setTo('sandrine.ociepka@gmail.com')
+        ->setBody(
+            $this->renderView(
+                'SanCoreBundle:Core:mail.html.twig',
+                array('name' => $name)
+            )
+        )
+    ;
+    $this->get('mailer')->send($message);
+
+    return $this->render('SanCoreBundle:Core:test.html.twig');
+    }
 }

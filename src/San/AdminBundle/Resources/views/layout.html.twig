@@ -47,10 +47,10 @@
 				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="{{ path('san_core_homepage') }}" target="_blank">Visiter le Site</a></li>
+				<li><a href="{{ path('san_core_homepage') }}" target="_blank"><i class="fa fa-globe"></i> Visiter le Site</a></li>
 				<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						Account
+						<i class="fa fa-user-circle"></i> Account
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
@@ -68,46 +68,45 @@
 	<div class="container-fluid main-container clear">
             <div class="col-md-3 sidebar">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#">Dashboard</a></li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Offres d'emploi<span class="caret"></span></a>
+                    <li class="active"><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> Offres d'emploi<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_offre_add') }}">Nouvelle offre</a></li>
-                            <li><a href="{{ path('san_offre_homepage') }}">Gestion des offres</a></li>
+                            <li><a href="{{ path('san_offre_add') }}"><i class="fa fa-plus"></i> Nouvelle offre</a></li>
+                            <li><a href="{{ path('san_offre_homepage') }}"><i class="fa fa-list"></i> Gestion des offres</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidats<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-address-card-o"></i> Candidats<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Gestion des candidats</a></li>
-                            <li><a href="#">Nouveaux Candidats</a></li>
-                            <li><a href="#">Candidats à appeller</a></li>
-                            <li><a href="#">Candidats à voir</a></li>
-                            <li><a href="#">Candidats retenus</a></li>
+                            <li><a href="#"><i class="fa fa-list"></i> Gestion des candidats</a></li>
+                            <li><a href="#"><i class="fa fa-id-badge"></i> Nouveaux Candidats</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> Candidats à appeller</a></li>
+                            <li><a href="#"><i class="fa fa-coffee"></i> Candidats à voir</a></li>
+                            <li><a href="#"><i class="fa fa-thumbs-o-up"></i> Candidats retenus</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Evènements<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar"></i> Evènements<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_event_add') }}">Nouvel évènement</a></li>
-                            <li><a href="{{ path('san_event_homepage') }}">Gestion des évènements</a></li>
-                            <li><a href="#">Inscrits aux évènements</a></li>
+                            <li><a href="{{ path('san_event_add') }}"><i class="fa fa-calendar-plus-o"></i> Nouvel évènement</a></li>
+                            <li><a href="{{ path('san_event_homepage') }}"><i class="fa fa-list"></i> Gestion des évènements</a></li>
                         </ul>
                     </li>
-                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">News<span class="caret"></span></a>
+                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-newspaper-o"></i> News<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_news_add') }}">Nouvelle news</a></li>
-                            <li><a href="{{ path('san_news_homepage') }}">Gestion des news</a></li>
+                            <li><a href="{{ path('san_news_add') }}"><i class="fa fa-plus"></i> Nouvelle news</a></li>
+                            <li><a href="{{ path('san_news_homepage') }}"><i class="fa fa-list"></i> Gestion des news</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Newsletter<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Newsletter<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Nouvelle newsletter</a></li>
-                            <li><a href="#">Gestion des newsletters</a></li>
-                            <li><a href="#">Abonnés à la newsletter</a></li>
+                            <li><a href="#"><i class="fa fa-plus"></i> Nouvelle newsletter</a></li>
+                            <li><a href="#"><i class="fa fa-list"></i> Gestion des newsletters</a></li>
+                            <li><a href="#"><i class="fa fa-group"></i> Abonnés à la newsletter</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateurs<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Utilisateurs<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_user_add') }}">Nouvel utilisateur</a></li>
-                            <li><a href="{{ path('san_user_homepage') }}">Gestion des utilisateurs</a></li>
+                            <li><a href="{{ path('san_user_add') }}"><i class="fa fa-user-plus"></i> Nouvel utilisateur</a></li>
+                            <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
                         </ul>
                     </li>
                     <li><a href="#">CVthèque</a></li>

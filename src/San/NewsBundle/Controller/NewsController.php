@@ -130,4 +130,17 @@ class NewsController extends Controller
       'form'   => $form->createView(),
     ));
   }
+  
+  public function menuAction()
+    {  
+    $listNews = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanNewsBundle:News')
+      ->getLastNews()
+    ;
+    
+     return $this->render('SanNewsBundle:News:menu.html.twig', array(
+      'listNews' => $listNews,
+    ));
+    }
 }
