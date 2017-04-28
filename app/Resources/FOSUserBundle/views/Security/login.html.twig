@@ -1,5 +1,16 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-    {{ include('@FOSUser/Security/login_content.html.twig') }}
+     <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <h2>Bienvenue, {{ app.user.username }} !</h2>
+                <p class="section-description">Vous pouvez désormais consulter votre profil, vous enregistrer aux évènements, vous abonner à la news letter, etc - 
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a></p>
+            {% else %}
+                {{ include('@FOSUser/Security/login_content.html.twig') }}
+            {% endif %}
+        </div>
+    
 {% endblock fos_user_content %}

@@ -50,8 +50,9 @@
                     <li><a href="admin"><i class="fa fa-lock"></i> Section Administration</a></li>
                     {% endif %}
                     {% else %}    
-                  <li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#menu-modal">Login in</button></li>
-                  <li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Inscription</button></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                    <!--<li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#menu-modal">Login in</button></li>
+                  <li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Inscription</button></li>-->
                 {% endif %}
             </ul>
 </li>
@@ -62,46 +63,5 @@
        
     </div>
   </header><!-- #header -->
- <!-- Modal login -->
-<div id="menu-modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-       <div class="modal-content loginmodal-container">
-           <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Entrez vos détails</h4>
-      </div>
-           <div class="modal-body">
-        {{ render(controller("FOSUserBundle:Security:login")) }}
-           </div>
-        <div class="modal-footer">
-            <p> <button type="button" class="btn btn-link" data-toggle="modal" data-dismiss="modal" href="#register-modal">Pas encore inscrit? Inscrivez-vous !</button></p>
-        </div>
-    </div>
-
-  </div>
-</div> 
-  <!-- fin modal -->  
-  
-  <!-- Modal inscription-->
-<div id="register-modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-       <div class="modal-content loginmodal-container">
-           <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Entrez vos détails</h4>
-      </div>
-           <div class="modal-body">
-        {{ render(controller("FOSUserBundle:Registration:register")) }}
-           </div>
-        <div class="modal-footer">
-             <p> <button type="button" class="btn btn-link" data-toggle="modal" data-dismiss="modal" href="#menu-modal">Déjà inscrit? Connectez-vous !</button></p>
-             
-        </div>
-    </div>
-
-  </div>
-</div> 
-  <!-- fin modal -->
+ 
 {% endblock %}

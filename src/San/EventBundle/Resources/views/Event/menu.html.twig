@@ -9,18 +9,18 @@
         {{ event.content }}
      <br/><br/>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <a href="{{ path('san_insc_addpub', {'id': event.id}) }}" class="btn btn-info">
+            <a href="{{ path('san_insc_add', {'id': event.id}) }}" class="btn btn-info">
       <i class="glyphicon glyphicon-edit"></i>
       Inscrivez-vous
     </a>
          
          {% else %}
-        <a href="{{ path('san_insc_addpub', {'id': event.id}) }}" class="btn btn-info">
+        <a href="{{ path('san_insc_add', {'id': event.id}) }}" class="btn btn-info">
       <i class="glyphicon glyphicon-edit"></i> Inscrivez-vous</a>
         {% endif %}
          </div>
     
-      <div class="panel-footer">
+      <div class="clear">
       <i class="fa fa-calendar"></i>  {{ event.eventDate|date('d/m/Y') }} - {{ event.adresse }} 
       </div></div>  
 {% endfor %}

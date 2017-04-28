@@ -13,6 +13,8 @@ use San\EventBundle\Form\InscriptionType;
 use San\EventBundle\Form\InscriptionlogType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
 
 class InscriptionEventController extends Controller {
    
@@ -55,43 +57,23 @@ class InscriptionEventController extends Controller {
     ));
     }
     
-    public function viewpubAction($id){
-     $em = $this->getDoctrine()->getManager();
-     
-     $inscription = $em->getRepository('SanEventBundle:Inscription')->getInsc($id);
-     
-     if (null === $inscription){
-         throw new NotFoundHttpException("L'inscription d'id ".$id." n'existe pas.");
-     }
-      
-    return $this->render('SanEventBundle:Event:inscviewpub.html.twig', array(
-      'inscription' => $inscription  
-    ));
-    }
-    
     public function addAction($id, Request $request){
         $em = $this->getDoctrine()->getManager();
      
      $event = $em->getRepository('SanEventBundle:Event')->find($id);
-     
+    
      if (null === $event){
          throw new NotFoundHttpException("L'évènement d'id ".$id." n'existe pas.");
      } 
         
         $inscription= new Inscription();
-
-    // On crée le FormBuilder grâce au service form factory
-       $securityContext = $this->container->get('security.authorization_checker');
-if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        
     $form = $this->get('form.factory')->create(InscriptionlogType::class, $inscription);
-        }
-        else{
-     $form = $this->get('form.factory')->create(InscriptionType::class, $inscription);       
-        }
+
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-     
-     $inscription->setUser($this->getUser());
+    
+        $inscription->setUser($this->getUser());
       $inscription->setEvent($event);
         $em = $this->getDoctrine()->getManager();
         $em->persist($inscription);
@@ -105,6 +87,7 @@ if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
     return $this->render('SanEventBundle:Event:inscadd.html.twig', array(
       'form' => $form->createView(),
         'event' => $event,
+       
     ));
     }
     
@@ -112,42 +95,58 @@ if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
         $em = $this->getDoctrine()->getManager();
      
      $event = $em->getRepository('SanEventBundle:Event')->find($id);
-     $dispatcher = $this->get('event_dispatcher');
+    
      if (null === $event){
          throw new NotFoundHttpException("L'évènement d'id ".$id." n'existe pas.");
      } 
-        
-        $inscription= new Inscription();
-        
-        $securityContext = $this->container->get('security.authorization_checker');
-if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-    $form = $this->get('form.factory')->create(InscriptionlogType::class, $inscription);
-        }
-        else{
-     $form = $this->get('form.factory')->create(InscriptionType::class, $inscription);       
-        }
-
-     // Si la requête est en POST
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    
-      $inscription->setEvent($event);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($inscription);
-        $em->flush();
-$event1 = new FormEvent($form, $request);
-                $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event1);
-        $this->addFlash('notice', 'Inscription bien enregistrée.');
-
-        return $this->redirectToRoute('san_insc_viewpub', array('id' => $inscription->getId(), 'event' => $event,));
-      }
-$boolean= true;
-    return $this->render('SanEventBundle:Event:inscaddpub.html.twig', array(
-      'form' => $form->createView(),
-        'event' => $event,
-        'bollean' => $boolean
+     
+        $session = $request->getSession();
+      $session->set('event_id', $id);
+       return $this->render('SanEventBundle:Event:inscaddpub.html.twig', array(
+      'event' => $event 
     ));
     }
-    
+    public function addpub1Action($id, Request $request){
+      
+    /** 1. Login in user **/
+        
+        /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
+        $session = $request->getSession();
+
+        $authErrorKey = Security::AUTHENTICATION_ERROR;
+        $lastUsernameKey = Security::LAST_USERNAME;
+
+        // get the error if any (works with forward and redirect -- see below)
+        if ($request->attributes->has($authErrorKey)) {
+            $error = $request->attributes->get($authErrorKey);
+        } elseif (null !== $session && $session->has($authErrorKey)) {
+            $error = $session->get($authErrorKey);
+            $session->remove($authErrorKey);
+        } else {
+            $error = null;
+        }
+
+        if (!$error instanceof AuthenticationException) {
+            $error = null; // The value does not come from the security component.
+        }
+
+        // last username entered by the user
+        $lastUsername = (null === $session) ? '' : $session->get($lastUsernameKey);
+
+        $csrfToken = $this->has('security.csrf.token_manager')
+            ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
+            : null;
+
+        return $this->render('@FOSUser/Security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'csrf_token' => $csrfToken,
+        ));
+        
+        
+        
+           
+    }
     public function editAction($id, Request $request)
   {
     $em = $this->getDoctrine()->getManager();

@@ -29,7 +29,7 @@ security:
                 # csrf_provider: form.csrf_provider
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
-                default_target_path: san_core_homepage
+                default_target_path: fos_user_security_login
             logout:
                 path:       fos_user_security_logout
                 target:     /index
@@ -42,3 +42,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
+        - { path: ^/inscription, role: ROLE_USER }
