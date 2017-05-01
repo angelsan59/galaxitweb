@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new San\UserBundle\SanUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new San\NewsBundle\SanNewsBundle(),
             
         ];

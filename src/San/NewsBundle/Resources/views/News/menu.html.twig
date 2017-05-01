@@ -5,7 +5,7 @@
         {% if news.imageName is not null %}
   <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}" width="200px" align="right">
 {% endif %}
-        {{ news.content }}
+        {{ news.content | raw }}
     
          </div>
     

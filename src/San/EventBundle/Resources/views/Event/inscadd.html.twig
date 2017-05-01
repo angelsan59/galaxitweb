@@ -6,17 +6,18 @@
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    <p class="section-description">Connecté en tant que {{ app.user.username }}
-        -
-    <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></p>
-  <p class="section-description">Voulez vous vous inscrire à l'évènement "{{ event.titre }}" ?</p>
+    <h4 class="text-center"><i class="fa fa-user"></i> Bienvenue {{ app.user.username }}</h4>
+    
+    <p class="section-description">Si ce n'est pas vous, <a href="{{ path('fos_user_security_logout') }}">déconnectez-vous</a></p>
+    <div class="section-title-divider"></div>
+    <div class="col-md-12 text-center"><p class="section-description">Voulez vous vous inscrire à l'évènement "{{ event.titre }}" ?</p>
 
 {% else %}
-    <div class="container"> 
+    
         <p class="section-description"> Vous devez d'abord vous inscrire en tant
             qu'utilisateur avant de vous inscrire à un évènement.</p>
         <p class="section-description"> Déjà inscrit? Loggez-vous ! {{ render(controller("FOSUserBundle:Security:login")) }}</p>   
  {% endif %}  
-<p class="section-description">{{ form(form) }}</p></div>
+{{ form(form) }}</div>
 {% endblock %}
 

@@ -6,7 +6,7 @@
         {% if event.imageName is not null %}
   <img src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.imageName }}" width="200px" align="right">
 {% endif %}
-        {{ event.content }}
+        {{ event.content | raw }}
      <br/><br/>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <a href="{{ path('san_insc_add', {'id': event.id}) }}" class="btn btn-info">

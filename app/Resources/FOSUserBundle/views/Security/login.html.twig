@@ -9,6 +9,7 @@
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a></p>
             {% else %}
+                <h2><a href="{{ path('fos_user_registration_register') }}">Inscription</a></h2>
                 {{ include('@FOSUser/Security/login_content.html.twig') }}
             {% endif %}
         </div>

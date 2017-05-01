@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class OffreType extends AbstractType
 {
@@ -29,9 +30,12 @@ class OffreType extends AbstractType
    
             ->add('fin',      DateType::class, array('label' => 'Fin de validité', 'widget' => 'single_text'))
             ->add('titre',     TextType::class)
-            ->add('content',   TextareaType::class)
-            ->add('mission',   TextareaType::class)
-            ->add('formation',   TextareaType::class)
+            ->add('content', CKEditorType::class, array('config_name' => 'my_config',
+))
+            ->add('mission', CKEditorType::class, array('config_name' => 'my_config',
+))
+            ->add('formation', CKEditorType::class, array('config_name' => 'my_config',
+))
             ->add('imagefile', FileType::class, array('label' => 'Image', 'required' => false))
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
             ->add('contrat', EntityType::class, array(

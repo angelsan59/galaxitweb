@@ -102,4 +102,9 @@ vich_uploader:
             upload_destination: '%kernel.root_dir%/../web/images/users'  
         candidature_cv:
             uri_prefix:         /galaxitweb/web/images/candidatures
-            upload_destination: '%kernel.root_dir%/../web/images/candidatrures'    
+            upload_destination: '%kernel.root_dir%/../web/images/candidatrures'  
+            
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: [ ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'], ['Link', 'Unlink'], ['Font', 'FontSize', 'TextColor', 'BGColor'] ]

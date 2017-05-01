@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class EventType extends AbstractType
 {
@@ -27,7 +28,8 @@ class EventType extends AbstractType
             ->add('fin', DateType::class, array('label' => 'Fin de validité', 'widget' => 'single_text'))
             ->add('titre',     TextType::class)
             ->add('adresse',     TextType::class)
-            ->add('content',   TextareaType::class)
+            ->add('content', CKEditorType::class, array('config_name' => 'my_config',
+))
             ->add('imagefile', FileType::class, array('label' => 'Image', 'required' => false))
             ->add('published', CheckboxType::class, array('label' => 'Publié', 'required' => false))
             ->add('Enregistrer',      SubmitType::class);
