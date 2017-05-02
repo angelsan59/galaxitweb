@@ -36,6 +36,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+    * @ORM\Column(name="abonewsletter", type="boolean", nullable=true)
+    */
+    private $abonewsletter;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, nullable=true)
@@ -370,4 +375,28 @@ class User extends BaseUser
         return $this->updatedAt;
     }
 
+
+    /**
+     * Set abonewsletter
+     *
+     * @param boolean $abonewsletter
+     *
+     * @return User
+     */
+    public function setAbonewsletter($abonewsletter)
+    {
+        $this->abonewsletter = $abonewsletter;
+
+        return $this;
+    }
+
+    /**
+     * Get abonewsletter
+     *
+     * @return boolean
+     */
+    public function getAbonewsletter()
+    {
+        return $this->abonewsletter;
+    }
 }

@@ -1,0 +1,31 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Newsletter - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ newsletter.titre }}</h2>
+  <i>Par {{ newsletter.user.username }}, le {{ newsletter.pubDate|date('d/m/Y') }}</i>
+ {% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+  <div class="well">
+    {{ newsletter.content | raw }}
+    </div>
+  <p>
+    
+    <a href="{{ path('san_newsletter_edit', {'id': newsletter.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier la newsletter
+    </a>
+    <a href="{{ path('san_newsletter_delete', {'id': newsletter.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer la newsletter
+    </a>
+  </p>
+
+{% endblock %}

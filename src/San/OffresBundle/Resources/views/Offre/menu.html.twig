@@ -1,0 +1,11 @@
+{% for offre in listOffres %}
+    
+    <tr>
+          <td><a href="{{ path('san_offre_offre', {'id': offre.id}) }}"><b>{{ offre.titre }}</b></a></td>
+        <td>{% for category in offre.categories %}
+      {{ category.nom }}{% if not loop.last %}, {% endif %}
+    {% endfor %}</td>
+        <td>{{ offre.contrat.nom }}</td>
+        <td>France</td>
+    </tr>
+{% endfor %}

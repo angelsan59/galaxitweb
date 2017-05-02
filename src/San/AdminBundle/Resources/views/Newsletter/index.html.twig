@@ -1,0 +1,35 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil Newsletter - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Liste des newsletters</h2>
+<div class="well">
+  <ul>
+    {% for newsletter in listNewsletter %}
+      <li>
+        
+          <a href="{{ path('san_newsletter_view', {'id': newsletter.id}) }}">{{ newsletter.titre }}</a>
+        
+        par {{ newsletter.user.username }},
+        le {{ newsletter.pubDate|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) de newsletter</li>
+    {% endfor %}
+  </ul>
+</div>
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_newsletter_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

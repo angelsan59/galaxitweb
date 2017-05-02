@@ -1,5 +1,22 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
+     <div>
+         <h2>Inscription au site Galax-IT</h2>
+              
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <h2>Bienvenue, {{ app.user.username }} !</h2>
+                 
+                <p class="section-description">Vous pouvez désormais consulter votre profil, vous enregistrer aux évènements, vous abonner à la news letter, etc - 
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a></p>
+            {% else %}
+                <p class="section-description">Remplissez le formulaire ci-dessous pour vous inscrire.</p>
+                <p class="section-description">Si vous êtes déjà inscrit(e), <a href="{{ path('fos_user_security_login') }}"><b>identifiez-vous ici</b></a>.</p>
+                
+               {% include "@FOSUser/Registration/register_content.html.twig" %}
+            {% endif %}
+        </div>
+
 {% endblock fos_user_content %}

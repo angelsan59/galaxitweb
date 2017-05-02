@@ -14,13 +14,13 @@ class Newsletter
 {
       public function __construct()
     {
-        $this->pubDate = new \Datetime();
-        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pubdate = new \Datetime();
+       
     }
-    /**
-   * @ORM\ManyToMany(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
+      /**
+   * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User", cascade={"persist"})
    */
-  private $user;
+    private $user;
   
     /**
      * @var int
@@ -51,13 +51,6 @@ class Newsletter
      * @ORM\Column(name="content", type="text")
      */
     private $content;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="auteur_id", type="integer")
-     */
-    private $auteurid;
 
     /**
      * Get id
@@ -140,62 +133,28 @@ class Newsletter
     {
         return $this->content;
     }
-   
+    
     /**
-     * Add user
+     * Set user
      *
      * @param \San\UserBundle\Entity\User $user
      *
      * @return Newsletter
      */
-    public function addUser(\San\UserBundle\Entity\User $user)
+    public function setUser(\San\UserBundle\Entity\User $user = null)
     {
-        $this->user[] = $user;
+        $this->user = $user;
 
         return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \San\UserBundle\Entity\User $user
-     */
-    public function removeUser(\San\UserBundle\Entity\User $user)
-    {
-        $this->user->removeElement($user);
     }
 
     /**
      * Get user
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \San\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set auteurid
-     *
-     * @param integer $auteurid
-     *
-     * @return Newsletter
-     */
-    public function setAuteurid($auteurid)
-    {
-        $this->auteurid = $auteurid;
-
-        return $this;
-    }
-
-    /**
-     * Get auteurid
-     *
-     * @return integer
-     */
-    public function getAuteurid()
-    {
-        return $this->auteurid;
     }
 }

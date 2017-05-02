@@ -1,21 +1,16 @@
-{% extends "SanCoreBundle:Core:index.html.twig" %}
+{% extends "@FOSUser/layout.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
     
-    <div class="modal" role="dialog" id="confirmed">
-  <div class="modal-dialog">
-
-       <div class="modal-content loginmodal-container">
-           <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Bien enregistré !</h4>
-      </div>
-           <div class="modal-body">
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <div>
+ 
+        <h2>Bien enregistré !</h2>
+      
+    <p class="section-description">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    <p class="section-description"><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
-           </div></div></div></div>
+           </div>
 {% endblock fos_user_content %}

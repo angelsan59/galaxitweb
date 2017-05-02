@@ -2,6 +2,10 @@ san_core_homepage:
     path:     /index
     defaults: { _controller: SanCoreBundle:Core:index }
     
+san_carriere_homepage:
+    path:     /carriere
+    defaults: { _controller: SanCoreBundle:Core:carriere }    
+    
 san_vue_offre:
     path:     /vueoffre
     defaults: { _controller: SanCoreBundle:Core:vueoffre }    

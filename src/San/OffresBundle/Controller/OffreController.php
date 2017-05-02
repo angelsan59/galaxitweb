@@ -53,6 +53,21 @@ class OffreController extends Controller
     ));
     }
     
+     public function offreAction($id){
+        
+     $em = $this->getDoctrine()->getManager();
+     
+     $offre = $em->getRepository('SanOffresBundle:Offre')->find($id);
+     
+     if (null === $offre){
+         throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+     }
+      
+    return $this->render('SanOffresBundle:Offre:offre.html.twig', array(
+      'offre' => $offre  
+    ));
+    }
+    
     public function addAction(Request $request)
   {
     // On crée un objet Offre
@@ -135,4 +150,17 @@ class OffreController extends Controller
       'form'   => $form->createView(),
     ));
   }
+  
+  public function menuAction()
+    {  
+    $listOffres = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanOffresBundle:Offre')
+      ->getLastOffres()
+    ;
+    
+     return $this->render('SanOffresBundle:Offre:menu.html.twig', array(
+      'listOffres' => $listOffres,
+    ));
+    }
 }

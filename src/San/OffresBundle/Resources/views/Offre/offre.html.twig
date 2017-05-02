@@ -1,0 +1,75 @@
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+
+{% block title %}
+  Offre - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="col-md-12">
+    
+ <h3 class="section-title">{{ offre.titre }}</h3>
+ <div class="section-title-divider"></div>
+ <p class="text-right"> <i>Posté le {{ offre.pubDate|date('d/m/Y') }}</i></p>
+ 
+  <p class="section-description">
+      {% if offre.imageName is not null %}
+  <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}" align="right">
+{% endif %}
+    {{ offre.content }}
+  <br/><br/><a href="{{ path('san_candidature_add', {'id': offre.id}) }}"><button type="button" class="btn btn-info">Postulez à l'offre</button></a>
+  </p>
+</div>
+  <div class="row">
+               <div class="col-md-12 dark">
+                   Formation
+               </div>
+      </div>
+  <div class="row">
+    <div class="well">
+    {{ offre.formation }}
+    </div></div>
+     <div class="row">
+               <div class="col-md-12 dark">
+                   Mission
+               </div>
+      </div>
+     <div class="row">
+ <div class="well">
+    {{ offre.mission }}
+ </div></div>
+     
+{% if not offre.categories.empty %}
+     <div class="row">
+               <div class="col-md-12 dark">
+                   Catégories
+               </div>
+      </div>
+      <div class="row">
+  <div class="well">
+      <ul>
+    {% for category in offre.categories %}
+        <li>{{ category.nom }}</li>
+    {% endfor %}
+      </ul>
+  </div></div>
+{% endif %}
+
+{% if not offre.competences.empty %}
+  <div class="row">
+               <div class="col-md-12 dark">
+                   Compétences nécessaires
+               </div>
+      </div>
+   <div class="row">
+  <div class="well">
+      <ul>
+    {% for competence in offre.competences %}
+        <li>{{ competence.nom }}</li>
+    {% endfor %}
+      </ul></div></div>
+{% endif %}
+
+
+
+{% endblock %}
+

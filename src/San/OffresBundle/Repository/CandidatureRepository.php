@@ -2,6 +2,9 @@
 
 namespace San\OffresBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * CandidatureRepository
  *
@@ -10,4 +13,16 @@ namespace San\OffresBundle\Repository;
  */
 class CandidatureRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getCand($id)
+  {
+     $query = $this->createQueryBuilder('a')
+      ->innerJoin('a.offre', 'c')
+      ->addSelect('c')
+    ;
+      $query->setMaxResults(1);
+return $query
+    ->getQuery()
+    ->getOneorNullResult()
+  ;
+  }   
 }

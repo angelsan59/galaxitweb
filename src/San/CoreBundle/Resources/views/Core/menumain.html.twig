@@ -22,7 +22,7 @@
               <li><a href="#team">Notre équipe</a></li>
           </ul></li>
           <li><a href="#evenements">Evènements</a></li>
-          <li><a href="carriere.html"><b>Rejoignez-nous</b></a></li>
+          <li><a href="{{ path('san_carriere_homepage') }}"><b>Rejoignez-nous</b></a></li>
           
           <li class="menu-has-children"><a href="#services">Nos activités</a>
             <ul>
@@ -51,9 +51,8 @@
                     {% endif %}
                     {% else %}    
                     <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
-                    <!--<li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#menu-modal">Login in</button></li>
-                  <li class="compte"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Inscription</button></li>-->
-                {% endif %}
+                    <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+                    {% endif %}
             </ul>
 </li>
         </ul>

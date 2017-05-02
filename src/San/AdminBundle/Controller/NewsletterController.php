@@ -4,8 +4,8 @@ namespace San\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use San\NewsBundle\Entity\News;
-use San\NewsBundle\Form\NewsType;
+use San\AdminBundle\Entity\Newsletter;
+use San\AdminBundle\Form\NewsletterType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -22,14 +22,14 @@ class NewsletterController extends Controller
     $listNewsletter = $this->getDoctrine()
       ->getManager()
       ->getRepository('SanAdminBundle:Newsletter')
-      ->getNews($page, $nbPerPage)
+      ->getNewsletter($page, $nbPerPage)
     ;
     
     $nbPages = ceil(count($listNewsletter) / $nbPerPage);
     if ($page > $nbPages) {
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
-     return $this->render('SanAdminBundle:Admin:newsletterlist.html.twig', array(
+     return $this->render('SanAdminBundle:Newsletter:index.html.twig', array(
       'listNewsletter' => $listNewsletter,
       'nbPages'     => $nbPages,
       'page'        => $page,
@@ -45,7 +45,7 @@ class NewsletterController extends Controller
          throw new NotFoundHttpException("La newsletter d'id ".$id." n'existe pas.");
      }
       
-    return $this->render('SanAdminBundle:Admin:newsletterview.html.twig', array(
+    return $this->render('SanAdminBundle:Newsletter:view.html.twig', array(
       'newsletter' => $newsletter  
     ));
     }
@@ -58,7 +58,7 @@ class NewsletterController extends Controller
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $newsletter->getImage()->upload();
+      
      $newsletter->setUser($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($newsletter);
@@ -69,7 +69,7 @@ class NewsletterController extends Controller
         return $this->redirectToRoute('san_newsletter_view', array('id' => $newsletter->getId()));
       }
 
-    return $this->render('SanAdminBundle:Admin:newsletteradd.html.twig', array(
+    return $this->render('SanAdminBundle:Newsletter:add.html.twig', array(
       'form' => $form->createView(),
     ));
     }
@@ -78,7 +78,7 @@ class NewsletterController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $newsletter = $em->getRepository('SanAdminBundle:News')->find($id);
+    $newsletter = $em->getRepository('SanAdminBundle:Newsletter')->find($id);
 
     if (null === $newsletter) {
       throw new NotFoundHttpException("La newsletter d'id ".$id." n'existe pas.");
@@ -95,7 +95,7 @@ class NewsletterController extends Controller
       return $this->redirectToRoute('san_newsletter_view', array('id' => $newsletter->getId()));
     }
 
-    return $this->render('SanAdminBundle:Admin:newsletteredit.html.twig', array(
+    return $this->render('SanAdminBundle:Newsletter:edit.html.twig', array(
       'newsletter' => $newsletter,
       'form'   => $form->createView(),
     ));
@@ -124,7 +124,7 @@ class NewsletterController extends Controller
       return $this->redirectToRoute('san_newsletter_homepage');
     }
     
-    return $this->render('SanAdminBundle:Admin:newsletterdelete.html.twig', array(
+    return $this->render('SanAdminBundle:Newsletter:delete.html.twig', array(
       'newsletter' => $newsletter,
       'form'   => $form->createView(),
     ));

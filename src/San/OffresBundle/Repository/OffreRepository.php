@@ -38,5 +38,16 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository
    
   }
   
-   
+  public function getLastOffres()
+  {
+     $query = $this->createQueryBuilder('a')     
+      ->orderBy('a.pubDate', 'DESC')
+      ->setMaxResults(10)
+      ->getQuery()
+    ;
+return $query
+    
+    ->getResult()
+  ;
+  }
 }

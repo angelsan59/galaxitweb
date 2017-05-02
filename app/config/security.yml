@@ -43,3 +43,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/inscription, role: ROLE_USER }
+        - { path: ^/newsletter, role: ROLE_USER }
+        - { path: ^/carriere/candidature, role: ROLE_USER }

@@ -1,0 +1,10 @@
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+{% block body %}
+    <h3 class="section-title">Candidature à l'offre {{ candidature.offre.titre }} bien enregistrée</h3>
+    <div class="section-title-divider"></div>
+    <p class="section-description">Nous vous contacterons prochainement pour vous prévenir de sa situation</p>
+    <p class="section-description"><a href="{{ path('san_candidature_edit', {'id': candidature.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier la candidature
+    </a></p>
+{% endblock %}

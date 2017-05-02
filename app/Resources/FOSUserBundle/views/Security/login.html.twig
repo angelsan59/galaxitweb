@@ -2,14 +2,22 @@
 
 {% block fos_user_content %}
      <div>
+         <h2>Connexion au site Galax-IT</h2>
+              
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <h2>Bienvenue, {{ app.user.username }} !</h2>
+                
+                {% if is_granted("ROLE_ADMIN") %}
+                    <h2><a href="admin"><i class="fa fa-lock"></i> Section Administration</a></h2>       
+                {% endif %}    
                 <p class="section-description">Vous pouvez désormais consulter votre profil, vous enregistrer aux évènements, vous abonner à la news letter, etc - 
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a></p>
             {% else %}
-                <h2><a href="{{ path('fos_user_registration_register') }}">Inscription</a></h2>
+                 <p class="section-description">Veuillez vous identifier ci-dessous. 
+                     Si c'est votre première visite, <a href="{{ path('fos_user_registration_register') }}"><b>inscrivez-vous ici</b></a>.</p>
+                
                 {{ include('@FOSUser/Security/login_content.html.twig') }}
             {% endif %}
         </div>

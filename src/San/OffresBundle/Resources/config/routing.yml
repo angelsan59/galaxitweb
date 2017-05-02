@@ -13,6 +13,13 @@ san_offre_view:
     requirements:
         id: \d+
         
+san_offre_offre:
+    path: /carriere/offre/{id}
+    defaults:
+        _controller: SanOffresBundle:Offre:offre
+    requirements:
+        id: \d+        
+        
 san_offre_add:
     path: /admin/offre/add
     defaults:
@@ -29,5 +36,48 @@ san_offre_delete:
     path: /admin/offre/delete/{id}
     defaults:
         _controller: SanOffresBundle:Offre:delete
+    requirements:
+        id: \d+
+        
+san_candidature_homepage:
+    path:     /carriere/candidature/{page}
+    defaults:
+        _controller: SanOffresBundle:Candidature:index
+        page: 1
+    requirements:
+        page: \d*
+        
+san_candidature_add:
+    path: /carriere/candidature/add/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:add
+    requirements:
+        id: \d+  
+        
+san_candidature_succes:
+    path: /carriere/candidature/succes/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:succes
+    requirements:
+        id: \d+
+        
+san_candidature_view:
+    path: /carriere/candidature/view/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:view
+    requirements:
+        id: \d+        
+        
+san_candidature_edit:
+    path: /carriere/candidature/edit/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:edit
+    requirements:
+        id: \d+
+        
+san_candidature_delete:
+    path: /carriere/candidature/delete/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:delete
     requirements:
         id: \d+

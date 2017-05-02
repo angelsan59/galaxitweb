@@ -5,6 +5,9 @@ namespace San\AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class NewsletterType extends AbstractType
 {
@@ -13,7 +16,11 @@ class NewsletterType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('pubdate')->add('titre')->add('content')->add('auteurid')->add('user');
+        $builder
+                ->add('titre',     TextType::class)
+            ->add('content', CKEditorType::class, array('config_name' => 'my_config',
+))
+                ->add('Enregistrer',      SubmitType::class);
     }
     
     /**

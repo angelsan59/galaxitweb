@@ -11,6 +11,11 @@ class CoreController extends Controller
         return $this->render('SanCoreBundle:Core:index.html.twig');
     }
     
+    public function carriereAction()
+    {
+        return $this->render('SanCoreBundle:Core:carriere.html.twig');
+    }
+    
     public function vueoffreAction()
     {
         return $this->render('SanCoreBundle:Core:offre.html.twig');
