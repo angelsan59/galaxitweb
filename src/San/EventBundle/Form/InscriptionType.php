@@ -18,7 +18,8 @@ class InscriptionType extends AbstractType {
     {
         $builder
             ->add('user',     RegistrationType::class)
-            ->add('Enregistrer',      SubmitType::class);
+            ->add('Enregistrer',      SubmitType::class, array(
+    'attr' => array('class' => 'btn btn-info'),));
     }
     
     /**

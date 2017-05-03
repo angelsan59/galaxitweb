@@ -81,3 +81,25 @@ san_candidature_delete:
         _controller: SanOffresBundle:Candidature:delete
     requirements:
         id: \d+
+        
+san_candidats_liste:
+    path:     /admin/candidats/{page}
+    defaults:
+        _controller: SanOffresBundle:Candidature:index
+        page: 1
+    requirements:
+        page: \d*   
+        
+san_candidats_statutlist:
+    path: /admin/candidats/statut/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:statutlist
+    requirements:
+        id: \d+  
+        
+san_candidats_view:
+    path: /admin/candidat/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:adminview
+    requirements:
+        id: \d+        

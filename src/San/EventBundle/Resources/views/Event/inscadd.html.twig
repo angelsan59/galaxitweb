@@ -1,5 +1,7 @@
 {% extends "SanCoreBundle::layoutpages.html.twig" %}
 {% block body %}
+    <div class="container containerpages">
+        <div class="row">
      <h3 class="section-title">Inscription aux évènements</h3>
    <div class="section-title-divider"></div>
    {% for message in app.session.flashbag.get('info') %}
@@ -19,5 +21,6 @@
         <p class="section-description"> Déjà inscrit? Loggez-vous ! {{ render(controller("FOSUserBundle:Security:login")) }}</p>   
  {% endif %}  
 {{ form(form) }}</div>
+        </div></div>
 {% endblock %}
 

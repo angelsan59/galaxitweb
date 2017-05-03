@@ -36,7 +36,7 @@ class CandidatureType extends AbstractType
                 ->add('linkdn',     TextType::class)
                 ->add('viadeo',     TextType::class)
                 ->add('twitter',     TextType::class)
-                ->add('cvfile', FileType::class, array('label' => 'CV', 'required' => false))
+                ->add('cvFile', FileType::class, array('label' => 'CV', 'required' => false))
                 ->add('realisations', TextareaType::class)
                 ->add('formation', TextareaType::class)
                 ->add('techno', TextareaType::class)
@@ -52,7 +52,8 @@ class CandidatureType extends AbstractType
                     'multiple'     => true,
             ))
            
-            ->add('Enregistrer',      SubmitType::class);
+            ->add('Enregistrer',      SubmitType::class, array(
+    'attr' => array('class' => 'btn btn-info'),));
     }
     
     /**

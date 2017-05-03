@@ -54,7 +54,8 @@ class OffreType extends AbstractType
                     'multiple'     => true,
             ))
            
-            ->add('Enregistrer',      SubmitType::class);
+            ->add('Enregistrer',      SubmitType::class, array(
+    'attr' => array('class' => 'btn btn-info'),));
     }
     
     /**

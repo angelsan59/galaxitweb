@@ -16,7 +16,8 @@ class InscriptionlogType extends AbstractType {
    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder 
-            ->add('Enregistrer',      SubmitType::class);
+            ->add('Enregistrer',      SubmitType::class, array(
+    'attr' => array('class' => 'btn btn-info'),));
     }
     
     /**

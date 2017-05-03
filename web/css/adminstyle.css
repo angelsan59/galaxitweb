@@ -29,8 +29,14 @@ h1.page-header {
 }
 .clear{
     background:#b9c4db;
-    color:#000;
+    color:#333;
     padding:10px;
+}
+
+.menuclear{
+  background:#eaedf4;
+    color:#333;
+    padding:10px;  
 }
 
 .bgblue{

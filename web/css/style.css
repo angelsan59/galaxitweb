@@ -500,7 +500,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Sections Common
 --------------------------------*/
 .section-title {
-  font-size: 32px;
+  
   color: #111;
   text-transform: uppercase;
   text-align: center;
@@ -539,7 +539,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 40px 0;
 }
 .containerpages{
-    margin-top:30px; 
+  
+    padding:30px;
+    background: #fff;
+     border: 1px solid #b9b9b9;
+     border-radius: 10px;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px rgba(0,0,0,0.1);
 }
 #about .about-container {
   background: url(../img/about-img.jpg) left top no-repeat;

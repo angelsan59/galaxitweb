@@ -6,6 +6,7 @@ use San\OffresBundle\Entity\Candidature;
 use San\OffresBundle\Entity\Offre;
 use San\UserBundle\Entity\Statut;
 use San\OffresBundle\Form\CandidatureType;
+use San\OffresBundle\Form\StatutcandType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,10 +26,10 @@ class CandidatureController extends Controller {
         
     $nbPerPage = 10;
         
-    $listInscriptions = $this->getDoctrine()
+    $listCandidatures = $this->getDoctrine()
       ->getManager()
       ->getRepository('SanOffresBundle:Candidature')
-      ->getcandidatures($page, $nbPerPage)
+      ->getCandidatures($page, $nbPerPage)
     ;
     
     $nbPages = ceil(count($listCandidatures) / $nbPerPage);
@@ -45,7 +46,7 @@ class CandidatureController extends Controller {
     public function viewAction($id){
      $em = $this->getDoctrine()->getManager();
      
-     $candidature = $em->getRepository('SanOffresBundle:Candidature')->getCand($id);
+     $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
      
      if (null === $candidature){
          throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
@@ -59,7 +60,7 @@ class CandidatureController extends Controller {
     public function succesAction($id){
      $em = $this->getDoctrine()->getManager();
      
-     $candidature = $em->getRepository('SanOffresBundle:Candidature')->getCand($id);
+     $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
      
      if (null === $candidature){
          throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
@@ -161,4 +162,55 @@ class CandidatureController extends Controller {
       'form'   => $form->createView(),
     ));
   }
+  
+  public function statutlistAction($id){
+    
+      $statut = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanUserBundle:Statut')
+      ->find($id)
+    ;
+      $listCandidatures = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanOffresBundle:Candidature')
+      ->findByStatut($id)
+    ;
+      
+     
+     if (null === $listCandidatures){
+         throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
+     }
+      
+    return $this->render('SanOffresBundle:Candidature:statutlist.html.twig', array(
+      'listCandidatures' => $listCandidatures,
+        'statut' => $statut,
+    ));
+    }
+    
+    public function adminviewAction($id, Request $request){
+     $em = $this->getDoctrine()->getManager();
+     
+     $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
+     
+     if (null === $candidature){
+         throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
+     }
+     
+    $form = $this->get('form.factory')->create(StatutcandType::class, $candidature);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+      
+       $em->flush();
+ 
+      $this->addFlash('notice', 'Candidature bien modifiée.');
+
+      return $this->redirectToRoute('san_candidature_succes', array('id' => $candidature->getId()));
+    } 
+      
+    return $this->render('SanOffresBundle:Candidature:adminview.html.twig', array(
+      'candidature' => $candidature,
+         'form'   => $form->createView(),
+    ));
+    }
 }

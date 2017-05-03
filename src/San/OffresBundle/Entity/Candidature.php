@@ -12,6 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @ORM\Table(name="candidature")
  * @ORM\Entity(repositoryClass="San\OffresBundle\Repository\CandidatureRepository")
+ * @Vich\Uploadable
  */
 class Candidature
 {
@@ -705,37 +706,19 @@ class Candidature
         return $this->user;
     }
     
+     /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $cv;
+
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
-     * @Vich\UploadableField(mapping="candidature_cv", fileNameProperty="cvName", size="cvSize")
-     * 
+     * @Vich\UploadableField(mapping="candidature_cv", fileNameProperty="cv")
      * @var File
      */
     private $cvFile;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @var string
-     */
-    private $cvName;
-
     
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     *
-     * @var \DateTime
-     */
-    private $updatedAt;
-
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $cv
      *
      * @return Candidature
@@ -743,12 +726,6 @@ class Candidature
     public function setCvFile(File $cv = null)
     {
         $this->cvFile = $cv;
-
-        if ($cv) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
         
         return $this;
     }
@@ -766,9 +743,9 @@ class Candidature
      *
      * @return Candidature
      */
-    public function setCvName($cvName)
+    public function setCv($cv)
     {
-        $this->cvName = $cvName;
+        $this->cv = $cv;
         
         return $this;
     }
@@ -776,32 +753,8 @@ class Candidature
     /**
      * @return string|null
      */
-    public function getCvName()
+    public function getCv()
     {
-        return $this->cvName;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Candidature
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
+        return $this->cv;
     }
 }

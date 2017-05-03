@@ -67,7 +67,7 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 	<div class="container-fluid main-container clear">
-            <div class="col-md-3 sidebar">
+            <div class="col-md-3 sidebar menuclear">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> Offres d'emploi<span class="caret"></span></a>
@@ -78,11 +78,16 @@
                     </li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-address-card-o"></i> Candidats<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-list"></i> Gestion des candidats</a></li>
-                            <li><a href="#"><i class="fa fa-id-badge"></i> Nouveaux Candidats</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i> Candidats à appeller</a></li>
-                            <li><a href="#"><i class="fa fa-coffee"></i> Candidats à voir</a></li>
-                            <li><a href="#"><i class="fa fa-thumbs-o-up"></i> Candidats retenus</a></li>
+                            <li><a href="{{ path('san_candidats_liste') }}"><i class="fa fa-list"></i> Gestion des candidats</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 19}) }}"><i class="fa fa-id-badge"></i> Nouveaux Candidats</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 21}) }}"><i class="fa fa-phone"></i> Candidats à qualifier</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 22}) }}"><i class="fa fa-coffee"></i> Candidats qualifié en étude de rendez-vous</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 23}) }}"><i class="fa fa-thumbs-o-up"></i> Candidats prise de rendez-vous</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 24}) }}"><i class="fa fa-thumbs-o-up"></i> Candidats rendez-vous fixé</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 25}) }}"><i class="fa fa-thumbs-o-up"></i> Vivier</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 26}) }}"><i class="fa fa-thumbs-o-up"></i> Candidats non disponibles à garder</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 27}) }}"><i class="fa fa-thumbs-o-up"></i> Candidats vus et à positionner chez le client</a></li>
+                            <li><a href="{{ path('san_candidats_statutlist', {'id': 20}) }}"><i class="fa fa-thumbs-o-up"></i> Candidats non retenus</a></li>
                         </ul>
                     </li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar"></i> Evènements<span class="caret"></span></a>

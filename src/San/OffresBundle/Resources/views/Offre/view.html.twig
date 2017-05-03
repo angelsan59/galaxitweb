@@ -14,36 +14,59 @@
     </div>
 {% endfor %}
   <div class="well">
+       {% if offre.imageName is not null %}
+  <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}" align="right">
+{% endif %}
     {{ offre.content }}
     </div>
+<div class="row">
+               <div class="col-md-12 dark">
+                   Formation
+               </div>
+      </div>
+  <div class="row">
     <div class="well">
     {{ offre.formation }}
-    </div>
+    </div></div>
+     <div class="row">
+               <div class="col-md-12 dark">
+                   Mission
+               </div>
+      </div>
+     <div class="row">
  <div class="well">
     {{ offre.mission }}
-    </div>
-     <div class="well">
-    {# On vérifie qu'une image soit bien associée à l'annonce #}
-{% if offre.imageName is not null %}
-  <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}">
+ </div></div>
+     
+{% if not offre.categories.empty %}
+     <div class="row">
+               <div class="col-md-12 dark">
+                   Catégories
+               </div>
+      </div>
+      <div class="row">
+  <div class="well">
+      <ul>
+    {% for category in offre.categories %}
+        <li>{{ category.nom }}</li>
+    {% endfor %}
+      </ul>
+  </div></div>
 {% endif %}
 
-{% if not offre.categories.empty %}
-  <div class="label label-primary small">
-    Catégories :
-    {% for category in offre.categories %}
-      {{ category.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  </div>
-{% endif %}
-<br/>
 {% if not offre.competences.empty %}
-  <div class="label label-primary small">
-    Compétences :
+  <div class="row">
+               <div class="col-md-12 dark">
+                   Compétences nécessaires
+               </div>
+      </div>
+   <div class="row">
+  <div class="well">
+      <ul>
     {% for competence in offre.competences %}
-      {{ competence.nom }}{% if not loop.last %}, {% endif %}
+        <li>{{ competence.nom }}</li>
     {% endfor %}
-  </div>
+      </ul></div></div>
 {% endif %}
 
   </div>

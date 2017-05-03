@@ -1,0 +1,29 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil candidatures - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2 class="bgblue">Liste des nouvelles candidatures</h2>
+<div class="well">
+  <ul>
+    {% for candidature in listCandidatures %}
+      <li>
+        
+          <a href="{{ path('san_candidature_nouveau', {'id': candidature.id}) }}">{{ candidature.user.nom }}</a>
+        
+        
+        le {{ candidature.pubDate|date('d/m/Y') }}
+      </li>
+    {% else %}
+      <li>Pas (encore !) de candidature</li>
+    {% endfor %}
+  </ul>
+</div>
+ 
+
+{% endblock %}
+

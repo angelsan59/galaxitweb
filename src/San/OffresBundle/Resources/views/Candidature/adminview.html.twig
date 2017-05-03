@@ -1,0 +1,92 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+{% block body %}
+     <div class="row">
+        
+          <div class="col-sm-8">
+    <h3 class="section-title">{{ candidature.user.prenom }} {{ candidature.user.nom }}</h3>
+        <p class="section-description">Candidature à l'offre {{ candidature.offre.titre }} - Disponible le {{ candidature.dateDispo|date('d/m/Y') }}</p>
+          </div>
+           <div class="col-sm-4">
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">Message flash : {{ message }}</div>
+      {% endfor %}
+  {{ form(form) }}
+           </div>
+     </div>
+  <div class="well">
+     <p class="section-description">{{ candidature.content }}</p>
+     <p><a href="{{ vich_uploader_asset(candidature, 'cvFile') }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o" style="font-size:18px;color:red;"></i> Voir le cv</a></p>
+  </div>
+     
+    <div class="panel panel-primary">
+  <div class="panel-heading">Coordonnées</div>
+  <div class="panel-body"> 
+      <div class="col-sm-6">
+          <b>Adresse</b> : {{ candidature.adresse }} {{ candidature.cp }} {{ candidature.ville }} {{ candidature.pays }}<br/>
+          <b>Téléphone</b> : {{ candidature.user.telephone }}<br/>
+          <b>Portable</b> : {{ candidature.user.portable }}</div>
+      <div class="col-sm-6">
+      <ul>
+          <li><b>Web</b> : {{ candidature.web }}</li>
+      <li><b>Linkdn</b> : {{ candidature.linkdn }}</li>
+      <li><b>Viadeo</b> : {{ candidature.viadeo }}</li>
+      <li><b>Twitter</b> : {{ candidature.twitter }}</li>
+      </ul></div></div>
+    </div>       
+    
+       <div class="panel panel-primary">
+  <div class="panel-heading">Catégories et compétences</div>
+  <div class="panel-body">
+      <div class="col-sm-6">
+     {% if not candidature.categories.empty %}
+         <b>Catégories </b>
+        <ul>
+    {% for category in candidature.categories %}
+        <li>{{ category.nom }}</li>
+    {% endfor %}
+      </ul>
+      {% endif %}
+  </div>
+  <div class="col-sm-6">
+      {% if not candidature.competences.empty %}
+  
+          <b>Compétences</b>
+             
+      <ul>
+    {% for competence in candidature.competences %}
+        <li>{{ competence.nom }}</li>
+    {% endfor %}
+      </ul>
+{% endif %}
+  </div>
+  </div>
+  </div>
+     
+
+
+
+    <div class="panel panel-primary">
+  <div class="panel-heading">Formation</div>
+  <div class="panel-body">{{ candidature.formation }}</div>
+    </div> 
+    <div class="panel panel-primary">
+  <div class="panel-heading">Réalisations</div>
+  <div class="panel-body">{{ candidature.realisations }}</div>
+    </div>
+    <div class="panel panel-primary">
+  <div class="panel-heading">Technologies</div>
+  <div class="panel-body">{{ candidature.techno }}</div>
+    </div>   
+    <div class="panel panel-primary">
+  <div class="panel-heading">Evolution</div>
+  <div class="panel-body">{{ candidature.evolution }}</div>
+    </div>   
+    
+    
+    
+    <p class="section-description"><a href="{{ path('san_candidature_edit', {'id': candidature.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier la candidature
+        </a></p></div>
+{% endblock %}
+
