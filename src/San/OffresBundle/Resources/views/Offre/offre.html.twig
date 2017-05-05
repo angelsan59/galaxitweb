@@ -18,58 +18,42 @@
     {{ offre.content }}
   <br/><br/><a href="{{ path('san_candidature_add', {'id': offre.id}) }}"><button type="button" class="btn btn-info">Postulez à l'offre</button></a>
   </p>
-</div>
+</div></div>
   <div class="row">
-               <div class="col-md-12 dark">
-                   Formation
-               </div>
-      </div>
-  <div class="row">
-    <div class="well">
-    {{ offre.formation }}
-    </div></div>
-     <div class="row">
-               <div class="col-md-12 dark">
-                   Mission
-               </div>
-      </div>
-     <div class="row">
- <div class="well">
-    {{ offre.mission }}
- </div></div>
-     
-{% if not offre.categories.empty %}
-     <div class="row">
-               <div class="col-md-12 dark">
-                   Catégories
-               </div>
-      </div>
-      <div class="row">
-  <div class="well">
-      <ul>
+   <div class="panel panel-primary">
+  <div class="panel-heading">Type de contrat</div>
+  <div class="panel-body">{{ offre.contrat.nom }}</div>
+    </div> 
+    <div class="panel panel-primary">
+  <div class="panel-heading">Formation</div>
+  <div class="panel-body">{{ offre.formation }}</div>
+    </div> 
+  <div class="panel panel-primary">
+  <div class="panel-heading">Mission</div>
+  <div class="panel-body">{{ offre.mission }}</div>
+    </div> 
+    {% if not offre.categories.empty %}
+    <div class="panel panel-primary">
+  <div class="panel-heading">Catégories</div>
+  <div class="panel-body"><ul>
     {% for category in offre.categories %}
         <li>{{ category.nom }}</li>
     {% endfor %}
-      </ul>
-  </div></div>
-{% endif %}
-
-{% if not offre.competences.empty %}
-  <div class="row">
-               <div class="col-md-12 dark">
-                   Compétences nécessaires
-               </div>
-      </div>
-   <div class="row">
-  <div class="well">
-      <ul>
+      </ul></div>
+    </div>    
+    {% endif %} 
+    {% if not offre.competences.empty %}
+    <div class="panel panel-primary">
+  <div class="panel-heading">Compétences nécessaires</div>
+  <div class="panel-body"><ul>
     {% for competence in offre.competences %}
         <li>{{ competence.nom }}</li>
     {% endfor %}
-      </ul></div></div>
-{% endif %}
-
-
+      </ul></div>
+    </div>    
+    {% endif %} 
+    
+      </div>
 
 {% endblock %}
 

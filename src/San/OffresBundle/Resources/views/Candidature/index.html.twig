@@ -20,13 +20,13 @@
       </tr>
     </thead>
     <tbody>
-       {% for candidature in listCandidatures %}
+       {% for cand in listCandidatures %}
      <tr>
-        <td>{{ candidature.pubDate|date('d/m/Y') }}</td>
-        <td> <a href="{{ path('san_offre_view', {'id': candidature.offre.id}) }}">{{ candidature.offre.titre }}</a></td>
-        <td><a href="{{ path('san_candidats_view', {'id': candidature.id}) }}">{{ candidature.user.prenom }} {{ candidature.user.nom }}</a></td>
-        <td>{{ candidature.dateDispo|date('d/m/Y') }}</td>
-        <td>{{ candidature.statut.nom }}</td>
+        <td>{{ cand.pubDate|date('d/m/Y') }}</td>
+        <td> <a href="{{ path('san_offre_view', {'id': cand.offre.id}) }}">{{ cand.offre.titre }}</a></td>
+        <td><a href="{{ path('san_candidats_view', {'id': cand.id}) }}">{{ cand.user.prenom }} {{ cand.user.nom }}</a></td>
+        <td>{{ cand.dateDispo|date('d/m/Y') }}</td>
+        <td>{{ cand.statut.nom }}</td>
       </tr>
        {% endfor %} 
         
@@ -39,7 +39,7 @@
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
     {% for p in range(1, nbPages) %}
       <li{% if p == page %} class="active"{% endif %}>
-        <a href="{{ path('san_offre_homepage', {'page': p}) }}">{{ p }}</a>
+        <a href="{{ path('san_candidats_liste', {'page': p}) }}">{{ p }}</a>
       </li>
     {% endfor %}
   </ul>

@@ -44,4 +44,5 @@ security:
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/inscription, role: ROLE_USER }
         - { path: ^/newsletter, role: ROLE_USER }
+        - { path: ^/profil, role: ROLE_USER }
         - { path: ^/carriere/candidature, role: ROLE_USER }

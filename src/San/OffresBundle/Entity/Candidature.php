@@ -21,6 +21,7 @@ class Candidature
         $this->pubdate = new \Datetime();
         $this->categories = new ArrayCollection();
         $this->competences = new ArrayCollection();
+        $this->contrats = new ArrayCollection();
     }
     
    /**
@@ -30,7 +31,7 @@ class Candidature
   
     
     /**
-    * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User")
+    * @ORM\ManyToOne(targetEntity="San\UserBundle\Entity\User", inversedBy="candidatures")
    
     */
     private $user;
@@ -40,6 +41,11 @@ class Candidature
     * @ORM\JoinColumn(nullable=false)
     */
     private $offre;
+  
+      /**
+   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Contrat", cascade={"persist"})
+   */
+  private $contrats;
   
      /**
    * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Competence", cascade={"persist"})
@@ -756,5 +762,39 @@ class Candidature
     public function getCv()
     {
         return $this->cv;
+    }
+
+    /**
+     * Add contrat
+     *
+     * @param \San\OffresBundle\Entity\Contrat $contrat
+     *
+     * @return Candidature
+     */
+    public function addContrat(\San\OffresBundle\Entity\Contrat $contrat)
+    {
+        $this->contrats[] = $contrat;
+
+        return $this;
+    }
+
+    /**
+     * Remove contrat
+     *
+     * @param \San\OffresBundle\Entity\Contrat $contrat
+     */
+    public function removeContrat(\San\OffresBundle\Entity\Contrat $contrat)
+    {
+        $this->contrats->removeElement($contrat);
+    }
+
+    /**
+     * Get contrats
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContrats()
+    {
+        return $this->contrats;
     }
 }

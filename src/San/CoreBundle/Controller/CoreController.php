@@ -39,4 +39,6 @@ class CoreController extends Controller
 
     return $this->render('SanCoreBundle:Core:test.html.twig');
     }
+    
+    
 }

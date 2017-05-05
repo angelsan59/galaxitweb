@@ -10,7 +10,10 @@ use San\OffresBundle\Form\StatutcandType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Dompdf\Options;
+use Dompdf\Dompdf;
 /**
  * Description of CandidatureController
  *
@@ -213,4 +216,30 @@ class CandidatureController extends Controller {
          'form'   => $form->createView(),
     ));
     }
+    
+    public function toPdfAction($id) {
+    // On récupère l'objet à afficher (rien d'inconnu jusque là)
+    $objectsRepository = $this->getDoctrine()->getRepository('SanOffresBundle:Candidature');
+    $candidature = $objectsRepository->findOneById($id);        
+    // On crée une  instance pour définir les options de notre fichier pdf
+    $options = new Options();
+    // Pour simplifier l'affichage des images, on autorise dompdf à utiliser 
+    // des  url pour les nom de  fichier
+    $options->set('isRemoteEnabled', TRUE);
+    // On crée une instance de dompdf avec  les options définies
+    $dompdf = new Dompdf($options);
+    // On demande à Symfony de générer  le code html  correspondant à 
+    // notre template, et on stocke ce code dans une variable
+    $html = $this->renderView(
+      'SanOffresBundle:Candidature:pdfTemplate.html.twig', 
+      array('candidature' => $candidature)
+    );
+    // On envoie le code html  à notre instance de dompdf
+    $dompdf->loadHtml($html);        
+    // On demande à dompdf de générer le  pdf
+    $dompdf->render();
+    // On renvoie  le flux du fichier pdf dans une  Response pour l'utilisateur
+    return new Response ($dompdf->stream());
+}
+
 }

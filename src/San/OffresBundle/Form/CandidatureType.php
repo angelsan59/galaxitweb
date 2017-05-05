@@ -27,7 +27,14 @@ class CandidatureType extends AbstractType
     {
         $builder
                 ->add('dateDispo',      DateType::class, array('label' => 'Date de disponibilité', 'widget' => 'single_text'))
-                ->add('content', TextareaType::class)
+                ->add('content', TextareaType::class, array('label' => 'Présentez-vous'))
+                 ->add('contrats', EntityType::class, array(
+                    'class'        => 'SanOffresBundle:Contrat',
+                    'label' => 'Type de contrat recherché',
+                    'choice_label' => 'nom',
+                    'multiple'     => true,
+                    'expanded'     => true,
+            ))
                 ->add('adresse',     TextType::class)
                 ->add('cp',     TextType::class)
                 ->add('ville',     TextType::class)
@@ -46,6 +53,7 @@ class CandidatureType extends AbstractType
                     'choice_label' => 'nom',
                     'multiple'     => true,
             ))
+               
             ->add('competences', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Competence',
                     'choice_label' => 'nom',

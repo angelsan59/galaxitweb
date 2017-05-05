@@ -102,4 +102,11 @@ san_candidats_view:
     defaults:
         _controller: SanOffresBundle:Candidature:adminview
     requirements:
-        id: \d+        
+        id: \d+  
+        
+san_candidats_pdf:
+    path: /admin/candidat/pdf/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:toPdf
+    requirements:
+        id: \d+           

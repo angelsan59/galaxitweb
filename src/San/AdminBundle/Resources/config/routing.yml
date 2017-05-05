@@ -35,3 +35,13 @@ san_newsletter_delete:
         _controller: SanAdminBundle:Newsletter:delete
     requirements:
         id: \d+
+
+san_newsletter_abo:
+    path: /newsletter
+    defaults:
+        _controller: SanUserBundle:User:abo
+
+san_newsletter_confirm:
+    path: /newsletter/confirm
+    defaults:
+        _controller: SanUserBundle:User:aboconfirm

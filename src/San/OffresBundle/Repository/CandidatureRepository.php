@@ -33,4 +33,19 @@ class CandidatureRepository extends \Doctrine\ORM\EntityRepository
     return new Paginator($query, true);
    
   }
+  
+  public function candProfil($id)
+{
+   $qb = $this
+    ->createQueryBuilder('a')
+    ->leftJoin('a.user', 'user', 'WITH', 'user.id=:id')
+           ->setParameter('id', $id)
+    ->addSelect('user')
+  ;
+
+  return $qb
+    ->getQuery()
+    ->getResult()
+  ;
+}
 }

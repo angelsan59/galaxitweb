@@ -31,4 +31,19 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     // (n'oubliez pas le use correspondant en début de fichier)
     return new Paginator($query, true);
   }
+  
+  public function getProfil()
+  {
+     $query = $this->createQueryBuilder('a') 
+       ->leftJoin('a.candidatures', 'c')
+      ->addSelect('c')       
+      ->orderBy('a.dateMod', 'DESC')
+      ->setMaxResults(10)
+      ->getQuery()
+    ;
+return $query
+    
+    ->getResult()
+  ;
+  }
 }

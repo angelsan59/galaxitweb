@@ -188,38 +188,8 @@ Mise à disposition de compétences informatiques et Maintenance et service aux 
               opportunités, les articles, les offres d'emploi, et bien plus encore !</p>
         </div>
         <div class="col-md-4 subscribe-btn-container">
-           <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#subscribe-modal">Abonnez-vous</button>
-
-<!-- Modal -->
-<div id="subscribe-modal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-
-       <div class="loginmodal-container">
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h1 class="modal-title">Entrez vos détails</h1>
-        <form>
-            <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-    <input id="nom" type="text" class="form-control" name="nom" placeholder="Nom et prénom">
-            </div>
-             <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-    <input id="email" type="text" class="form-control" name="email" placeholder="Email">
-            </div>
-            <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-group"></i></span>
-    <input id="societe" type="text" class="form-control" name="societe" placeholder="Société">
-            </div> 
-		<input type="submit" name="abonnement" class="login loginmodal-submit" value="Abonnement">
-	 </form>
-        <p> Déjà inscrit? Loggez-vous !</p>
-     
-    </div>
-
-  </div>
-</div> 
-  <!-- fin modal -->          
+          
+<a href="{{ path('san_newsletter_abo') }}" class="btn btn-info btn-lg">Abonnez-vous</a>   
  
         </div>
       </div>

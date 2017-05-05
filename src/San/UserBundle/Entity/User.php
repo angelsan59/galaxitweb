@@ -21,7 +21,7 @@ class User extends BaseUser
     {
         $this->dateMod = new \Datetime();
         $this->dateInsc = new \Datetime();
-        
+        $this->candidatures = new ArrayCollection();
         parent::__construct();
         $this->enabled = true;
     }
@@ -40,6 +40,11 @@ class User extends BaseUser
     */
     private $abonewsletter;
     
+    /**
+   * @ORM\OneToMany(targetEntity="San\OffresBundle\Entity\Candidature", mappedBy="user")
+   */
+  private $candidatures; 
+  
     /**
      * @var string
      *
@@ -398,5 +403,40 @@ class User extends BaseUser
     public function getAbonewsletter()
     {
         return $this->abonewsletter;
+    }
+    
+
+    /**
+     * Add candidature
+     *
+     * @param \San\OffresBundle\Entity\Candidature $candidature
+     *
+     * @return User
+     */
+    public function addCandidature(\San\OffresBundle\Entity\Candidature $candidature)
+    {
+        $this->candidatures[] = $candidature;
+
+        return $this;
+    }
+
+    /**
+     * Remove candidature
+     *
+     * @param \San\OffresBundle\Entity\Candidature $candidature
+     */
+    public function removeCandidature(\San\OffresBundle\Entity\Candidature $candidature)
+    {
+        $this->candidatures->removeElement($candidature);
+    }
+
+    /**
+     * Get candidatures
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCandidatures()
+    {
+        return $this->candidatures;
     }
 }

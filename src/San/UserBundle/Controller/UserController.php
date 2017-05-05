@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use San\UserBundle\Entity\User;
 use San\UserBundle\Form\UserType;
+use San\UserBundle\Form\UseraboType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -133,4 +134,52 @@ $dateMod = new \Datetime();
     ));
   }
   
+     public function aboAction(Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+$dateMod = new \Datetime();
+    $user = $this->getUser();
+
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur n'existe pas.");
+    }
+
+    $form = $this->get('form.factory')->create(UseraboType::class, $user);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+   
+      $user->setDateMod($dateMod);
+      $em->flush();
+ 
+      $this->addFlash('notice', 'Utilisateur bien modifié.');
+
+      return $this->redirectToRoute('san_newsletter_confirm');
+    }
+
+    return $this->render('SanAdminBundle:Newsletter:abonewsletter.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+  
+   public function aboconfirmAction()
+  {
+      return $this->render('SanAdminBundle:Newsletter:aboconfirme.html.twig'); 
+   }
+   
+   public function profilAction()
+  {
+       $user = $this->getUser();
+       $id = $user->getId();
+       
+     if (null === $user){
+         throw new NotFoundHttpException("L'utilisateur n'existe pas.");
+     }
+      
+    return $this->render('SanUserBundle:User:profil.html.twig', array(
+      'user' => $user,
+      
+    ));
+   }
 }

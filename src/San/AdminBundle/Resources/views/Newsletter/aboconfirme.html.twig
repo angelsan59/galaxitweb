@@ -1,6 +1,6 @@
 {% extends "SanCoreBundle::layoutpages.html.twig" %}
 {% block body %}
-     <h3 class="section-title">Candidature à l'offre {{ offre.titre }}</h3>
+     <h3 class="section-title">Abonnement à la newsletter</h3>
    <div class="section-title-divider"></div>
    {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
@@ -10,16 +10,15 @@
     
     <p class="section-description">Si ce n'est pas vous, <a href="{{ path('fos_user_security_logout') }}">déconnectez-vous</a></p>
     <div class="section-title-divider"></div>
-    <div class="col-md-12 text-center"><p class="section-description">Voulez-vous postuler à l'offre "{{ offre.titre }}" ?</p>
+    <div class="col-md-12 text-center"><p class="section-description">Voulez-vous 
+            vous abonner à la newsletter ? Vous pourrez vous désabonner à tout moment en modifiant votre profil utilisateur.</p>
 
 {% else %}
     
         <p class="section-description"> Vous devez d'abord vous inscrire en tant
-            qu'utilisateur avant de postuler.</p>
+            qu'utilisateur avant de vous abonner.</p>
         <p class="section-description"> Déjà inscrit? Loggez-vous ! {{ render(controller("FOSUserBundle:Security:login")) }}</p>   
  {% endif %} </div> 
-<div class="col-sm-6 col-sm-offset-3">
-    {{ form(form) }}</div>
+Abonnement effectué !
 {% endblock %}
-
 

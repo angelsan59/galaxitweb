@@ -1,0 +1,65 @@
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+
+{% block title %}
+  Profil Utilisateur - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ user.nom }} - {{ user.prenom }}</h2>
+  <i>Inscription le {{ user.dateInsc|date('d/m/Y') }} et Modification le {{ user.dateMod|date('d/m/Y') }}</i>
+ {% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+  <div class="row">
+    <div class="col-md-6 well">  
+    <ul>
+        <li>UserName : {{ user.username }}</li>
+        <li>Adresse email : {{ user.email }}</li>
+        <li>Société : {{ user.societe }}</li>
+        <li>Téléphone : {{ user.telephone }}</li>
+        <li>Portable : {{ user.portable }}</li>
+        <li>Abonnement newsletter : 
+            {% if user.abonewsletter %}
+                oui - <a href="{{ path('san_newsletter_abo') }}" class="btn btn-info btn-lg">Désabonnez-vous</a> 
+            {% else %}
+                non - <a href="{{ path('san_newsletter_abo') }}" class="btn btn-info btn-lg">Abonnez-vous</a> 
+            {% endif%}</li>
+    </ul> 
+    </div>
+    {% if user.imageName is not null %}
+  <div class="col-md-6">
+       <img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="{{ user.imageName }}" width="200px">
+  </div>
+{% endif %}
+    </div>
+   <div class="panel panel-primary">
+  <div class="panel-heading">Candidatures</div>
+  <div class="panel-body">
+ {% if not user.candidatures.empty %}
+            
+      <ul>
+    {% for candidature in user.candidatures %}
+        <li>{{ candidature.offre.titre }}</li>
+    {% endfor %}
+      </ul>
+{% endif %}
+
+  </div>
+    </div>  
+
+  <p>
+    
+    <a href="{{ path('san_user_edit', {'id': user.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'utilisateur
+    </a>
+    <a href="{{ path('san_user_delete', {'id': user.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'utilisateur
+    </a>
+  </p>
+
+{% endblock %}
