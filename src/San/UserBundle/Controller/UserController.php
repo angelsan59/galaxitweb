@@ -182,4 +182,25 @@ $dateMod = new \Datetime();
       
     ));
    }
+   
+   public function adminAction($id){
+       $em = $this->getDoctrine()->getManager();
+$dateMod = new \Datetime();
+    $user = $em->getRepository('SanUserBundle:User')->find($id);
+
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+$role = array('ROLE_ADMIN');
+ 
+$user->setRoles($role);
+   
+      $user->setDateMod($dateMod);
+      $em->flush();
+ 
+      $this->addFlash('notice', 'Utilisateur bien modifié.');
+
+      return $this->redirectToRoute('san_user_view', array('id' => $user->getId()));
+    
+   }
 }

@@ -100,14 +100,14 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('san_news_add') }}"><i class="fa fa-plus"></i> Nouvelle news</a></li>
                             <li><a href="{{ path('san_news_homepage') }}"><i class="fa fa-list"></i> Gestion des news</a></li>
-                            <li><a href="{{ path('san_news_categories') }}"><i class="fa fa-users"></i> Gestion des catégories news</a></li>
+                            <li><a href="{{ path('san_newscat_homepage') }}"><i class="fa fa-users"></i> Gestion des catégories news</a></li>
                         </ul>
                     </li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Newsletter<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('san_newsletter_add') }}"><i class="fa fa-plus"></i> Nouvelle newsletter</a></li>
                             <li><a href="{{ path('san_newsletter_homepage') }}"><i class="fa fa-list"></i> Gestion des newsletters</a></li>
-                            <li><a href="#"><i class="fa fa-group"></i> Abonnés à la newsletter</a></li>
+                            <li><a href="{{ path('san_abonnes_homepage') }}"><i class="fa fa-group"></i> Abonnés à la newsletter</a></li>
                         </ul>
                     </li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Utilisateurs<span class="caret"></span></a>
@@ -121,6 +121,8 @@
                             
                             <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des catégories</a></li>
                             <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des compétences</a></li>
+                            <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des statuts</a></li>
+                            <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des contrats</a></li>
                         </ul>
                     </li>
                     <li><a href="#">CVthèque</a></li>

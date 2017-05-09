@@ -6,7 +6,7 @@
 
 {% block body %}
 
-  <h2>Ajouter une news</h2>
+  <h3 class="bgblue">Ajouter une news</h3>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
@@ -15,7 +15,7 @@
   
 
   <p>
-    <a href="" class="btn btn-default">
+    <a href="{{ path('san_news_homepage') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>

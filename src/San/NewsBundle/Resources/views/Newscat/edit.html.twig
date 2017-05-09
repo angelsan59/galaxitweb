@@ -1,23 +1,23 @@
+
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Ajouter une newsletter - {{ parent() }}
+  Modifier une catégorie de news - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h3 class="bgblue">Ajouter une newsletter</h3>
+  <h3 class="bgblue">Modifier une catégorie de news</h3>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
-  {{ include("SanAdminBundle:Newsletter:form.html.twig") }}
+  {{ include("SanNewsBundle:Newscat:form.html.twig") }}
 
-  
 
   <p>
-    <a href="{{ path('san_newsletter_homepage') }}" class="btn btn-default">
+    <a href="{{ path('san_newscat_homepage') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la liste
+      Retour à la liste des catégories de news
     </a>
   </p>
 

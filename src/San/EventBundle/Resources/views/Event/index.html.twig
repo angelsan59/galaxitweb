@@ -7,21 +7,33 @@
 
 {% block body %}
 
-  <h2>Liste des évènements</h2>
+  <h3 class="bgblue">Liste des évènements</h3>
 <div class="well">
-  <ul>
+  <a href="{{ path('san_event_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter un évènement</a>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th></th>
+        <th>Date</th>
+        <th>Adresse</th>
+        <th>Publié par</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for event in listEvents %}
-      <li>
-        
-          <a href="{{ path('san_event_view', {'id': event.id}) }}">{{ event.titre }}</a>
-        
-        par {{ event.user.username }},
-        le {{ event.pubDate|date('d/m/Y') }}
-      </li>
-    {% else %}
-      <li>Pas (encore !) d'évènement</li>
-    {% endfor %}
-  </ul>
+     <tr>
+         <td><a href="{{ path('san_event_view', {'id': event.id}) }}">{{ event.titre }}</a></td>
+          <td><a href="{{ path('san_event_edit', {'id': event.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+        <a href="{{ path('san_event_delete', {'id': event.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+         <td>{{ event.eventDate|date('d/m/Y') }}</td>
+         <td>{{ event.adresse }}</td>
+         <td>{{ event.user.username }} le {{ event.pubDate|date('d/m/Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    
 </div>
   <ul class="pagination">
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}

@@ -4,15 +4,8 @@
   {# Les erreurs générales du formulaire. #}
   {{ form_errors(form) }}
 
-  <div class="col-sm-12">
-      <div class="col-sm-6">
- {{ form_row(form.eventDate) }}
-      </div>  
-      <div class="col-sm-6">
-  {{ form_row(form.fin) }}
-      </div>
-  </div>
-  {# Génération manuelle et éclatée : #}
+  <div class="row">
+      <div class="col-sm-8">
   <div class="form-group">
     {# Génération du label. #}
     {{ form_label(form.titre, "Titre de l'évènement", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
@@ -34,13 +27,21 @@
       {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
     </div>
   </div>
-
-  {{ form_row(form.published) }}
+      </div>  
+      <div class="col-sm-4">
+ {{ form_row(form.eventDate) }}
+ 
    
  {{ form_rest(form) }}
-
+{{ form_row(form.published) }}
   {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
   {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
   {# Fermeture de la balise <form> du formulaire HTML #}
   {{ form_end(form) }}
+      </div>
+  </div>
+ 
+ 
+
+  
 </div>

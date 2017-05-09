@@ -54,6 +54,7 @@ class EventController extends Controller
     return $this->render('SanEventBundle:Event:view.html.twig', array(
       'event' => $event,
         'listinscrits' => $listinscrits
+        
     ));
     }
     

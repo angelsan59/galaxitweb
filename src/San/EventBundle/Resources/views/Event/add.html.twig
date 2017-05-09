@@ -6,16 +6,16 @@
 
 {% block body %}
 
-  <h2>Ajouter un évènement</h2>
+  <h3 class="bgblue">Ajouter un évènement</h3>
 {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
+        <div class="alert alert-info"> {{ message }}</div>
       {% endfor %}
   {{ include("SanEventBundle:Event:form.html.twig") }}
 
   
 
   <p>
-    <a href="" class="btn btn-default">
+    <a href="{{ path('san_event_homepage') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>

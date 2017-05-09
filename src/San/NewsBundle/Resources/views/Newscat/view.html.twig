@@ -1,0 +1,51 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  News - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>{{ news.titre }}</h2>
+  <i>Par {{ news.user.username }}, le {{ news.pubDate|date('d/m/Y') }}</i>
+ {% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+{% endfor %}
+  <div class="well">
+    {{ news.content | raw }}
+    </div>
+   
+     <div class="well">
+    {# On vérifie qu'une image soit bien associée à la news #}
+{% if news.imageName is not null %}
+  <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}">
+{% endif %}
+
+{% if not news.newscats.empty %}
+  <div class="label label-primary small">
+    Catégories :
+    {% for newscat in news.newscats %}
+      {{ newscat.nom }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+
+  </div>
+
+  <p>
+    
+    <a href="{{ path('san_news_edit', {'id': news.id}) }}" class="btn btn-info btn-sm">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier la news
+    </a>
+    <a href="{{ path('san_news_delete', {'id': news.id}) }}" class="btn btn-danger btn-sm">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer la news
+    </a>
+  </p>
+
+{% endblock %}

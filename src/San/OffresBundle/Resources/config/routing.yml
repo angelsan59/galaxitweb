@@ -109,4 +109,85 @@ san_candidats_pdf:
     defaults:
         _controller: SanOffresBundle:Candidature:toPdf
     requirements:
-        id: \d+           
+        id: \d+          
+        
+san_categories_homepage:
+    path:     /admin/categories/{page}
+    defaults:
+        _controller: SanOffresBundle:Categorie:index
+        page: 1
+    requirements:
+        page: \d*
+   
+san_categories_add:
+    path: /admin/categories/add
+    defaults:
+        _controller: SanOffresBundle:Categorie:add
+        
+san_categories_edit:
+    path: /admin/categories/edit/{id}
+    defaults:
+        _controller: SanOffresBundle:Categorie:edit
+    requirements:
+        id: \d+
+        
+san_categories_delete:
+    path: /admin/categories/delete/{id}
+    defaults:
+        _controller: SanOffresBundle:Categorie:delete
+    requirements:
+        id: \d+  
+        
+san_competences_homepage:
+    path:     /admin/competences/{page}
+    defaults:
+        _controller: SanOffresBundle:Competence:index
+        page: 1
+    requirements:
+        page: \d*
+   
+san_competences_add:
+    path: /admin/competences/add
+    defaults:
+        _controller: SanOffresBundle:Competence:add
+        
+san_competences_edit:
+    path: /admin/competences/edit/{id}
+    defaults:
+        _controller: SanOffresBundle:Competence:edit
+    requirements:
+        id: \d+
+        
+san_competences_delete:
+    path: /admin/competences/delete/{id}
+    defaults:
+        _controller: SanOffresBundle:Competence:delete
+    requirements:
+        id: \d+         
+        
+san_contrats_homepage:
+    path:     /admin/contrats/{page}
+    defaults:
+        _controller: SanOffresBundle:Contrat:index
+        page: 1
+    requirements:
+        page: \d*
+   
+san_contrats_add:
+    path: /admin/contrats/add
+    defaults:
+        _controller: SanOffresBundle:Contrat:add
+        
+san_contrats_edit:
+    path: /admin/contrats/edit/{id}
+    defaults:
+        _controller: SanOffresBundle:Contrat:edit
+    requirements:
+        id: \d+
+        
+san_contrats_delete:
+    path: /admin/contrats/delete/{id}
+    defaults:
+        _controller: SanOffresBundle:Contrat:delete
+    requirements:
+        id: \d+        

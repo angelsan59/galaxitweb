@@ -5,10 +5,10 @@
          <h2>Connexion au site Galax-IT</h2>
               
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <h2>Bienvenue, {{ app.user.username }} !</h2>
+                <h3>Bienvenue, {{ app.user.username }} !</h3>
                 
                 {% if is_granted("ROLE_ADMIN") %}
-                    <h2><a href="admin"><i class="fa fa-lock"></i> Section Administration</a></h2>       
+                     <p class="section-description">En tant que membre admin, vous pouvez accéder à la <a href="admin">Section Administration</a></p>       
                 {% endif %}    
                 <p class="section-description">Vous pouvez désormais consulter votre profil, vous enregistrer aux évènements, vous abonner à la news letter, etc - 
                 <a href="{{ path('fos_user_security_logout') }}">

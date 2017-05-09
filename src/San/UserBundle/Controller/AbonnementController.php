@@ -3,7 +3,6 @@
 namespace San\UserBundle\Controller;
 
 use San\UserBundle\Entity\User;
-use San\UserBundle\Form\AbonnementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,35 +12,29 @@ use Symfony\Component\HttpFoundation\Session\Session;
  *
  * @author Dev
  */
-class AbonnementController extends \Symfony\Component\HttpKernel\Tests\Controller {
+class AbonnementController extends Controller {
    public function indexAction($page)
     {
-       
+       if($page<1){
+    throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
+        }
+        
+    $nbPerPage = 10;
+        
+    $listAbonnes = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanUserBundle:User')
+      ->getAbonnes($page, $nbPerPage)
+    ;
+    
+    $nbPages = ceil(count($listAbonnes) / $nbPerPage);
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+    }
+     return $this->render('SanUserBundle:User:listabonnes.html.twig', array(
+      'listAbonnes' => $listAbonnes,
+      'nbPages'     => $nbPages,
+      'page'        => $page,
+    ));
    }
-   
-    public function aboAction(Request $request){
-      $em = $this->getDoctrine()->getManager();
-
-    $abonnement = getUser();
-
-    if (null === $abonnement) {
-      throw new NotFoundHttpException("L'abonnement d'id ".$id." n'existe pas.");
-    }
-
-    $form = $this->get('form.factory')->create(NewsletterType::class, $newsletter);
-
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      // Inutile de persister ici, Doctrine connait déjà notre annonce
-      $em->flush();
- 
-      $this->addFlash('notice', 'Newsletter bien modifiée.');
-
-      return $this->redirectToRoute('san_newsletter_view', array('id' => $newsletter->getId()));
-    }
-
-    return $this->render('SanAdminBundle:Newsletter:edit.html.twig', array(
-      'newsletter' => $newsletter,
-      'form'   => $form->createView(),
-    ));   
-    }
 }

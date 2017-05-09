@@ -6,24 +6,43 @@
 
 {% block body %}
 
-  <h2>{{ news.titre }}</h2>
-  <i>Par {{ news.user.username }}, le {{ news.pubDate|date('d/m/Y') }}</i>
- {% for flash_message in app.session.flashBag.get('notice') %}
+  <h3 class="bgblue">{{ news.titre }}</h3>
+  
+  {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="flash-notice">
         {{ flash_message }}
     </div>
 {% endfor %}
-  <div class="well">
-    {{ news.content | raw }}
-    </div>
-   
-     <div class="well">
-    {# On vérifie qu'une image soit bien associée à la news #}
-{% if news.imageName is not null %}
-  <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}">
+  <i>Par {{ news.user.username }}, le {{ news.pubDate|date('d/m/Y') }}</i>
+  <p>
+    
+    <a href="{{ path('san_news_edit', {'id': news.id}) }}" class="btn btn-info btn-sm">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier la news
+    </a>
+    <a href="{{ path('san_news_delete', {'id': news.id}) }}" class="btn btn-danger btn-sm">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer la news
+    </a>
+  </p>
+ 
+  <div class="panel panel-primary">
+      <div class="panel-heading"><b>{{ news.titre }}</b>  </div>
+    <div class="panel-body">
+        {% if news.imageName is not null %}
+  <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}" width="200px" align="right">
 {% endif %}
-
-{% if not news.newscats.empty %}
+        {{ news.content | raw }}
+ 
+        {% if is_granted("ROLE_ADMIN") %}
+            <p class="text-right"><a href="{{ path('san_news_edit', {'id': news.id}) }}">
+      <i class="glyphicon glyphicon-edit"></i>
+                </a></p>
+     {% endif %}
+         </div>
+    
+      <div class="panel-footer">
+        {% if not news.newscats.empty %}
   <div class="label label-primary small">
     Catégories :
     {% for newscat in news.newscats %}
@@ -31,21 +50,10 @@
     {% endfor %}
   </div>
 {% endif %}
-
-
+      </div></div>  
 
   </div>
 
-  <p>
-    
-    <a href="{{ path('san_news_edit', {'id': news.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier la news
-    </a>
-    <a href="{{ path('san_news_delete', {'id': news.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer la news
-    </a>
-  </p>
+  
 
 {% endblock %}

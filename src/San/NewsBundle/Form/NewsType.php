@@ -33,6 +33,7 @@ class NewsType extends AbstractType
                     'choice_label' => 'nom',
                     'label' => 'Catégorie',
                     'multiple'     => true,
+                'expanded' => true
             ))
            
             ->add('Enregistrer',      SubmitType::class, array(

@@ -7,21 +7,29 @@
 
 {% block body %}
 
-  <h2>Liste des newsletters</h2>
+  <h3 class="bgblue">Liste des newsletters</h3>
 <div class="well">
-  <ul>
+  <a href="{{ path('san_newsletter_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter une newsletter</a>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th></th>
+        <th>Publié par</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for newsletter in listNewsletter %}
-      <li>
-        
-          <a href="{{ path('san_newsletter_view', {'id': newsletter.id}) }}">{{ newsletter.titre }}</a>
-        
-        par {{ newsletter.user.username }},
-        le {{ newsletter.pubDate|date('d/m/Y') }}
-      </li>
-    {% else %}
-      <li>Pas (encore !) de newsletter</li>
-    {% endfor %}
-  </ul>
+     <tr>
+        <td><a href="{{ path('san_newsletter_view', {'id': newsletter.id}) }}">{{ newsletter.titre }}</a></td>
+        <td><a href="{{ path('san_newsletter_edit', {'id': newsletter.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+        <a href="{{ path('san_newsletter_delete', {'id': newsletter.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        <td>{{ newsletter.user.username }}, le {{ newsletter.pubDate|date('d/m/Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+   
 </div>
   <ul class="pagination">
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}

@@ -1,0 +1,46 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil Catégories News - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h3 class="bgblue">Liste des catégories de news</h3>
+<div class="well">
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info"> {{ message }}</div>
+      {% endfor %}
+    <a href="{{ path('san_newscat_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter une catégorie</a>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Catégorie</th>
+        <th></th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for newscat in listNewscat %}
+      <tr>
+        <td>{{ newscat.nom }}</td>
+        <td><a href="{{ path('san_newscat_edit', {'id': newscat.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+        <a href="{{ path('san_newscat_delete', {'id': newscat.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        <td>{{ newscat.content }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+</div>
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_newscat_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

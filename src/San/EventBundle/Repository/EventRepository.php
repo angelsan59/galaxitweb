@@ -47,4 +47,5 @@ return $query
     ->getResult()
   ;
   }
+  
 }

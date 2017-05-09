@@ -7,21 +7,28 @@
 
 {% block body %}
 
-  <h2>Liste des news</h2>
+  <h3 class="bgblue">Liste des news</h3>
 <div class="well">
-  <ul>
+ <a href="{{ path('san_news_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter une news</a>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th></th>
+         <th>Publié par</th>
+      </tr>
+    </thead>
+    <tbody>
     {% for news in listNews %}
-      <li>
-        
-          <a href="{{ path('san_news_view', {'id': news.id}) }}">{{ news.titre }}</a>
-        
-        par {{ news.user.username }},
-        le {{ news.pubDate|date('d/m/Y') }}
-      </li>
-    {% else %}
-      <li>Pas (encore !) de news</li>
-    {% endfor %}
-  </ul>
+      <tr>
+        <td><a href="{{ path('san_news_view', {'id': news.id}) }}">{{ news.titre }}</a></td>
+        <td><a href="{{ path('san_news_edit', {'id': news.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+        <a href="{{ path('san_news_delete', {'id': news.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        <td> {{ news.user.username }}, le {{ news.pubDate|date('d/m/Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
   <ul class="pagination">
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}

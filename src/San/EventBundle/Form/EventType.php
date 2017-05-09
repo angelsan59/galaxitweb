@@ -25,7 +25,7 @@ class EventType extends AbstractType
         $builder
    
             ->add('eventDate', DateType::class, array('label' => 'Date', 'widget' => 'single_text'))
-            ->add('fin', DateType::class, array('label' => 'Fin de validité', 'widget' => 'single_text'))
+           
             ->add('titre',     TextType::class)
             ->add('adresse',     TextType::class)
             ->add('content', CKEditorType::class, array('config_name' => 'my_config',

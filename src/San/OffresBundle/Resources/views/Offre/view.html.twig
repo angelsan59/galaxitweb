@@ -6,13 +6,25 @@
 
 {% block body %}
 
-  <h2>{{ offre.titre }}</h2>
-  <i>Par {{ offre.user.username }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
- {% for flash_message in app.session.flashBag.get('notice') %}
+  <h3 class="bgblue">{{ offre.titre }}</h3>
+   {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="flash-notice">
         {{ flash_message }}
     </div>
 {% endfor %}
+  <i>Par {{ offre.user.username }}, le {{ offre.pubDate|date('d/m/Y') }}</i>
+  <p>
+    
+    <a href="{{ path('san_offre_edit', {'id': offre.id}) }}" class="btn btn-info btn-sm">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'offre
+    </a>
+    <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" class="btn btn-danger btn-sm">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'offre
+    </a>
+  </p>
+
   <div class="well">
        {% if offre.imageName is not null %}
   <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}" align="right">
@@ -55,16 +67,6 @@
     
 
 
-  <p>
-    
-    <a href="{{ path('san_offre_edit', {'id': offre.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'offre
-    </a>
-    <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'offre
-    </a>
-  </p>
+  
 
 {% endblock %}

@@ -1,0 +1,47 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil Abonnes newsletter - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h3 class="bgblue">Liste des abonnés à la newsletter</h3>
+<div class="well">
+   
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Société</th>
+        <th>Téléphone</th>
+        <th>Portable</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for user in listAbonnes %}
+       <tr>
+        <td><a href="{{ path('san_user_view', {'id': user.id}) }}">{{ user.prenom }} {{ user.nom }} - {{ user.username }}</a></td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.societe }}</td>
+        <td>{{ user.telephone }}</td>
+        <td>{{ user.portable }}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+   
+</div>
+<ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_user_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

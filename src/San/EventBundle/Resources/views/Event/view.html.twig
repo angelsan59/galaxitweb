@@ -6,53 +6,74 @@
 
 {% block body %}
 
-  <h2>{{ event.titre }}</h2>
+  <h3 class="bgblue">{{ event.titre }}</h3>
   <i>Par {{ event.user.username }}, le {{ event.pubDate|date('d/m/Y') }}</i>
+   <p>
+    
+    <a href="{{ path('san_event_edit', {'id': event.id}) }}" class="btn btn-info btn-sm">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'évènement
+    </a>
+    <a href="{{ path('san_event_delete', {'id': event.id}) }}" class="btn btn-danger btn-sm">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'évènement
+    </a>
+  </p>
  {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="flash-notice">
         {{ flash_message }}
     </div>
 {% endfor %}
-<div class="row">
-  <div class="col-md-6">
-      <div class="well">
-    {{ event.content | raw }}
-      </div>
-    {% if listinscrits|length > 0 %}
-    <div class="well">
-        <h4>Voici la liste des gens inscrits à l'évènement :</h4>
-      <ul>
-        {% for inscrit in listinscrits %}
-            <li><a href="{{ path('san_user_view', {'id': inscrit.user.id}) }}">{{ inscrit.user.prenom }} {{ inscrit.user.nom }}</a> </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-    </div>
-     <div class="col-md-6">
-    {# On vérifie qu'une image soit bien associée à l'evenement #}
-{% if event.imageName is not null %}
-  <img src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.imageName }}">
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><b>{{ event.titre }}</b></div>
+    <div class="panel-body">
+        {% if event.imageName is not null %}
+  <img src="{{ vich_uploader_asset(event, 'imageFile') }}" alt="{{ event.imageName }}" width="200px" align="right">
 {% endif %}
-
-  </div>
-</div>
- 
-
-  <p>
+        {{ event.content | raw }}
+     
+         </div>
     
-    <a href="{{ path('san_event_edit', {'id': event.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'évènement
+      <div class="clear">
+      <i class="fa fa-calendar"></i>  {{ event.eventDate|date('d/m/Y') }} - {{ event.adresse }} 
+      </div></div>  
+      
+    {% if listinscrits|length > 0 %}
+    <div class="panel panel-primary">
+    <div class="panel-heading"><b>Liste des gens inscrits</b></div>
+    <div class="panel-body">
+      <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Société</th>
+        <th>Téléphone</th>
+        <th>Portable</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for inscrit in listinscrits %}
+            <tr>
+                <td><a href="{{ path('san_user_view', {'id': inscrit.user.id}) }}">{{ inscrit.user.prenom }} {{ inscrit.user.nom }}</a> </td>
+                <td>{{ inscrit.user.email }}</td>
+                <td>{{ inscrit.user.societe }}</td>
+                <td>{{ inscrit.user.telephone }}</td>
+                <td>{{ inscrit.user.portable }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+     </div>
+    
+      </div>     
+      {% endif %}  
+     <p>
+    <a href="{{ path('san_event_homepage') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
     </a>
-    <a href="{{ path('san_event_delete', {'id': event.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'évènement
-    </a>
-       <a href="{{ path('san_insc_add', {'id': event.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Inscription à l'évènement
-    </a>
-  </p>
+  </p>  
 
 {% endblock %}

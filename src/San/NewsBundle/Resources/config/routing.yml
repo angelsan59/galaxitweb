@@ -32,8 +32,29 @@ san_news_delete:
     requirements:
         id: \d+
 
-san_news_categories:
-    path: /admin/news/categories
+san_newscat_homepage:
+    path: /admin/newscat/{page}
     defaults:
-        _controller: SanNewsBundle:News:categories
-    
+        _controller: SanNewsBundle:Newscat:index
+        page: 1
+    requirements:
+        page: \d*
+        
+san_newscat_add:
+    path: /admin/newscat/add
+    defaults:
+        _controller: SanNewsBundle:Newscat:add
+        
+san_newscat_edit:
+    path: /admin/newscat/edit/{id}
+    defaults:
+        _controller: SanNewsBundle:Newscat:edit
+    requirements:
+        id: \d+
+        
+san_newscat_delete:
+    path: /admin/newscat/delete/{id}
+    defaults:
+        _controller: SanNewsBundle:Newscat:delete
+    requirements:
+        id: \d+    

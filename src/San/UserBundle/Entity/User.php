@@ -20,7 +20,7 @@ class User extends BaseUser
       public function __construct()
     {
         $this->dateMod = new \Datetime();
-        $this->dateInsc = new \Datetime();
+       
         $this->candidatures = new ArrayCollection();
         parent::__construct();
         $this->enabled = true;
