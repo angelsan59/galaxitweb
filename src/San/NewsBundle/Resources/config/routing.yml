@@ -31,3 +31,9 @@ san_news_delete:
         _controller: SanNewsBundle:News:delete
     requirements:
         id: \d+
+
+san_news_categories:
+    path: /admin/news/categories
+    defaults:
+        _controller: SanNewsBundle:News:categories
+    

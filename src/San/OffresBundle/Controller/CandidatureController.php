@@ -176,8 +176,9 @@ class CandidatureController extends Controller {
       $listCandidatures = $this->getDoctrine()
       ->getManager()
       ->getRepository('SanOffresBundle:Candidature')
-      ->findByStatut($id)
-    ;
+      ->findBy(
+              array('statut' => $statut), // Critere
+  array('pubdate' => 'desc'));
       
      
      if (null === $listCandidatures){
