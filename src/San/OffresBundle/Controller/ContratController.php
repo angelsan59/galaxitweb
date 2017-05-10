@@ -4,8 +4,8 @@ namespace San\OffresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use San\NewsBundle\Entity\Contrat;
-use San\NewsBundle\Form\ContratType;
+use San\OffresBundle\Entity\Contrat;
+use San\OffresBundle\Form\ContratType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Description of ContratController

@@ -1,69 +1,44 @@
-Symfony Standard Edition
+Galax-IT website
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+La société de services Galax-IT (Lille Métropole, France) voulait une refonte complète de son site axée sur trois pôles :
+* Présenter ses nombreuses activités
+* Attirer et fidéliser les clients
+* Attirer des futurs collaborateurs
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+Pour cela, elle m'a engagée dans le cadre de mon stage de fin de formation AFPA "Concepteur Développeur Informatique".
 
-What's inside?
---------------
+Etat des travaux
+----------------
 
-The Symfony Standard Edition is configured with the following defaults:
+10/05/2016 : Le gros de la programmation est faite, surtout la section administration. Il reste la partie Candidature et Espace utilisateur.
+Technologies utilisées
+----------------------
 
-  * An AppBundle you can use to start coding;
+Le site est conçu avec le framework [** Symfony 3 **] [https://symfony.com] On y retrouve :
 
-  * Twig as the only configured template engine;
+  * HTML, CSS, javascript classiques
 
-  * Doctrine ORM/DBAL;
+  * Bootstrap (CSS framework)
 
-  * Swiftmailer;
+  * JQuery
 
-  * Annotations enabled for everything.
+  * Backend MySQL
 
-It comes pre-configured with the following bundles:
+  * FOSUserBundle, IvoryCKeditorBundle, DompdfBundle, VichUploaderBundle
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+Architecture
+------------
+Le site se compose d'une landing page pour les visiteurs et d'une section administration pour la gestion. Les éléments sont découpés en bundles :
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+  * Admin Bundle
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+  * Core Bundle
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+  * Event Bundle : Gestion des évènements et des inscriptions des visiteurs à ces évènements
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+  * News Bundle : L'actualité du site
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+  * Offres Bundle : les offres d'emploi et les candidatures à ces offres
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.2/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.2/doctrine.html
-[8]:  https://symfony.com/doc/3.2/templating.html
-[9]:  https://symfony.com/doc/3.2/security.html
-[10]: https://symfony.com/doc/3.2/email.html
-[11]: https://symfony.com/doc/3.2/logging.html
-[12]: https://symfony.com/doc/3.2/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+  * User Bundle : Gestion des comptes utilisateurs

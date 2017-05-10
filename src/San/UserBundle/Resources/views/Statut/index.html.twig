@@ -1,0 +1,48 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil statuts - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h3 class="bgblue">Liste des statuts</h3>
+  {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">{{ message }}</div>
+      {% endfor %}
+<div class="well">
+   <a href="{{ path('san_statuts_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter un statut</a>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Titre du statut</th>
+        <th></th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for statut in listStatuts %}
+     <tr>
+        <td>{{ statut.nom }}</td>
+        <td><a href="{{ path('san_statuts_edit', {'id': statut.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+        <a href="{{ path('san_statuts_delete', {'id': statut.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        
+     <td>{{ statut.content }}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+      
+</div>
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_statuts_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

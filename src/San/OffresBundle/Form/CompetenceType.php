@@ -5,6 +5,10 @@ namespace San\OffresBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CompetenceType extends AbstractType
 {
@@ -13,7 +17,16 @@ class CompetenceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('content')->add('categories');
+        $builder->add('nom',     TextType::class)
+               ->add('content',     TextareaType::class, array('label' => 'Description', 'required' => false))
+                 ->add('categories', EntityType::class, array(
+                    'class'        => 'SanOffresBundle:Categorie',
+                    'choice_label' => 'nom',
+                    'multiple'     => true,
+                     'expanded' => true,
+            ))
+                ->add('Enregistrer',      SubmitType::class, array(
+    'attr' => array('class' => 'btn btn-info'),));
     }
     
     /**

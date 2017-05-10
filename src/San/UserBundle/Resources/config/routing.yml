@@ -64,4 +64,31 @@ san_abonnes_delete:
     defaults:
         _controller: SanUserBundle:Abonnement:delete
     requirements:
-        id: \d+        
+        id: \d+       
+        
+san_statuts_homepage:
+    path:     /admin/statuts/{page}
+    defaults:
+        _controller: SanUserBundle:Statut:index
+        page: 1
+    requirements:
+        page: \d*
+   
+san_statuts_add:
+    path: /admin/statuts/add
+    defaults:
+        _controller: SanUserBundle:Statut:add
+        
+san_statuts_edit:
+    path: /admin/statuts/edit/{id}
+    defaults:
+        _controller: SanUserBundle:Statut:edit
+    requirements:
+        id: \d+
+        
+san_statuts_delete:
+    path: /admin/statuts/delete/{id}
+    defaults:
+        _controller: SanUserBundle:Statut:delete
+    requirements:
+        id: \d+                

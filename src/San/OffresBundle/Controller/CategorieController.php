@@ -4,8 +4,8 @@ namespace San\OffresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use San\NewsBundle\Entity\Categorie;
-use San\NewsBundle\Form\CategorieType;
+use San\OffresBundle\Entity\Categorie;
+use San\OffresBundle\Form\CategorieType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Description of CategorieController

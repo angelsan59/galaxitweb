@@ -2,35 +2,34 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Accueil offres - {{ parent() }}
+  Accueil contrats - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h3 class="bgblue">Liste des offres</h3>
+  <h3 class="bgblue">Liste des contrats</h3>
+  {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">{{ message }}</div>
+      {% endfor %}
 <div class="well">
-   <a href="{{ path('san_offre_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter une offre</a>
+   <a href="{{ path('san_contrats_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter un contrat</a>
     <table class="table table-striped">
     <thead>
       <tr>
-        <th>Titre de l'offre</th>
+        <th>Titre du contrat</th>
         <th></th>
-        <th>Catégorie(s)</th>
-        <th>Contrat</th>
-        <th>Publié par</th>
-      </tr>
+        <th>Description</th>
+        </tr>
     </thead>
     <tbody>
-    {% for offre in listOffres %}
+    {% for contrat in listContrats %}
      <tr>
-        <td><a href="{{ path('san_offre_view', {'id': offre.id}) }}">{{ offre.titre }}</a></td>
-        <td><a href="{{ path('san_offre_edit', {'id': offre.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
-        <td>{% for category in offre.categories %}
-      {{ category.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}</td>
-     <td>{{ offre.contrat.nom }}</td>
-        <td>{{ offre.user.username }}, le {{ offre.pubDate|date('d/m/Y') }}</td>
+        <td>{{ contrat.nom }}</td>
+        <td><a href="{{ path('san_contrats_edit', {'id': contrat.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
+        <a href="{{ path('san_contrats_delete', {'id': contrat.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        
+     <td>{{ contrat.content }}</td>
+        
       </tr>
       {% endfor %}
     </tbody>
@@ -41,7 +40,7 @@
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
     {% for p in range(1, nbPages) %}
       <li{% if p == page %} class="active"{% endif %}>
-        <a href="{{ path('san_offre_homepage', {'page': p}) }}">{{ p }}</a>
+        <a href="{{ path('san_contrats_homepage', {'page': p}) }}">{{ p }}</a>
       </li>
     {% endfor %}
   </ul>

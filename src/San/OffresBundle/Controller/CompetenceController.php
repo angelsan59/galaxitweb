@@ -4,8 +4,8 @@ namespace San\OffresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use San\NewsBundle\Entity\Competence;
-use San\NewsBundle\Form\CompetenceType;
+use San\OffresBundle\Entity\Competence;
+use San\OffresBundle\Form\CompetenceType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 /**
  * Description of CompetenceController

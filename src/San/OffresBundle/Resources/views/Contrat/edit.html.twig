@@ -2,20 +2,20 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier une offre - {{ parent() }}
+  Modifier un contrat - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h3 class="bgblue">Modifier une offre</h3>
+  <h3 class="bgblue">Modifier un contrat</h3>
 {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
+        <div class="alert alert-info">{{ message }}</div>
       {% endfor %}
-  {{ include("SanOffresBundle:Offre:form.html.twig") }}
+  {{ include("SanOffresBundle:Contrat:form.html.twig") }}
 
 
   <p>
-    <a href="{{ path('san_offre_homepage') }}" class="btn btn-default">
+    <a href="{{ path('san_contrats_homepage') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>

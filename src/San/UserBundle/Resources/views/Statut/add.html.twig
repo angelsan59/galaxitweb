@@ -1,21 +1,19 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Ajouter une catégorie - {{ parent() }}
+  Ajouter un statut - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h3 class="bgblue">Ajouter une catégorie</h3>
+  <h3 class="bgblue">Ajouter un statut</h3>
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info"> {{ message }}</div>
       {% endfor %}
-  {{ include("SanOffresBundle:Categorie:form.html.twig") }}
-
-  
+  {{ include("SanUserBundle:Statut:form.html.twig") }}
 
   <p>
-    <a href="{{ path('san_categories_homepage') }}" class="btn btn-default">
+    <a href="{{ path('san_statuts_homepage') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
       Retour à la liste
     </a>
