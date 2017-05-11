@@ -143,4 +143,30 @@ class NewsController extends Controller
       'listNews' => $listNews,
     ));
     }
+    
+    public function pagenewsAction($page)
+    {  
+         if($page<1){
+    throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
+        }
+        
+    $nbPerPage = 10;
+    
+    $listNews = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanNewsBundle:News')
+      ->getNews($page, $nbPerPage)
+    ;
+    
+    $nbPages = ceil(count($listNews) / $nbPerPage);
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+    }
+     return $this->render('SanNewsBundle:News:pagenews.html.twig', array(
+      'listNews' => $listNews,
+      'nbPages'     => $nbPages,
+      'page'        => $page,
+    ));
+    
+    }
 }

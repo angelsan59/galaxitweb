@@ -1,0 +1,48 @@
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+
+{% block title %}
+  News - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<section id="about">
+    <div class="container wow fadeInUp">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="section-title">Actualités</h3>
+          <div class="section-title-divider"></div>
+ {% for news in listNews %}
+     
+ {% endfor %}    
+          {% for news in listNews %}
+<div class="panel panel-primary">
+      <div class="panel-heading"><b>{{ news.titre }}</b>  </div>
+    <div class="panel-body">
+        {% if news.imageName is not null %}
+  <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}" width="200px" align="right">
+{% endif %}
+        {{ news.content | raw }}
+ 
+        {% if is_granted("ROLE_ADMIN") %}
+            <p class="text-right"><a href="{{ path('san_news_edit', {'id': news.id}) }}">
+      <i class="glyphicon glyphicon-edit"></i>
+                </a></p>
+     {% endif %}
+         </div>
+    
+      <div class="panel-footer">
+        {% if not news.newscats.empty %}
+  <div class="label label-primary small">
+    Catégories :
+    {% for newscat in news.newscats %}
+      {{ newscat.nom }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+      </div></div>  
+{% endfor %}
+        
+    </div></div></div>
+  
+  </section>    
+{% endblock %}     

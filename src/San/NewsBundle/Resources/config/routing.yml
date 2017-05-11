@@ -5,6 +5,14 @@ san_news_homepage:
         page: 1
     requirements:
         page: \d*
+        
+san_news_page:
+    path:     /news/{page}
+    defaults:
+        _controller: SanNewsBundle:News:pagenews
+        page: 1
+    requirements:
+        page: \d* 
 
 san_news_view:
     path: /admin/news/{id}
