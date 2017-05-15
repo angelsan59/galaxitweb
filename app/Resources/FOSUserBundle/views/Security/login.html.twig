@@ -10,7 +10,7 @@
                 {% if is_granted("ROLE_ADMIN") %}
                      <p class="section-description">En tant que membre admin, vous pouvez accéder à la <a href="admin">Section Administration</a></p>       
                 {% endif %}    
-                <p class="section-description">Vous pouvez désormais consulter votre profil, vous enregistrer aux évènements, vous abonner à la news letter, etc - 
+                <p class="section-description">Vous pouvez désormais  <b><a href="{{ path('san_user_profil') }}">consulter votre profil</a></b>, vous enregistrer aux évènements, vous abonner à la news letter, etc - 
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a></p>

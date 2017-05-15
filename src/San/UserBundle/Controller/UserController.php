@@ -5,6 +5,7 @@ namespace San\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use San\UserBundle\Entity\User;
+use San\EventBundle\Entity\Inscription;
 use San\UserBundle\Form\UserType;
 use San\UserBundle\Form\UseraboType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -176,9 +177,15 @@ $dateMod = new \Datetime();
      if (null === $user){
          throw new NotFoundHttpException("L'utilisateur n'existe pas.");
      }
-      
+     
+     $listInscriptions = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanEventBundle:Inscription')
+      ->findByUser($user);
+    
     return $this->render('SanUserBundle:User:profil.html.twig', array(
       'user' => $user,
+        'listInscriptions' => $listInscriptions
       
     ));
    }

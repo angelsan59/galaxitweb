@@ -12,7 +12,8 @@
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a></p>
             {% else %}
-                <p class="section-description">Remplissez le formulaire ci-dessous pour vous inscrire.</p>
+                <p class="section-description">Remplissez le formulaire ci-dessous pour vous inscrire. 
+                    Cela vous permettra de vous abonner à la newsletter, vous inscrire aux évènements et postuler pour les offres d'emploi</p>
                 <p class="section-description">Si vous êtes déjà inscrit(e), <a href="{{ path('fos_user_security_login') }}"><b>identifiez-vous ici</b></a>.</p>
                 
                {% include "@FOSUser/Registration/register_content.html.twig" %}

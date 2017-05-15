@@ -27,7 +27,7 @@ class CandidatureType extends AbstractType
     {
         $builder
                 ->add('dateDispo',      DateType::class, array('label' => 'Date de disponibilité', 'widget' => 'single_text'))
-                ->add('content', TextareaType::class, array('label' => 'Présentez-vous'))
+                ->add('content', TextareaType::class, array('label' => 'Présentez-vous (Par ex. web développer, 5 ans d\'expérience)'))
                  ->add('contrats', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Contrat',
                     'label' => 'Type de contrat recherché',
@@ -35,19 +35,19 @@ class CandidatureType extends AbstractType
                     'multiple'     => true,
                     'expanded'     => true,
             ))
-                ->add('adresse',     TextType::class)
-                ->add('cp',     TextType::class)
-                ->add('ville',     TextType::class)
-                ->add('pays',     TextType::class)
-                ->add('web',     TextType::class)
-                ->add('linkdn',     TextType::class)
-                ->add('viadeo',     TextType::class)
-                ->add('twitter',     TextType::class)
+                ->add('adresse',     TextType::class, array('label' => 'Adresse'))
+                ->add('cp',     TextType::class, array('label' => 'Code Postal'))
+                ->add('ville',     TextType::class, array('label' => 'Ville'))
+                ->add('pays',     TextType::class, array('label' => 'Pays'))
+                ->add('web',     TextType::class, array('label' => 'Site web'))
+                ->add('linkdn',     TextType::class, array('label' => 'Linkdn'))
+                ->add('viadeo',     TextType::class, array('label' => 'Viadeo'))
+                ->add('twitter',     TextType::class, array('label' => 'Twitter'))
                 ->add('cvFile', FileType::class, array('label' => 'CV', 'required' => false))
-                ->add('realisations', TextareaType::class)
-                ->add('formation', TextareaType::class)
-                ->add('techno', TextareaType::class)
-                ->add('evolution', TextareaType::class)
+                ->add('realisations', TextareaType::class, array('label' => 'Réalisations'))
+                ->add('formation', TextareaType::class, array('label' => 'Formation'))
+                ->add('techno', TextareaType::class, array('label' => 'Technologies'))
+                ->add('evolution', TextareaType::class, array('label' => 'Evolution'))
                  ->add('categories', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Categorie',
                     'choice_label' => 'nom',

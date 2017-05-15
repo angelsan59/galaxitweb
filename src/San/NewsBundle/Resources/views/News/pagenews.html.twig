@@ -5,9 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<section id="about">
-    <div class="container wow fadeInUp">
-      <div class="row">
+
         <div class="col-md-12">
           <h3 class="section-title">Actualités</h3>
           <div class="section-title-divider"></div>
@@ -31,6 +29,7 @@
          </div>
     
       <div class="panel-footer">
+          Posté le {{ news.pubDate|date('d/m/Y') }} - 
         {% if not news.newscats.empty %}
   <div class="label label-primary small">
     Catégories :
@@ -42,7 +41,5 @@
       </div></div>  
 {% endfor %}
         
-    </div></div></div>
-  
-  </section>    
+    </div>
 {% endblock %}     

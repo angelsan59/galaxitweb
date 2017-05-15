@@ -13,6 +13,12 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.candform{
+   
+    padding-right:20px;
+    padding-left:20px;
+}
+
 a {
   color: #01768d;
   transition: 0.5s;
@@ -39,6 +45,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 20px 0;
   padding: 0;
 }
+.profil {
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+    font-size:20px;}
 
 .dark{
     background:#011f4b;

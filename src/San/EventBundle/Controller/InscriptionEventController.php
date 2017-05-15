@@ -90,63 +90,7 @@ class InscriptionEventController extends Controller {
        
     ));
     }
-    
-    public function addpubAction($id, Request $request){
-        $em = $this->getDoctrine()->getManager();
-     
-     $event = $em->getRepository('SanEventBundle:Event')->find($id);
-    
-     if (null === $event){
-         throw new NotFoundHttpException("L'évènement d'id ".$id." n'existe pas.");
-     } 
-     
-        $session = $request->getSession();
-      $session->set('event_id', $id);
-       return $this->render('SanEventBundle:Event:inscaddpub.html.twig', array(
-      'event' => $event 
-    ));
-    }
-    public function addpub1Action($id, Request $request){
-      
-    /** 1. Login in user **/
-        
-        /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
-        $session = $request->getSession();
-
-        $authErrorKey = Security::AUTHENTICATION_ERROR;
-        $lastUsernameKey = Security::LAST_USERNAME;
-
-        // get the error if any (works with forward and redirect -- see below)
-        if ($request->attributes->has($authErrorKey)) {
-            $error = $request->attributes->get($authErrorKey);
-        } elseif (null !== $session && $session->has($authErrorKey)) {
-            $error = $session->get($authErrorKey);
-            $session->remove($authErrorKey);
-        } else {
-            $error = null;
-        }
-
-        if (!$error instanceof AuthenticationException) {
-            $error = null; // The value does not come from the security component.
-        }
-
-        // last username entered by the user
-        $lastUsername = (null === $session) ? '' : $session->get($lastUsernameKey);
-
-        $csrfToken = $this->has('security.csrf.token_manager')
-            ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
-            : null;
-
-        return $this->render('@FOSUser/Security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error' => $error,
-            'csrf_token' => $csrfToken,
-        ));
-        
-        
-        
-           
-    }
+   
     public function editAction($id, Request $request)
   {
     $em = $this->getDoctrine()->getManager();
@@ -196,6 +140,35 @@ class InscriptionEventController extends Controller {
       $this->addFlash('info', "L'inscription a bien été supprimée.");
 
       return $this->redirectToRoute('san_insc_homepage');
+    }
+    
+    return $this->render('SanEventBundle:Event:inscdelete.html.twig', array(
+      'inscription' => $inscription,
+      'form'   => $form->createView(),
+    ));
+  }
+  
+   public function deletepubAction(Request $request, $id)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $inscription = $em->getRepository('SanEventBundle:Inscription')->find($id);
+
+    if (null === $inscription) {
+      throw new NotFoundHttpException("L'inscription d'id ".$id." n'existe pas.");
+    }
+
+    // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+    // Cela permet de protéger la suppression d'annonce contre cette faille
+    $form = $this->get('form.factory')->create();
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em->remove($inscription);
+      $em->flush();
+
+      $this->addFlash('info', "L'inscription a bien été supprimée.");
+
+      return $this->redirectToRoute('san_user_profil');
     }
     
     return $this->render('SanEventBundle:Event:inscdelete.html.twig', array(

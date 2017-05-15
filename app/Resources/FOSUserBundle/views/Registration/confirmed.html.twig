@@ -9,8 +9,11 @@
         <h2>Bien enregistré !</h2>
       
     <p class="section-description">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    <p class="section-description">Vous pouvez consulter et mettre à jour votre 
+        profil ici: <b><a href="{{ path('san_user_profil') }}">Mon profil</a></b></p>
     {% if targetUrl %}
     <p class="section-description"><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    
     {% endif %}
            </div>
 {% endblock fos_user_content %}
