@@ -27,9 +27,9 @@
 
   <div class="well">
        {% if offre.imageName is not null %}
-  <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}" align="right">
+  <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}" width="300px" align="right" class="img-responsive img-thumbnail">
 {% endif %}
-    {{ offre.content }}
+    {{ offre.content | raw }}
     </div>
 
                <div class="panel panel-primary">
@@ -38,11 +38,11 @@
     </div> 
     <div class="panel panel-primary">
   <div class="panel-heading">Formation</div>
-  <div class="panel-body">{{ offre.formation }}</div>
+  <div class="panel-body">{{ offre.formation | raw }}</div>
     </div> 
   <div class="panel panel-primary">
   <div class="panel-heading">Mission</div>
-  <div class="panel-body">{{ offre.mission }}</div>
+  <div class="panel-body">{{ offre.mission | raw }}</div>
     </div> 
     {% if not offre.categories.empty %}
     <div class="panel panel-primary">

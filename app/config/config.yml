@@ -107,4 +107,4 @@ vich_uploader:
 ivory_ck_editor:
     configs:
         my_config:
-            toolbar: [ ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'], ['Link', 'Unlink'], ['Font', 'FontSize', 'TextColor', 'BGColor'] ]
+            toolbar: [ ['Bold', 'Italic', 'Underline', 'Strike','NumberedList','BulletedList', '-', 'RemoveFormat'], ['Link', 'Unlink'], ['Font', 'FontSize', 'TextColor', 'BGColor'] ]

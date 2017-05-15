@@ -32,4 +32,5 @@ class CategorieRepository extends \Doctrine\ORM\EntityRepository
     return new Paginator($query, true);
    
   }
+  
 }

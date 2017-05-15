@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use San\OffresBundle\Repository\CompetenceRepository;
 
 
 class CandidatureType extends AbstractType
@@ -53,13 +54,18 @@ class CandidatureType extends AbstractType
                     'choice_label' => 'nom',
                     'multiple'     => true,
             ))
-               
-            ->add('competences', EntityType::class, array(
+        ->add('competences', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Competence',
                     'choice_label' => 'nom',
                     'multiple'     => true,
+                    'query_builder' => function(CompetenceRepository $repository) {
+                    return $repository->createQueryBuilder('c')
+                                    ->innerJoin('c.categories', 'cat', 'WITH', 'cat.id=:id')
+                            ->setParameter('id', 22)
+                            ->addSelect('cat')
+                            ->orderBy('c.nom');}
             ))
-           
+                            ->add('comp',     CatType::class)
             ->add('Enregistrer',      SubmitType::class, array(
     'attr' => array('class' => 'btn btn-info'),));
     }

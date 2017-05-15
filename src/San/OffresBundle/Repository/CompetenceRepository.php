@@ -32,4 +32,16 @@ class CompetenceRepository extends \Doctrine\ORM\EntityRepository
     return new Paginator($query, true);
    
   }
+  public function getSecteurActivite()
+  {
+    $qb = $this->createQueryBuilder('c')
+     ->leftJoin('c.categories', 'cat', 'WITH', 'cat.id=22')
+    ->addSelect('cat')
+     
+     ->orderBy('c.nom')
+     ->getQuery()       ;
+    
+     return $qb;
+    
+  }
 }
