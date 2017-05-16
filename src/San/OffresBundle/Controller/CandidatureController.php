@@ -78,7 +78,9 @@ class CandidatureController extends Controller {
         $em = $this->getDoctrine()->getManager();
      
      $offre = $em->getRepository('SanOffresBundle:Offre')->find($id);
-    $statut = $em->getRepository('SanUserBundle:Statut')->find('19'); 
+    $statut = $em->getRepository('SanUserBundle:Statut')->find('19');
+    $categories = $em->getRepository('SanOffresBundle:Categorie')->findAll();
+   
      if (null === $offre){
          throw new NotFoundHttpException("L'offre d'id ".$id." n'existe pas.");
      } 
@@ -105,6 +107,8 @@ class CandidatureController extends Controller {
     return $this->render('SanOffresBundle:Candidature:add.html.twig', array(
       'form' => $form->createView(),
         'offre' => $offre,
+        'categories' => $categories,
+       
        
     ));
     }
@@ -195,7 +199,7 @@ class CandidatureController extends Controller {
      $em = $this->getDoctrine()->getManager();
      
      $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
-     
+    
      if (null === $candidature){
          throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
      }
@@ -215,6 +219,7 @@ class CandidatureController extends Controller {
     return $this->render('SanOffresBundle:Candidature:adminview.html.twig', array(
       'candidature' => $candidature,
          'form'   => $form->createView(),
+       
     ));
     }
     

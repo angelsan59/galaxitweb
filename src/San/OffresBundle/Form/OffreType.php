@@ -18,6 +18,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use San\OffresBundle\Repository\CompetenceRepository;
 
 class OffreType extends AbstractType
 {
@@ -50,8 +51,16 @@ class OffreType extends AbstractType
             ))
             ->add('competences', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Competence',
+                    'label' => 'Compétences (sélectionnez-en autant que vous voulez)',
                     'choice_label' => 'nom',
                     'multiple'     => true,
+                    'expanded' => false,
+                'query_builder' => function(CompetenceRepository $er)
+            {
+            return $er->createQueryBuilder('u')
+                                        ->orderBy('u.nom', 'ASC');
+            },
+                    'group_by' => 'categorie.nom',   
             ))
            
             ->add('Enregistrer',      SubmitType::class, array(

@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use San\OffresBundle\Repository\CompetenceRepository;
-
+use San\OffresBundle\Repository\CategorieRepository;
 
 class CandidatureType extends AbstractType
 {
@@ -40,36 +40,30 @@ class CandidatureType extends AbstractType
                 ->add('cp',     TextType::class, array('label' => 'Code Postal'))
                 ->add('ville',     TextType::class, array('label' => 'Ville'))
                 ->add('pays',     TextType::class, array('label' => 'Pays'))
-                ->add('web',     TextType::class, array('label' => 'Site web'))
-                ->add('linkdn',     TextType::class, array('label' => 'Linkdn'))
-                ->add('viadeo',     TextType::class, array('label' => 'Viadeo'))
-                ->add('twitter',     TextType::class, array('label' => 'Twitter'))
+                ->add('web',     TextType::class, array('label' => 'Site web', 'required' => false))
+                ->add('linkdn',     TextType::class, array('label' => 'Linkdn', 'required' => false))
+                ->add('viadeo',     TextType::class, array('label' => 'Viadeo', 'required' => false))
+                ->add('twitter',     TextType::class, array('label' => 'Twitter', 'required' => false))
                 ->add('cvFile', FileType::class, array('label' => 'CV', 'required' => false))
                 ->add('realisations', TextareaType::class, array('label' => 'Réalisations'))
                 ->add('formation', TextareaType::class, array('label' => 'Formation'))
                 ->add('techno', TextareaType::class, array('label' => 'Technologies'))
                 ->add('evolution', TextareaType::class, array('label' => 'Evolution'))
-                 ->add('categories', EntityType::class, array(
-                    'class'        => 'SanOffresBundle:Categorie',
-                    'choice_label' => 'nom',
-                    'multiple'     => true,
-            ))
+                 
         ->add('competences', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Competence',
+                    'label' => 'Compétences (sélectionnez-en autant que vous voulez)',
                     'choice_label' => 'nom',
                     'multiple'     => true,
-                    'query_builder' => function(CompetenceRepository $repository) {
-                    return $repository->createQueryBuilder('c')
-                                    ->innerJoin('c.categories', 'cat', 'WITH', 'cat.id=:id')
-                            ->setParameter('id', 22)
-                            ->addSelect('cat')
-                            ->orderBy('c.nom');}
+                    'expanded' => false,
+                    'group_by' => 'categorie.nom',   
             ))
-                            ->add('comp',     CatType::class)
+                            
             ->add('Enregistrer',      SubmitType::class, array(
     'attr' => array('class' => 'btn btn-info'),));
     }
-    
+
+
     /**
      * {@inheritdoc}
      */

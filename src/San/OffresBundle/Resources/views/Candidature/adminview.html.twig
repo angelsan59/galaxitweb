@@ -41,26 +41,29 @@
   <div class="panel-heading">Catégories et compétences</div>
   <div class="panel-body">
       <div class="col-sm-6">
-     {% if not candidature.categories.empty %}
-         <b>Catégories </b>
-        <ul>
-    {% for category in candidature.categories %}
-        <li>{{ category.nom }}</li>
-    {% endfor %}
-      </ul>
-      {% endif %}
-  </div>
+    <div class="well table-responsive">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Compétence</th>
+        <th>Catégorie</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for competence in candidature.competences | sortbyfield('nom') %}
+          <tr>
+        <td> {{ competence.nom }}</td>
+        <td>{{ competence.categorie.nom }}</a></td>
+       
+      </tr>
+       {% endfor %} 
+
+    </tbody>
+  </table>
+          
+  </div> </div>
   <div class="col-sm-6">
-      {% if not candidature.competences.empty %}
-  
-          <b>Compétences</b>
-             
-      <ul>
-    {% for competence in candidature.competences %}
-        <li>{{ competence.nom }}</li>
-    {% endfor %}
-      </ul>
-{% endif %}
+    
   </div>
   </div>
   </div>

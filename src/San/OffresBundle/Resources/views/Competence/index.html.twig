@@ -26,7 +26,7 @@
       <tr>
         <th>Titre de la compétence</th>
         <th></th>
-        <th>Catégories</th>
+        <th>Catégorie</th>
         <th>Description</th>
         </tr>
     </thead>
@@ -37,11 +37,9 @@
         <td><a href="{{ path('san_competences_edit', {'id': competence.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
         <a href="{{ path('san_competences_delete', {'id': competence.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
       <td>
-      {% if not competence.categories.empty %}
+      {% if competence.categorie is not null %}
    
-    {% for category in competence.categories %}
-       {{ category.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}   
+       {{ competence.categorie.nom }}
     {% endif %} 
       </td>   
      <td>{{ competence.content }}</td>

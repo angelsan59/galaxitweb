@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use San\OffresBundle\Repository\CategorieRepository;
 
 class CompetenceType extends AbstractType
 {
@@ -19,11 +20,14 @@ class CompetenceType extends AbstractType
     {
         $builder->add('nom',     TextType::class)
                ->add('content',     TextareaType::class, array('label' => 'Description', 'required' => false))
-                 ->add('categories', EntityType::class, array(
+                 ->add('categorie', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Categorie',
                     'choice_label' => 'nom',
-                    'multiple'     => true,
+                    'multiple'     => false,
                      'expanded' => true,
+                     'query_builder' => function (CategorieRepository $er) {
+        return $er->createQueryBuilder('u')
+                     ->orderBy('u.nom', 'ASC');}
             ))
                 ->add('Enregistrer',      SubmitType::class, array(
     'attr' => array('class' => 'btn btn-info'),));

@@ -12,14 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Competence
 {
-    public function __construct()
-  {
-    $this->categories = new ArrayCollection();
-  }
+   
     /**
-   * @ORM\ManyToMany(targetEntity="San\OffresBundle\Entity\Categorie", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="San\OffresBundle\Entity\Categorie",inversedBy="competences", cascade={"persist"})
    */
-  private $categories;
+  private $categorie;
 
     /**
      * @var int
@@ -103,37 +100,29 @@ class Competence
         return $this->content;
     }
 
+    
+
     /**
-     * Add category
+     * Set categorie
      *
-     * @param \San\OffresBundle\Entity\Categorie $category
+     * @param \San\OffresBundle\Entity\Categorie $categorie
      *
      * @return Competence
      */
-    public function addCategory(\San\OffresBundle\Entity\Categorie $category)
+    public function setCategorie(\San\OffresBundle\Entity\Categorie $categorie = null)
     {
-        $this->categories[] = $category;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
     /**
-     * Remove category
+     * Get categorie
      *
-     * @param \San\OffresBundle\Entity\Categorie $category
+     * @return \San\OffresBundle\Entity\Categorie
      */
-    public function removeCategory(\San\OffresBundle\Entity\Categorie $category)
+    public function getCategorie()
     {
-        $this->categories->removeElement($category);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCategories()
-    {
-        return $this->categories;
+        return $this->categorie;
     }
 }

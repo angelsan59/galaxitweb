@@ -21,6 +21,30 @@ class Categorie
      */
     private $id;
 
+     /**
+   * @ORM\OneToMany(targetEntity="San\OffresBundle\Entity\Competence", mappedBy="categorie")
+   */
+  private $competences; // Notez le « s », une annonce est liée à plusieurs candidatures
+  
+  public function __construct()
+  {
+    $this->competences = new ArrayCollection();
+    
+  }
+  public function addCompetence(Competence $competence)
+  {
+    $this->competences[] = $competence;
+  }
+
+  public function removeCompetence(Competence $competence)
+  {
+    $this->competences->removeElement($competence);
+  }
+
+  public function getCompetences()
+  {
+    return $this->competences;
+  }
     /**
      * @var string
      *

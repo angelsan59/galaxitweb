@@ -48,4 +48,5 @@ class CandidatureRepository extends \Doctrine\ORM\EntityRepository
     ->getResult()
   ;
 }
+
 }

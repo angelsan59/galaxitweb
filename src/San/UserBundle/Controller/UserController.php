@@ -173,7 +173,7 @@ $dateMod = new \Datetime();
   {
        $user = $this->getUser();
        $id = $user->getId();
-       
+      
      if (null === $user){
          throw new NotFoundHttpException("L'utilisateur n'existe pas.");
      }

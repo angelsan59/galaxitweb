@@ -35,13 +35,26 @@ class CompetenceRepository extends \Doctrine\ORM\EntityRepository
   public function getSecteurActivite()
   {
     $qb = $this->createQueryBuilder('c')
-     ->leftJoin('c.categories', 'cat', 'WITH', 'cat.id=22')
-    ->addSelect('cat')
-     
-     ->orderBy('c.nom')
+     ->innerJoin('c.categories', 'cat', 'WITH', 'cat.id=:id')
+                            ->setParameter('id', 22)
+                            ->addSelect('cat')
+                            ->orderBy('c.nom')
      ->getQuery()       ;
     
      return $qb;
     
   }
+  
+  public function getlistCompetences()
+  {
+    $qb = $this->createQueryBuilder('c')
+     ->innerJoin('c.categories', 'cat')
+                            ->addSelect('cat')
+                            ->orderBy('c.nom')
+     ->getQuery()       ;
+    
+     return $qb;
+    
+  }
+  
 }
