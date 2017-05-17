@@ -75,6 +75,13 @@ san_candidature_edit:
     requirements:
         id: \d+
         
+san_candidats_edit:
+    path: /admin/candidats/edit/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:adminedit
+    requirements:
+        id: \d+        
+        
 san_candidature_delete:
     path: /carriere/candidature/delete/{id}
     defaults:

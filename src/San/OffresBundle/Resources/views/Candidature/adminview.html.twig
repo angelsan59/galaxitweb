@@ -6,6 +6,9 @@
     <h3 class="section-title">{{ candidature.user.prenom }} {{ candidature.user.nom }}</h3>
         <p class="section-description">Candidature à l'offre {{ candidature.offre.titre }} - Disponible le {{ candidature.dateDispo|date('d/m/Y') }}</p>
           <p class="section-description"><a href="{{ path('san_candidats_pdf', {'id': candidature.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-save-file"></i>
+      Fiche en pdf
+        </a><a href="{{ path('san_candidats_edit', {'id': candidature.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-edit"></i>
       Modifier la candidature
         </a></p></div>

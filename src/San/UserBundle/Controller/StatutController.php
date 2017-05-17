@@ -39,6 +39,18 @@ class StatutController  extends Controller
     ));
     }
     
+       public function listeAction()
+    {
+        
+    $listStatuts = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanUserBundle:Statut')
+      ->findAll(array(), array('nom' => 'ASC'))
+    ;
+    
+     return $this->render('SanUserBundle:Statut:listestatuts.html.twig');
+    }
+    
      public function addAction(Request $request){
          $statut= new Statut();
 

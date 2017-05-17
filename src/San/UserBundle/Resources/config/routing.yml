@@ -42,7 +42,12 @@ san_user_delete:
 san_user_profil:
     path: /profil
     defaults:
-        _controller: SanUserBundle:User:profil        
+        _controller: SanUserBundle:User:profil  
+        
+san_user_modprofil:
+    path: /profil/edit
+    defaults:
+        _controller: SanUserBundle:User:modprofil             
 
 san_abonnes_homepage:
     path:     admin/abonnes/{page}
@@ -91,4 +96,9 @@ san_statuts_delete:
     defaults:
         _controller: SanUserBundle:Statut:delete
     requirements:
-        id: \d+                
+        id: \d+    
+        
+san_statuts_menu:
+    path: /admin/listestatuts
+    defaults:
+        _controller: SanUserBundle:Statut:liste               

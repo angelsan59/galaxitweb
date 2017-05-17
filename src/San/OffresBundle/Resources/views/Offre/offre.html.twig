@@ -19,30 +19,25 @@
  <a href="{{ path('san_candidature_add', {'id': offre.id}) }}"><button type="button" class="btn btn-info">Postulez à l'offre</button></a>
   </p>
 </div></div>
-  <div class="row">
-   <div class="panel panel-primary">
-  <div class="panel-heading">Type de contrat</div>
-  <div class="panel-body">{{ offre.contrat.nom }}</div>
-    </div> 
-    <div class="panel panel-primary">
-  <div class="panel-heading">Formation</div>
-  <div class="panel-body">{{ offre.formation | raw }}</div>
-    </div> 
+ <div class="row">
   <div class="panel panel-primary">
   <div class="panel-heading">Mission</div>
   <div class="panel-body">{{ offre.mission | raw }}</div>
+  </div> </div>
+  
+  <div class="row">
+      <div class="col-md-6"> 
+   <div class="panel panel-primary">
+  <div class="panel-heading">Type de contrat</div>
+  <div class="panel-body"><p>{{ offre.contrat.nom | raw }}</p></div>
+    </div>
+     <div class="panel panel-primary">
+  <div class="panel-heading">Formation</div>
+  <div class="panel-body">{{ offre.formation | raw }}</div>
     </div> 
-    {% if not offre.categories.empty %}
-    <div class="panel panel-primary">
-  <div class="panel-heading">Catégories</div>
-  <div class="panel-body"><ul>
-    {% for category in offre.categories %}
-        <li>{{ category.nom }}</li>
-    {% endfor %}
-      </ul></div>
-    </div>    
-    {% endif %} 
-    {% if not offre.competences.empty %}
+      </div>
+    <div class="col-md-6"> 
+      {% if not offre.competences.empty %}
     <div class="panel panel-primary">
   <div class="panel-heading">Compétences nécessaires</div>
   <div class="panel-body"><ul>
@@ -51,9 +46,9 @@
     {% endfor %}
       </ul></div>
     </div>    
-    {% endif %} 
-    
-      </div>
-
+    {% endif %}  
+    </div>
+  </div>
+   
 {% endblock %}
 

@@ -45,3 +45,5 @@ san_newsletter_confirm:
     path: /newsletter/confirm
     defaults:
         _controller: SanUserBundle:User:aboconfirm
+        
+ 

@@ -1,13 +1,11 @@
-
-{% extends "SanAdminBundle::layout.html.twig" %}
-
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
 {% block title %}
-  Modifier un utilisateur - {{ parent() }}
+  Modification profil - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h3 class="bgblue">Modifier un utilisateur</h3>
+  <h2>Modifier votre profil</h2>
 {% for message in app.session.flashbag.get('notice') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
@@ -15,9 +13,9 @@
 
 
   <p>
-    <a href="{{ path('san_user_view', {'id': user.id}) }}" class="btn btn-default">
+    <a href="{{ path('san_user_profil') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'utilisateur
+      Retour à votre profil
     </a>
   </p>
 

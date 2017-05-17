@@ -6,18 +6,7 @@
 
 {% block body %}
 
-  <h2>Modifier une candidature</h2>
-{% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
-      {% endfor %}
-  {{ form(form) }}
-
-
-  <p>
-    <a href="{{ path('san_candidature_view', {'id': candidature.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la candidature
-    </a>
-  </p>
+  <h2>Modifier votre candidature à l'offre {{ candidature.offre.titre }}</h2>
+ {{ include("SanOffresBundle:Candidature:form.html.twig") }}
 
 {% endblock %}

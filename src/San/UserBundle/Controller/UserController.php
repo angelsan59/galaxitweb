@@ -190,6 +190,39 @@ $dateMod = new \Datetime();
     ));
    }
    
+   public function modprofilAction(Request $request)
+  {
+        $user = $this->getUser();
+       $id = $user->getId();
+       
+    $em = $this->getDoctrine()->getManager();
+$dateMod = new \Datetime();
+    $user = $em->getRepository('SanUserBundle:User')->find($id);
+
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+
+    $form = $this->get('form.factory')->create(UserType::class, $user);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+   
+      $user->setDateMod($dateMod);
+      $em->flush();
+ 
+      $this->addFlash('notice', 'Profil modifié.');
+
+      return $this->redirectToRoute('san_user_profil', array('user' => $user,
+        'listInscriptions' => $listInscriptions));
+    }
+
+    return $this->render('SanUserBundle:User:modprofil.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+   
    public function adminAction($id){
        $em = $this->getDoctrine()->getManager();
 $dateMod = new \Datetime();

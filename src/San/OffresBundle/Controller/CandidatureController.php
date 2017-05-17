@@ -6,6 +6,7 @@ use San\OffresBundle\Entity\Candidature;
 use San\OffresBundle\Entity\Offre;
 use San\UserBundle\Entity\Statut;
 use San\OffresBundle\Form\CandidatureType;
+use San\OffresBundle\Form\CandidatureadminType;
 use San\OffresBundle\Form\StatutcandType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -116,7 +117,7 @@ class CandidatureController extends Controller {
     public function editAction($id, Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-
+ 
     $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
 
     if (null === $candidature) {
@@ -132,7 +133,7 @@ class CandidatureController extends Controller {
  
       $this->addFlash('notice', 'Candidature bien modifiée.');
 
-      return $this->redirectToRoute('san_candidature_view', array('id' => $candidature->getId()));
+      return $this->redirectToRoute('san_user_profil');
     }
 
     return $this->render('SanOffresBundle:Candidature:edit.html.twig', array(
@@ -222,6 +223,34 @@ class CandidatureController extends Controller {
        
     ));
     }
+    
+    public function admineditAction($id, Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+ 
+    $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
+
+    if (null === $candidature) {
+      throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
+    }
+
+    $form = $this->get('form.factory')->create(CandidatureadminType::class, $candidature);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+      
+       $em->flush();
+ 
+      $this->addFlash('info', 'Candidature bien modifiée.');
+
+      return $this->redirectToRoute('san_candidats_view', array('id' => $candidature->getId()));
+    }
+
+    return $this->render('SanOffresBundle:Candidature:adminedit.html.twig', array(
+      'candidature' => $candidature,
+      'form'   => $form->createView(),
+    ));
+  }
     
     public function toPdfAction($id) {
     // On récupère l'objet à afficher (rien d'inconnu jusque là)

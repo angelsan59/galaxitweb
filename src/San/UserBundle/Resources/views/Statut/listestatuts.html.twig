@@ -1,0 +1,5 @@
+
+{% for statut in listStatuts %}
+    
+    <li><a href="{{ path('san_candidats_statutlist', {'id': statut.id}) }}"><i class="fa fa-id-badge"></i>{{ statut.nom }}</a></li>
+    {% endfor %} 

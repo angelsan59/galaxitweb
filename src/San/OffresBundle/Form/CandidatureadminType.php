@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,9 +18,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use San\OffresBundle\Repository\CompetenceRepository;
 use San\OffresBundle\Repository\CategorieRepository;
-
-class CandidatureType extends AbstractType
-{
+/**
+ * Description of CandidatureadminType
+ *
+ * @author Dev
+ */
+class CandidatureadminType extends AbstractType {
     /**
      * {@inheritdoc}
      */
@@ -45,10 +48,10 @@ class CandidatureType extends AbstractType
                 ->add('viadeo',     TextType::class, array('label' => 'Viadeo', 'required' => false))
                 ->add('twitter',     TextType::class, array('label' => 'Twitter', 'required' => false))
                 ->add('cvFile', FileType::class, array('label' => 'CV', 'required' => false))
-                ->add('realisations', TextareaType::class, array('label' => 'Réalisations'))
-                ->add('formation', TextareaType::class, array('label' => 'Formation'))
-                ->add('techno', TextareaType::class, array('label' => 'Technologies'))
-                ->add('evolution', TextareaType::class, array('label' => 'Evolution'))
+                ->add('realisations', CKEditorType::class, array('config_name' => 'my_config', 'label' => 'Réalisations'))
+                ->add('formation', CKEditorType::class, array('config_name' => 'my_config', 'label' => 'Formation'))
+                ->add('techno', CKEditorType::class, array('config_name' => 'my_config', 'label' => 'Technologies'))
+                ->add('evolution', CKEditorType::class, array('config_name' => 'my_config', 'label' => 'Evolution'))
                  
         ->add('competences', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Competence',

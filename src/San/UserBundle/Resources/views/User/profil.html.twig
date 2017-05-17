@@ -41,7 +41,7 @@
     {% if user.imageName is not null %}
   <div class="col-md-4">
        <img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="{{ user.imageName }}" width="200px">
-       <p><br/> <a href="{{ path('san_user_edit', {'id': user.id}) }}" class="btn btn-info">
+       <p><br/> <a href="{{ path('san_user_modprofil') }}" class="btn btn-info">
       <i class="glyphicon glyphicon-edit"></i>
       Modifier votre profil
            </a></p></div>
@@ -56,6 +56,7 @@
     <thead>
       <tr>
         <th>Postulé le</th>
+        <th>Candidature</th>
         <th>Titre de l'offre</th>
         <th>Statut</th>
       </tr>
@@ -64,6 +65,10 @@
     {% for candidature in user.candidatures %}
          <tr>
              <td>{{ candidature.pubdate|date('d/m/Y') }}</td>
+             <td><a href="{{ path('san_candidature_edit', {'id': candidature.id}) }}" class="btn btn-info">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier
+           </a></td>
              <td><a href="{{ path('san_offre_offre', {'id': candidature.offre.id}) }}">{{ candidature.offre.titre }}</a></td>
         <td>{{ candidature.statut.nom }}</td>
          </tr>
@@ -87,6 +92,18 @@
             {% endif%}
   </div>
    </div>
+   <div class="panel panel-primary">
+  <div class="panel-heading">Suppression du compte utilisateur</div>
+  <div class="panel-body">
+  Attention, cette action est irréversible !!!
+   <br/><br/>
+    <a href="{{ path('san_user_delete', {'id': user.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer mon compte Galax-IT
+    </a>
+ 
+  </div>
+   </div>
     </div>
    <div class="col-md-6">  
   <div class="panel panel-primary">
@@ -107,17 +124,5 @@
    </div>
   </div>
     </div>
-
-  <p>
-    
-    <a href="{{ path('san_user_edit', {'id': user.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'utilisateur
-    </a>
-    <a href="{{ path('san_user_delete', {'id': user.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'utilisateur
-    </a>
-  </p>
 
 {% endblock %}
