@@ -21,8 +21,7 @@
   <!-- Main Stylesheet File -->
   <link href="{{ asset('css/adminstyle.css') }}" rel="stylesheet">
   {% endblock %}
- 
-  <script src="{{ asset('bundles/ivoryckeditor/ckeditor.js') }}"></script>
+  
   </head>
 <body>
         <nav class="navbar navbar-default navbar-static-top">
@@ -48,10 +47,10 @@
 				<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="{{ path('san_core_homepage') }}" target="_blank"><i class="fa fa-globe"></i> Visiter le Site</a></li>
+				<li><a href="{{ path('san_core_homepage') }}" target="_blank">Visiter le Site</a></li>
 				<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						<i class="fa fa-user-circle"></i> Account
+						Account
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li class="dropdown-header">SETTINGS</li>
@@ -67,54 +66,47 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 	<div class="container-fluid main-container clear">
-            <div class="col-md-3 sidebar menuclear">
+            <div class="col-md-3 sidebar">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><i class="fa fa-home"></i> Dashboard</a></li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> Offres d'emploi<span class="caret"></span></a>
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Offres d'emploi<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_offre_add') }}"><i class="fa fa-plus"></i> Nouvelle offre</a></li>
-                            <li><a href="{{ path('san_offre_homepage') }}"><i class="fa fa-list"></i> Gestion des offres</a></li>
+                            <li><a href="{{ path('san_offre_add') }}">Nouvelle offre</a></li>
+                            <li><a href="{{ path('san_offre_homepage') }}">Gestion des offres</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-address-card-o"></i> Candidats<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidats<span class="caret"></span></a>
                         <ul class="dropdown-menu">
+
                             <li><a href="{{ path('san_candidats_liste') }}"><i class="fa fa-list"></i> Gestion des candidats</a></li>
-                            {{ include('san_statuts_menu') }}
+                            {{ render(controller("SanUserBundle:Statut:liste")) }}
                             </ul>
                     </li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-calendar"></i> Evènements<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('san_event_add') }}"><i class="fa fa-calendar-plus-o"></i> Nouvel évènement</a></li>
                             <li><a href="{{ path('san_event_homepage') }}"><i class="fa fa-list"></i> Gestion des évènements</a></li>
+ 
                         </ul>
                     </li>
-                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-newspaper-o"></i> News<span class="caret"></span></a>
+                   
+                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">News<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_news_add') }}"><i class="fa fa-plus"></i> Nouvelle news</a></li>
-                            <li><a href="{{ path('san_news_homepage') }}"><i class="fa fa-list"></i> Gestion des news</a></li>
-                            <li><a href="{{ path('san_newscat_homepage') }}"><i class="fa fa-users"></i> Gestion des catégories news</a></li>
+                            <li><a href="{{ path('san_news_add') }}">Nouvelle news</a></li>
+                            <li><a href="{{ path('san_news_homepage') }}">Gestion des news</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Newsletter<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Newsletter<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_newsletter_add') }}"><i class="fa fa-plus"></i> Nouvelle newsletter</a></li>
-                            <li><a href="{{ path('san_newsletter_homepage') }}"><i class="fa fa-list"></i> Gestion des newsletters</a></li>
-                            <li><a href="{{ path('san_abonnes_homepage') }}"><i class="fa fa-group"></i> Abonnés à la newsletter</a></li>
+                            <li><a href="#">Nouvelle newsletter</a></li>
+                            <li><a href="#">Gestion des newsletters</a></li>
+                            <li><a href="#">Abonnés à la newsletter</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Utilisateurs<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateurs<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            
-                            <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> Autres<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            
-                            <li><a href="{{ path('san_categories_homepage') }}"><i class="fa fa-list"></i> Gestion des catégories</a></li>
-                            <li><a href="{{ path('san_competences_homepage') }}"><i class="fa fa-list"></i> Gestion des compétences</a></li>
-                            <li><a href="{{ path('san_statuts_homepage') }}"><i class="fa fa-list"></i> Gestion des statuts</a></li>
-                            <li><a href="{{ path('san_contrats_homepage') }}"><i class="fa fa-list"></i> Gestion des contrats</a></li>
+                            <li><a href="{{ path('san_user_add') }}">Nouvel utilisateur</a></li>
+                            <li><a href="{{ path('san_user_homepage') }}">Gestion des utilisateurs</a></li>
                         </ul>
                     </li>
                     <li><a href="#">CVthèque</a></li>
@@ -134,7 +126,7 @@
 		</footer>
 	</div>
 <!-- Required JavaScript Libraries -->
-   <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
     </body>
 </html>

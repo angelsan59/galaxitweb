@@ -1,0 +1,5 @@
+{% for newscat in listNewscat %}
+    
+    | <a href="{{ path('san_catnews_page', {'cat': newscat.id}) }}">{{ newscat.nom }}</a> 
+  
+    {% endfor %} 

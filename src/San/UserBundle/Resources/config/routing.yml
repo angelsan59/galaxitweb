@@ -5,7 +5,7 @@ san_user_homepage:
         page: 1
     requirements:
         page: \d*
-        
+
 san_user_view:
     path: /user/{id}
     defaults:
@@ -24,13 +24,6 @@ san_user_edit:
         _controller: SanUserBundle:User:edit
     requirements:
         id: \d+
-        
-san_user_admin:
-    path: /user/convert/{id}
-    defaults:
-        _controller: SanUserBundle:User:admin
-    requirements:
-        id: \d+        
         
 san_user_delete:
     path: /user/delete/{id}
@@ -97,8 +90,5 @@ san_statuts_delete:
         _controller: SanUserBundle:Statut:delete
     requirements:
         id: \d+    
-        
-san_statuts_menu:
-    path: /admin/listestatuts
-    defaults:
-        _controller: SanUserBundle:Statut:liste               
+
+

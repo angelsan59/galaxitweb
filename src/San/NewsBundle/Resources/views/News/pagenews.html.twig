@@ -9,6 +9,7 @@
         <div class="col-md-12">
           <h3 class="section-title">Actualités</h3>
           <div class="section-title-divider"></div>
+          <p class="section-description text-center"> Toutes les news {{ render(controller("SanNewsBundle:Newscat:listnewscat")) }}  </p> 
  {% for news in listNews %}
      
  {% endfor %}    
@@ -42,4 +43,12 @@
 {% endfor %}
         
     </div>
+<ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_news_page', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}     

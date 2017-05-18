@@ -40,6 +40,21 @@ class NewscatController  extends Controller
     ));
     }
     
+     public function listnewscatAction()
+    {
+       
+    $listNewscat = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanNewsBundle:Newscat')
+     ->findby(array(), array('nom' => 'ASC'))
+    ;
+    
+    
+     return $this->render('SanNewsBundle:Newscat:listnewscat.html.twig', array(
+      'listNewscat' => $listNewscat,
+      ));
+    }
+    
      public function addAction(Request $request){
          $newscat= new Newscat();
 

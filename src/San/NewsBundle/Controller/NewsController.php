@@ -58,7 +58,7 @@ class NewsController extends Controller
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-   
+      $news->getImage()->upload();
      $news->setUser($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($news);
@@ -88,7 +88,7 @@ class NewsController extends Controller
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
       // Inutile de persister ici, Doctrine connait déjà notre annonce
-   
+      $news->getImage()->upload();
       $em->flush();
  
       $this->addFlash('notice', 'News bien modifiée.');
@@ -130,7 +130,7 @@ class NewsController extends Controller
       'form'   => $form->createView(),
     ));
   }
-  
+
   public function menuAction()
     {  
     $listNews = $this->getDoctrine()
@@ -163,6 +163,32 @@ class NewsController extends Controller
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
      return $this->render('SanNewsBundle:News:pagenews.html.twig', array(
+      'listNews' => $listNews,
+      'nbPages'     => $nbPages,
+      'page'        => $page,
+    ));
+    
+    }
+    
+     public function catnewsAction($page, $cat)
+    {  
+         if($page<1){
+    throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
+        }
+        
+    $nbPerPage = 10;
+    
+    $listNews = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanNewsBundle:News')
+      ->getNewsbycat($page, $nbPerPage, $cat)
+    ;
+    
+    $nbPages = ceil(count($listNews) / $nbPerPage);
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+    }
+     return $this->render('SanNewsBundle:News:pagenewsbycat.html.twig', array(
       'listNews' => $listNews,
       'nbPages'     => $nbPages,
       'page'        => $page,
