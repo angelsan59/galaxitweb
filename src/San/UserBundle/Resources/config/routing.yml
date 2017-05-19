@@ -7,12 +7,20 @@ san_user_homepage:
         page: \d*
 
 san_user_view:
-    path: /user/{id}
+    path: /admin/user/{id}
     defaults:
         _controller: SanUserBundle:User:view
     requirements:
         id: \d+
+
+san_user_admin:
+    path: /admin/useri/{id}
+    defaults:
+        _controller: SanUserBundle:User:admin
+    requirements:
+        id: \d+
         
+                
 san_user_add:
     path: /user/add
     defaults:

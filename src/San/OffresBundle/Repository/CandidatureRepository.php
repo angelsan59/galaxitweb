@@ -30,7 +30,7 @@ class CandidatureRepository extends \Doctrine\ORM\EntityRepository
 
     // Enfin, on retourne l'objet Paginator correspondant à la requête construite
     // (n'oubliez pas le use correspondant en début de fichier)
-    return new Paginator($query, true);
+    return new Paginator($query, false);
    
   }
   

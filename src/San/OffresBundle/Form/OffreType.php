@@ -55,12 +55,13 @@ class OffreType extends AbstractType
                     'choice_label' => 'nom',
                     'multiple'     => true,
                     'expanded' => false,
-                'query_builder' => function(CompetenceRepository $er)
-            {
-            return $er->createQueryBuilder('u')
-                                        ->orderBy('u.nom', 'ASC');
-            },
-                    'group_by' => 'categorie.nom',   
+               'query_builder' =>  function (CompetenceRepository $er) {
+        return $er->createQueryBuilder('cc')
+               ->join('cc.categorie', 'cat') //something like that
+               ->orderBy('cat.nom', 'ASC')->addOrderBy('cc.nom', 'ASC');
+},
+                    'group_by' => function($val, $key, $index) {
+                    return $val->getCategorie()->getNom();},        
             ))
            
             ->add('Enregistrer',      SubmitType::class, array(

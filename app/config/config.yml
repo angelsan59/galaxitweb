@@ -89,19 +89,19 @@ vich_uploader:
     
     mappings:
         offre_image:
-            uri_prefix:         /galaxitweb/web/images/offres
+            uri_prefix:         /web/images/offres
             upload_destination: '%kernel.root_dir%/../web/images/offres'
         event_image:
-            uri_prefix:         /galaxitweb/web/images/events
+            uri_prefix:         /web/images/events
             upload_destination: '%kernel.root_dir%/../web/images/events' 
         news_image:
-            uri_prefix:         /galaxitweb/web/images/news
+            uri_prefix:         /web/images/news
             upload_destination: '%kernel.root_dir%/../web/images/news' 
         user_image:
-            uri_prefix:         /galaxitweb/web/images/users
+            uri_prefix:         /web/images/users
             upload_destination: '%kernel.root_dir%/../web/images/users'  
         candidature_cv:
-            uri_prefix:         /galaxitweb/web/images/candidatures
+            uri_prefix:         /web/images/candidatures
             upload_destination: '%kernel.root_dir%/../web/images/candidatures'  
             
 ivory_ck_editor:
