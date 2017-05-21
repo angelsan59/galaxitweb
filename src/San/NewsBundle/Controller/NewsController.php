@@ -173,7 +173,8 @@ class NewsController extends Controller
      public function catnewsAction($page, $cat)
     {  
          if($page<1){
-    throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
+             $this->addFlash('notice', 'Pas de news actuellement dans cette catégorie.');
+   return $this->redirectToRoute('san_news_page');
         }
         
     $nbPerPage = 10;
@@ -186,12 +187,20 @@ class NewsController extends Controller
     
     $nbPages = ceil(count($listNews) / $nbPerPage);
     if ($page > $nbPages) {
-      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        $this->addFlash('notice', 'Pas de news actuellement dans cette catégorie.');
+     return $this->redirectToRoute('san_news_page');
     }
+    
+    $nomcat= $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanNewsBundle:Newscat')
+      ->find($cat)
+    ;
      return $this->render('SanNewsBundle:News:pagenewsbycat.html.twig', array(
       'listNews' => $listNews,
       'nbPages'     => $nbPages,
       'page'        => $page,
+      'nomcat' => $nomcat,
     ));
     
     }
