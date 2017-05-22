@@ -1,1 +1,9 @@
-page inexistante - San
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+{% block title %}
+  Erreur 404 page non trouvée - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h2>
+        La page que vous avez demandée n'existe pas. <a href="{{ path('san_core_homepage') }}">Veuillez retourner à l'accueil. </a></h2>
+    {% endblock %}

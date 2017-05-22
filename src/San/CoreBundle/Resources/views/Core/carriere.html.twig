@@ -21,7 +21,7 @@
         <div class="actions">
           <a href="#about" class="btn-services">Missions</a>
           <a href="#services" class="btn-services">Offres d'emploi</a>
-          <a href="#contact" class="btn-services">Candidature spontanée</a>
+          <a href="{{ path('san_candidature_add', {'id': 9}) }}" class="btn-services">Candidature spontanée</a>
         </div>
         <div class="actions">
           <a href="https://www.linkedin.com/company-beta/10938554/" target="_blank"><i class="fa fa-linkedin-square fa-4x"></i></a>
@@ -82,41 +82,7 @@ Nos consultants parlent de leur métier et témoignent de leur relation de proxi
     </thead>
     <tbody>
       {{ render(controller("SanOffresBundle:Offre:menu")) }}
-        <td>Administrateur Systèmes</td>
-        <td>Systèmes</td>
-        <td>CDI/CDD</td>
-        <td>France</td>
-      </tr>
-      <tr>
-        <td>Analyste Programmeur AS400</td>
-        <td>Systèmes</td>
-        <td>CDI/CDD</td>
-        <td>France</td>
-      </tr>
-       <tr>
-        <td>Développeur BI</td>
-        <td>Développement</td>
-        <td>CDI/CDD</td>
-        <td>France</td>
-      </tr>
-      <tr>
-        <td>Développeur IT PHP, SQL, Apache</td>
-        <td>Développement</td>
-        <td>CDI/CDD</td>
-        <td>France</td>
-      </tr>
-      <tr>
-        <td>Développeur Java, J2EE</td>
-        <td>Développement</td>
-        <td>CDI/CDD</td>
-        <td>France</td>
-      </tr>
-      <tr>
-        <td>Développeur Javascript/C#</td>
-        <td>Développement</td>
-        <td>CDI/CDD</td>
-        <td>France</td>
-      </tr>
+        
     </tbody>
   </table>
 </div>
@@ -125,70 +91,4 @@ Nos consultants parlent de leur métier et témoignent de leur relation de proxi
     
   </section>
 
-
-    
-<!--==========================
-  Candidature spontanée Section
-============================--> 
-  <section id="contact">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="section-title">Candidature spontanée</h3>
-          <div class="section-title-divider"></div>
-          <p class="section-description">Envie de discuter avec nous de ce qu'on pourrait 
-          faire ensemble? Remplissez ce formulaire pour nous envoyer un mail et donnons-nous rendez-vous !</p>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-3 col-md-push-2">
-          <div class="info">
-            <div>
-              <i class="fa fa-map-marker"></i>
-              <p>45/4 avenue de Flandre<br>59290 Wasquehal - France</p>
-            </div>
-            
-            <div>
-              <i class="fa fa-envelope"></i>
-              <p>info@example.com</p>
-            </div>
-            
-            <div>
-              <i class="fa fa-phone"></i>
-              <p>+ 33 320 650 699</p>
-            </div>
-            
-          </div>
-        </div>
-        
-        <div class="col-md-5 col-md-push-2">
-          <div class="form">
-            <div id="sendmessage">Votre message a été envoyé, merci !</div>
-            <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
-                <div class="form-group">
-                  <input type="text" name="nom" class="form-control" id="nom" placeholder="Votre Nom" data-rule="minlen:4" data-msg="Veuillez entrer au moins 4 caractères" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" data-rule="email" data-msg="Veuillez entrer un email valide" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="sujet" id="sujet" placeholder="Le sujet" data-rule="minlen:4" data-msg="Veuillez entrer au moins 8 caractères" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Veuillez écrire quelque chose" placeholder="Votre Message"></textarea>
-                  <div class="validation"></div>
-                </div>
-                <div class="text-center"><button type="submit">Envoyer le Message</button></div>
-            </form>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
 {% endblock %}    

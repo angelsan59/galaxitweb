@@ -4,7 +4,11 @@ san_core_homepage:
     
 san_carriere_homepage:
     path:     /carriere
-    defaults: { _controller: SanCoreBundle:Core:carriere }    
+    defaults: { _controller: SanCoreBundle:Core:carriere }
+    
+san_legal_homepage:
+    path:     /legal
+    defaults: { _controller: SanCoreBundle:Core:legal }    
     
 san_vue_offre:
     path:     /vueoffre
@@ -13,3 +17,7 @@ san_vue_offre:
 san_core_test:
     path:     /test
     defaults: { _controller: SanCoreBundle:Core:sendmail } 
+    
+san_core_contact:
+    path:     /contact
+    defaults: { _controller: SanCoreBundle:Core:contact }

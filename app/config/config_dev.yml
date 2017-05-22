@@ -33,5 +33,7 @@ monolog:
 swiftmailer:
     transport: gmail
     username:  sandrine.ociepka
+    encryption: ssl
+    port: 465
     password:  22trustno22
-    delivery_addresses: ['sandrine.ociepka@gmail.com']
+    

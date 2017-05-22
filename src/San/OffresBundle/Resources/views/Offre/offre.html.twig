@@ -15,26 +15,32 @@
       {% if offre.imageName is not null %}
   <img src="{{ vich_uploader_asset(offre, 'imageFile') }}" alt="{{ offre.imageName }}" align="right" width="400px" class="img-responsive img-thumbnail">
 {% endif %}
-    {{ offre.content | raw }}
+    {{ offre.content | raw }}<br/>
  <a href="{{ path('san_candidature_add', {'id': offre.id}) }}"><button type="button" class="btn btn-info">Postulez à l'offre</button></a>
   </p>
 </div></div>
+{% if offre.mission is not empty %}
  <div class="row">
   <div class="panel panel-primary">
   <div class="panel-heading">Mission</div>
   <div class="panel-body">{{ offre.mission | raw }}</div>
   </div> </div>
+  {% endif %}
   
   <div class="row">
       <div class="col-md-6"> 
+          {% if offre.contrat.nom is not empty %}
    <div class="panel panel-primary">
   <div class="panel-heading">Type de contrat</div>
   <div class="panel-body"><p>{{ offre.contrat.nom | raw }}</p></div>
     </div>
+    {% endif %}
+      {% if offre.formation is not empty %}
      <div class="panel panel-primary">
   <div class="panel-heading">Formation</div>
   <div class="panel-body">{{ offre.formation | raw }}</div>
     </div> 
+    {% endif %}
       </div>
     <div class="col-md-6"> 
       {% if not offre.competences.empty %}

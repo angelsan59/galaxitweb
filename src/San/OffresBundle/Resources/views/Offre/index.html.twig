@@ -15,6 +15,7 @@
       <tr>
         <th>Titre de l'offre</th>
         <th></th>
+        <th></th>
         <th>Catégorie(s)</th>
         <th>Contrat</th>
         <th>Publié par</th>
@@ -25,7 +26,7 @@
      <tr>
         <td><a href="{{ path('san_offre_view', {'id': offre.id}) }}">{{ offre.titre }}</a></td>
         <td><a href="{{ path('san_offre_edit', {'id': offre.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_offre_delete', {'id': offre.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        </td><td><a href="{{ path('san_offre_delete', {'id': offre.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
         <td>{% for category in offre.categories %}
       {{ category.nom }}{% if not loop.last %}, {% endif %}
     {% endfor %}</td>

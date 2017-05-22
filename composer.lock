@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1306282b7a627a2648c866aa6dbee3c",
+    "content-hash": "dd00f0a023adf66cba6c6a999d74a73a",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1367,6 +1367,45 @@
                 "paginator"
             ],
             "time": "2017-03-21T09:45:46+00:00"
+        },
+        {
+            "name": "leblanc-simon/eu-cookie-law-bundle",
+            "version": "0.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leblanc-simon/eu-cookie-law-bundle.git",
+                "reference": "8d27b9d6a7191aa40011798fca1b3b9531fe8808"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leblanc-simon/eu-cookie-law-bundle/zipball/8d27b9d6a7191aa40011798fca1b3b9531fe8808",
+                "reference": "8d27b9d6a7191aa40011798fca1b3b9531fe8808",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/framework-bundle": "^2.8|^3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "LeblancSimon\\EUCookieLawBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Leblanc",
+                    "email": "contact@leblanc-simon.eu",
+                    "homepage": "http://www.leblanc-simon.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Add the cookie div explanation according to EU law",
+            "time": "2017-03-12T13:47:29+00:00"
         },
         {
             "name": "monolog/monolog",

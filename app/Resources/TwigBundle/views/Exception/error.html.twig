@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>une erreur: {{ status_text }}</title>
-  </head>
-  <body>
-    <h1>Oops! Une erreur</h1>
-    <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+    {% block title %}
+  Erreur trouvée - {{ parent() }}
+{% endblock %}
+
+{% block body %}<h1>Oops! Dérappage incontrôlé</h1>
+    <h2>Le serveur a retourné l'erreur "{{ status_code }} {{ status_text }}".</h2>
 
     <div>
-      Something is broken. Please e-mail us at [email] and let us know
-      what you were doing when this error occurred. We will fix it as soon
-      as possible. Sorry for any inconvenience caused.
+      Quelque chose est cassé. Utilisez le formulaire de contact pour nous avertir. 
+      N'oubliez pas de nous dire ce que vous étiez entrain de faire. Nous réparerons dès que possible. Désolés !
     </div>
-  </body>
-</html>
+ {% endblock %}
