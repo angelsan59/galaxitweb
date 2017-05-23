@@ -9,7 +9,7 @@
 
   <h3 class="bgblue">Liste des contrats</h3>
   {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">{{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
 <div class="well">
    <a href="{{ path('san_contrats_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter un contrat</a>
@@ -17,7 +17,7 @@
     <thead>
       <tr>
         <th>Titre du contrat</th>
-        <th></th>
+        <th></th> <th></th>
         <th>Description</th>
         </tr>
     </thead>
@@ -26,7 +26,7 @@
      <tr>
         <td>{{ contrat.nom }}</td>
         <td><a href="{{ path('san_contrats_edit', {'id': contrat.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_contrats_delete', {'id': contrat.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        </td><td><a href="{{ path('san_contrats_delete', {'id': contrat.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
         
      <td>{{ contrat.content }}</td>
         

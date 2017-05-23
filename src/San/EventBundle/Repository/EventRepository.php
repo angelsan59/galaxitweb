@@ -48,4 +48,17 @@ return $query
   ;
   }
   
+  public function getIfEvents()
+  {
+     $query = $this->createQueryBuilder('a')
+      ->andWhere('a.eventDate > :date')   
+      ->setParameter('date', new \Datetime())       
+      ->getQuery()
+    ;
+return $query
+    
+    ->getResult()
+  ;
+  }
+  
 }

@@ -8,9 +8,7 @@
 {% block body %}
 
   <h3 class="bgblue">Supprimer une newsletter</h3>
-{% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
-      {% endfor %}
+
   <p>
     Etes-vous certain de vouloir supprimer la newsletter "{{ newsletter.titre }}" ?
   </p>

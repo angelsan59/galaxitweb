@@ -9,15 +9,13 @@
  
  
  {% for flash_message in app.session.flashBag.get('notice') %}
-    <div class="flash-notice">
+    <div class="alert alert-success">
         {{ flash_message }}
     </div>
 {% endfor %}
-{% for flash_message in app.session.flashBag.get('info') %}
-    <div class="flash-notice">
-        {{ flash_message }}
-    </div>
-{% endfor %}
+{% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
   <div class="row">
     <div class="col-md-8">  
         <div class="panel panel-primary">
@@ -57,6 +55,7 @@
       <tr>
         <th>Postulé le</th>
         <th>Candidature</th>
+        <th></th>
         <th>Titre de l'offre</th>
         <th>Statut</th>
       </tr>
@@ -69,12 +68,19 @@
       <i class="glyphicon glyphicon-edit"></i>
       Modifier
            </a></td>
+           <td><a href="{{ path('san_candidature_delete', {'id': candidature.id}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-remove"></i>
+      Supprimer
+           </a></td>
              <td><a href="{{ path('san_offre_offre', {'id': candidature.offre.id}) }}">{{ candidature.offre.titre }}</a></td>
         <td>{{ candidature.statut.nom }}</td>
          </tr>
     {% endfor %}
     </tbody>
-  </table>    
+  </table>  
+    
+    {% else %}
+        Vous n'avez pas encore postulé. <a href="{{ path('san_carriere_homepage') }}#services"><b>Consultez nos offres d'emploi</b></a>, et si rien ne vous tente, envoyez-nous une <a href="{{ path('san_candidature_add', {'id': 9}) }}" class="btn-services"><b>candidature spontanée</b></a> !
 {% endif %}
 
   </div>
@@ -97,19 +103,24 @@
   <div class="panel-body">
   Attention, cette action est irréversible !!!
    <br/><br/>
-    <a href="{{ path('san_user_delete', {'id': user.id}) }}" class="btn btn-danger">
+    {% if user.candidatures.empty %}
+        <a href="{{ path('san_user_delprofil') }}" class="btn btn-danger">
       <i class="glyphicon glyphicon-trash"></i>
       Supprimer mon compte Galax-IT
     </a>
- 
+      {% else %}
+          Vous avez des candidatures en cours, la suppression de profil est impossible.
+  {% endif%}
+  
   </div>
    </div>
     </div>
-   <div class="col-md-6">  
+   <div class="col-md-6"> 
+       {% if listInscriptions %}
   <div class="panel panel-primary">
   <div class="panel-heading">Inscription aux évènements</div>
   <div class="panel-body">
- {% if listInscriptions %}
+ 
      <table class="table table-striped">
     {% for inscription in listInscriptions %}
         <tr>
@@ -119,9 +130,10 @@
         </tr>
     {% endfor %}
       </table>
-{% endif %}
+
   </div>
    </div>
+      {% endif %}
   </div>
     </div>
 

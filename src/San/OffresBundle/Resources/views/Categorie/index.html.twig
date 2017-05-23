@@ -9,7 +9,7 @@
 
   <h3 class="bgblue">Liste des catégories</h3>
   {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">{{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
 <div class="well">
    <a href="{{ path('san_categories_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter une catégorie</a>
@@ -17,7 +17,7 @@
     <thead>
       <tr>
         <th>Titre de la catégorie</th>
-        <th></th>
+        <th></th><th></th>
         <th>Description</th>
         </tr>
     </thead>
@@ -26,7 +26,7 @@
      <tr>
         <td>{{ categorie.nom }}</td>
         <td><a href="{{ path('san_categories_edit', {'id': categorie.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_categories_delete', {'id': categorie.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        </td><td><a href="{{ path('san_categories_delete', {'id': categorie.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
         
      <td>{{ categorie.content }}</td>
         

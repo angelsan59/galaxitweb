@@ -147,8 +147,29 @@ class EventController extends Controller
       ->getLastEvents()
     ;
     
+    $ifEvents = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanEventBundle:Event')
+      ->getIfEvents()
+    ;
+    
      return $this->render('SanEventBundle:Event:menu.html.twig', array(
       'listEvents' => $listEvents,
+         'ifEvents' => $ifEvents,
+    ));
+    }
+    
+     public function lieneventAction()
+    {  
+
+    $ifEvents = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanEventBundle:Event')
+      ->getIfEvents()
+    ;
+    
+     return $this->render('SanEventBundle:Event:lienevent.html.twig', array(
+         'ifEvents' => $ifEvents,
     ));
     }
 }

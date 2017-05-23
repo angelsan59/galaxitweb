@@ -20,8 +20,9 @@
         <li>{% for role in user.roles %}
            {% if role =='ROLE_ADMIN' %} Administrateur 
            {% endif %}  
-            
-            {% endfor %}- <a href="{{ path('san_user_admin', {'id': user.id}) }}">Donner le rôle d'admin</a></li>
+           
+                - <a href="{{ path('san_user_admin', {'id': user.id}) }}">Donner le rôle d'admin</a>
+            {% endfor %}</li>
         <li>Adresse email : {{ user.email }}</li>
         <li>Société : {{ user.societe }}</li>
         <li>Téléphone : {{ user.telephone }}</li>

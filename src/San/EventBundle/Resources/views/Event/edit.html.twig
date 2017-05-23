@@ -9,7 +9,7 @@
 
   <h3 class="bgblue">Modifier un évènement</h3>
 {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
   {{ include("SanEventBundle:Event:form.html.twig") }}
 

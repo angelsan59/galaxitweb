@@ -22,19 +22,19 @@ san_user_admin:
         
                 
 san_user_add:
-    path: /user/add
+    path: /admin/user/add
     defaults:
         _controller: SanUserBundle:User:add
         
 san_user_edit:
-    path: /user/edit/{id}
+    path: /admin/user/edit/{id}
     defaults:
         _controller: SanUserBundle:User:edit
     requirements:
         id: \d+
         
 san_user_delete:
-    path: /user/delete/{id}
+    path: /admin/user/delete/{id}
     defaults:
         _controller: SanUserBundle:User:delete
     requirements:
@@ -48,8 +48,13 @@ san_user_profil:
 san_user_modprofil:
     path: /profil/edit
     defaults:
-        _controller: SanUserBundle:User:modprofil             
-
+        _controller: SanUserBundle:User:modprofil  
+        
+san_user_delprofil:
+    path: /profil/delete
+    defaults:
+        _controller: SanUserBundle:User:delprofil 
+  
 san_abonnes_homepage:
     path:     admin/abonnes/{page}
     defaults:

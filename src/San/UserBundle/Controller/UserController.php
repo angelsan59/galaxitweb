@@ -116,8 +116,6 @@ $dateMod = new \Datetime();
       throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
     }
 
-    // On crée un formulaire vide, qui ne contiendra que le champ CSRF
-    // Cela permet de protéger la suppression d'annonce contre cette faille
     $form = $this->get('form.factory')->create();
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -222,7 +220,42 @@ $dateMod = new \Datetime();
       'form'   => $form->createView(),
     ));
   }
-   
+   public function delprofilAction(Request $request)
+  {
+     $user = $this->getUser();
+       $id = $user->getId();
+       
+       $em = $this->getDoctrine()->getManager();
+    $user = $em->getRepository('SanUserBundle:User')->find($id);
+
+    $cand = $user->getCandidatures();
+    if (null === $cand) {
+      throw new NotFoundHttpException("L'utilisateur ne peut pas être enlevé car il a des candidatures");
+    }
+    
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+
+    // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+    // Cela permet de protéger la suppression d'annonce contre cette faille
+    $form = $this->get('form.factory')->create();
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em->remove($user);
+      $em->flush();
+
+      $this->addFlash('info', "L'utilisateur a bien été supprimé.");
+
+      return $this->redirectToRoute('san_core_homepage');
+    }
+    
+    return $this->render('SanUserBundle:User:delprofil.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+  
    public function adminAction($id){
        $em = $this->getDoctrine()->getManager();
 $dateMod = new \Datetime();

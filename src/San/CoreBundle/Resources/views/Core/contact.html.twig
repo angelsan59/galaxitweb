@@ -1,8 +1,50 @@
-<div class="well">
-  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
 
-  {# Les erreurs générales du formulaire. #}
-  {{ form_errors(form) }}
-   {{ form_rest(form) }}
-{{ form_end(form) }}
+{% block title %}
+  Informations légales - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success"><b>{{ message }}</b></div>
+      {% endfor %}
+      <section id="contact">
+    <div class="container wow fadeInUp">  
+  <div class="row">
+        <div class="col-md-12">
+          <h3 class="section-title">Contactez-nous</h3>
+          <div class="section-title-divider"></div>
+          <p class="section-description">Envie de discuter avec nous de ce qu'on pourrait 
+          faire ensemble? Remplissez ce formulaire pour nous envoyer un mail et donnons-nous rendez-vous !</p>
+        </div>
       </div>
+      
+      <div class="row">
+        <div class="col-md-3 col-md-push-2">
+          <div class="info">
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p>45/4 avenue de Flandre<br>59290 Wasquehal - France</p>
+            </div>
+            
+            <div>
+              <i class="fa fa-envelope"></i>
+              <p>info@example.com</p>
+            </div>
+            
+            <div>
+              <i class="fa fa-phone"></i>
+              <p>+ 33 320 650 699</p>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="col-md-5 col-md-push-2">
+          <div class="form">
+           {{ form(form) }}
+          </div>
+        </div>
+        
+      </div></div></section>
+{% endblock %}  

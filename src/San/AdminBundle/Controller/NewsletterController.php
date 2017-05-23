@@ -5,6 +5,7 @@ namespace San\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use San\AdminBundle\Entity\Newsletter;
+use San\UserBundle\Entity\User;
 use San\AdminBundle\Form\NewsletterType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -58,14 +59,41 @@ class NewsletterController extends Controller
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      
+    
+        // récupération de la liste des abonnés
+        $listAbonnes = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanUserBundle:User')
+      ->findByabonewsletter(1); 
+        
+        // récupération de l'auteur
      $newsletter->setUser($this->getUser());
+     
+     // enregistrement de la newsletter
         $em = $this->getDoctrine()->getManager();
         $em->persist($newsletter);
         $em->flush();
-
+        
         $this->addFlash('notice', 'Newsletter bien enregistrée.');
-
+        
+        // envoi de la newsletter
+        foreach($listAbonnes as $abonne)
+                     {
+                     $aboemail = $abonne->getEmail();
+         $message = \Swift_Message::newInstance()
+        ->setContentType('text/html')
+        ->setSubject($form->get('titre')->getData())
+        ->setFrom('send@example.com')
+        ->setTo($aboemail)
+         ->setBody(
+            $this->renderView(
+                'SanAdminBundle:Newsletter:mailnewsletter.html.twig',
+                array('newsletter' => $newsletter)
+            )
+        )
+    ;
+                     $this->get('mailer')->send($message);}
+        
         return $this->redirectToRoute('san_newsletter_view', array('id' => $newsletter->getId()));
       }
 

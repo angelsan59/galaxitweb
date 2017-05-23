@@ -1,0 +1,29 @@
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+{% block title %}
+  Suppression profil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Supprimer votre profil</h2>
+{% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
+  <p>
+    Etes-vous certain de vouloir supprimer votre profil "{{ user.prenom }} {{ user.nom }}" ?
+  </p>
+
+  <form action="{{ path('san_user_delprofil', {'id': user.id}) }}" method="post">
+    {# Ici j'ai écrit le bouton de soumission à la main #}
+    <input type="submit" value="Supprimer" class="btn btn-danger" />
+    {# Ceci va générer le champ CSRF #}
+    {{ form_rest(form) }}
+  </form>
+  <p><br/>
+    <a href="{{ path('san_user_profil') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à votre profil
+    </a>
+  </p>
+
+{% endblock %}

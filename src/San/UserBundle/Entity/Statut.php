@@ -53,6 +53,11 @@ class Statut
     private $modDate;
 
     /**
+    * @ORM\Column(name="cvtheque", type="boolean", nullable=true)
+    */
+    private $cvtheque;
+   
+    /**
      * Get id
      *
      * @return int
@@ -167,5 +172,29 @@ class Statut
     public function getModDate()
     {
         return $this->modDate;
+    }
+
+    /**
+     * Set cvtheque
+     *
+     * @param boolean $cvtheque
+     *
+     * @return Statut
+     */
+    public function setCvtheque($cvtheque)
+    {
+        $this->cvtheque = $cvtheque;
+
+        return $this;
+    }
+
+    /**
+     * Get cvtheque
+     *
+     * @return boolean
+     */
+    public function getCvtheque()
+    {
+        return $this->cvtheque;
     }
 }

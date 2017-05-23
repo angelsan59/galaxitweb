@@ -9,7 +9,7 @@
 
   <h3 class="bgblue">Liste des statuts</h3>
   {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">{{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
 <div class="well">
    <a href="{{ path('san_statuts_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter un statut</a>
@@ -17,7 +17,8 @@
     <thead>
       <tr>
         <th>Titre du statut</th>
-        <th></th>
+        <th></th><th></th>
+        <th>Dans la CVthèque</th>
         <th>Description</th>
         </tr>
     </thead>
@@ -26,8 +27,8 @@
      <tr>
         <td>{{ statut.nom }}</td>
         <td><a href="{{ path('san_statuts_edit', {'id': statut.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_statuts_delete', {'id': statut.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
-        
+       </td><td> <a href="{{ path('san_statuts_delete', {'id': statut.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+       <td>{% if statut.cvtheque ==1 %}oui{% endif %}</td>  
      <td>{{ statut.content }}</td>
         
       </tr>

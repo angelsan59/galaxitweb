@@ -9,7 +9,7 @@ san_newsletter_homepage:
         page: 1
     requirements:
         page: \d*
-
+        
 san_newsletter_view:
     path: /admin/newsletter/{id}
     defaults:

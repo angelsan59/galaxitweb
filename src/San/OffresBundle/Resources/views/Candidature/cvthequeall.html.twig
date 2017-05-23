@@ -1,0 +1,50 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  CVthèque - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2 class="bgblue">CVthèque</h2>
+<div class="well table-responsive">
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Offre</th>
+        <th>Candidat</th>
+        <th>Disponibilité</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for cand in listCandidatures %}
+          {% if cand.statut.cvtheque == true %} 
+     <tr>
+        <td>{{ cand.pubDate|date('d/m/Y') }}</td>
+        <td> <a href="{{ path('san_offre_view', {'id': cand.offre.id}) }}">{{ cand.offre.titre }}</a></td>
+        <td><a href="{{ path('san_candidats_view', {'id': cand.id}) }}">{{ cand.user.prenom }} {{ cand.user.nom }}</a></td>
+        <td>{{ cand.dateDispo|date('d/m/Y') }}</td>
+        <td>{{ cand.statut.nom }}</td>
+      </tr>{% endif %}
+       {% endfor %} 
+        
+     
+    </tbody>
+  </table>
+    
+</div>
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_candidats_liste', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
+
+

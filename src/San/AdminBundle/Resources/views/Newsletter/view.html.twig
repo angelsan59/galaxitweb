@@ -14,14 +14,10 @@
     </div>
 {% endfor %}
   <div class="well">
+     
     {{ newsletter.content | raw }}
     </div>
-  <p>
-    
-    <a href="{{ path('san_newsletter_edit', {'id': newsletter.id}) }}" class="btn btn-info btn-sm">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier la newsletter
-    </a>
+    <p>
     <a href="{{ path('san_newsletter_delete', {'id': newsletter.id}) }}" class="btn btn-danger btn-sm">
       <i class="glyphicon glyphicon-trash"></i>
       Supprimer la newsletter

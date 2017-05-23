@@ -87,8 +87,7 @@ class NewsController extends Controller
     $form = $this->get('form.factory')->create(NewsType::class, $news);
 
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      // Inutile de persister ici, Doctrine connait déjà notre annonce
-      $news->getImage()->upload();
+     
       $em->flush();
  
       $this->addFlash('notice', 'News bien modifiée.');

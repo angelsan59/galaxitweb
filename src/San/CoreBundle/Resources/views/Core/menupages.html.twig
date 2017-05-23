@@ -21,7 +21,7 @@
               <li><a href="{{ path('san_core_homepage') }}#societe">La Société</a></li>
               <li><a href="{{ path('san_core_homepage') }}#team">Notre équipe</a></li>
           </ul></li>
-          <li><a href="{{ path('san_core_homepage') }}#evenements">Evènements</a></li>
+         {{ render(controller("SanEventBundle:Event:lienevent")) }}
           <li><a href="{{ path('san_carriere_homepage') }}"><b>Rejoignez-nous</b></a></li>
           
           <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#services">Nos activités</a>
@@ -38,7 +38,7 @@
             <li><a href="{{ path('san_core_homepage') }}#collaborateurs">Nos Collaborateurs</a></li>
             </ul>
           </li>
-          <li><a href="{{ path('san_core_homepage') }}#contact">Contactez-nous</a></li>
+          <li><a href="{{ path('san_core_contact') }}">Contactez-nous</a></li>
          
 <li class="menu-has-children">
     <a href="#connect"><i class="fa fa-user-o"></i><b>Compte</b></a>

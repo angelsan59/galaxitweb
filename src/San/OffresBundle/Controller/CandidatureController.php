@@ -47,6 +47,31 @@ class CandidatureController extends Controller {
     ));
     }
     
+     public function cvthequeAction($page)
+    {
+    if($page<1){
+    throw new NotFoundHttpException('Page "'.$page.'" inexistante.');  
+        }
+        
+    $nbPerPage = 10;
+        
+    $listCandidatures = $this->getDoctrine()
+      ->getManager()
+      ->getRepository('SanOffresBundle:Candidature')
+      ->getCandidatures($page, $nbPerPage)
+    ;
+    
+    $nbPages = ceil(count($listCandidatures) / $nbPerPage);
+    if ($page > $nbPages) {
+      throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+    }
+     return $this->render('SanOffresBundle:Candidature:cvthequeall.html.twig', array(
+      'listCandidatures' => $listCandidatures,
+      'nbPages'     => $nbPages,
+      'page'        => $page,
+    ));
+    }
+    
     public function viewAction($id){
      $em = $this->getDoctrine()->getManager();
      
@@ -162,7 +187,7 @@ class CandidatureController extends Controller {
 
       $this->addFlash('info', "La candidature a bien été supprimée.");
 
-      return $this->redirectToRoute('san_candidature_homepage');
+      return $this->redirectToRoute('san_user_profil');
     }
     
     return $this->render('SanOffresBundle:Candidature:delete.html.twig', array(

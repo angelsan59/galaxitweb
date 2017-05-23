@@ -8,12 +8,15 @@
 {% block body %}
 
   <h3 class="bgblue">Liste des utilisateurs</h3>
+  {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
 <div class="well">
  <table class="table table-striped">
     <thead>
       <tr>
         <th>Nom</th>
-        <th></th>
+        <th></th><th></th>
         <th>Role</th>
         <th>Dernière modification</th>
         </tr>
@@ -23,7 +26,7 @@
       <tr>
           <td><a href="{{ path('san_user_view', {'id': user.id}) }}">{{ user.prenom }} {{ user.nom }} - {{ user.username }}</a></td>
         <td><a href="{{ path('san_user_edit', {'id': user.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_user_delete', {'id': user.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        </td><td><a href="{{ path('san_user_delete', {'id': user.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
       
           <td>{% for role in user.roles %}
            {% if role =='ROLE_ADMIN' %} Administrateur 

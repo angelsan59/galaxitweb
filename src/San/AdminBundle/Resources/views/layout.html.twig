@@ -53,10 +53,6 @@
 						Account
 						<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li class="dropdown-header">SETTINGS</li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
-							<li class=""><a href="#">Other Link</a></li>
 							<li class="divider"></li>
 							<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
 						</ul>
@@ -69,13 +65,13 @@
             <div class="col-md-3 sidebar">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#">Dashboard</a></li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Offres d'emploi<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> Offres d'emploi<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_offre_add') }}">Nouvelle offre</a></li>
-                            <li><a href="{{ path('san_offre_homepage') }}">Gestion des offres</a></li>
+                            <li><a href="{{ path('san_offre_add') }}"><i class="fa fa-plus"></i> Nouvelle offre</a></li>
+                            <li><a href="{{ path('san_offre_homepage') }}"><i class="fa fa-list"></i> Gestion des offres</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Candidats<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-address-card-o"></i> Candidats<span class="caret"></span></a>
                         <ul class="dropdown-menu">
 
                             <li><a href="{{ path('san_candidats_liste') }}"><i class="fa fa-list"></i> Gestion des candidats</a></li>
@@ -86,30 +82,38 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('san_event_add') }}"><i class="fa fa-calendar-plus-o"></i> Nouvel évènement</a></li>
                             <li><a href="{{ path('san_event_homepage') }}"><i class="fa fa-list"></i> Gestion des évènements</a></li>
- 
                         </ul>
                     </li>
-                   
-                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">News<span class="caret"></span></a>
+                      <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-newspaper-o"></i> News<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_news_add') }}">Nouvelle news</a></li>
-                            <li><a href="{{ path('san_news_homepage') }}">Gestion des news</a></li>
+                            <li><a href="{{ path('san_news_add') }}"><i class="fa fa-plus"></i> Nouvelle news</a></li>
+                            <li><a href="{{ path('san_news_homepage') }}"><i class="fa fa-list"></i> Gestion des news</a></li>
+                            <li><a href="{{ path('san_newscat_homepage') }}"><i class="fa fa-list"></i> Gestion des catégories news</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Newsletter<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Newsletter<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Nouvelle newsletter</a></li>
-                            <li><a href="#">Gestion des newsletters</a></li>
-                            <li><a href="#">Abonnés à la newsletter</a></li>
+                            <li><a href="{{ path('san_newsletter_add') }}"><i class="fa fa-plus"></i> Nouvelle newsletter</a></li>
+                            <li><a href="{{ path('san_newsletter_homepage') }}"><i class="fa fa-list"></i> Archive des newsletters</a></li>
+                            <li><a href="{{ path('san_abonnes_homepage') }}"><i class="fa fa-group"></i> Abonnés à la newsletter</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilisateurs<span class="caret"></span></a>
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Utilisateurs<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ path('san_user_add') }}">Nouvel utilisateur</a></li>
-                            <li><a href="{{ path('san_user_homepage') }}">Gestion des utilisateurs</a></li>
+                            
+                            <li><a href="{{ path('san_user_homepage') }}"><i class="fa fa-users"></i> Gestion des utilisateurs</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">CVthèque</a></li>
+                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> Autres<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="{{ path('san_categories_homepage') }}"><i class="fa fa-angle-right"></i> Gestion des catégories</a></li>
+                            <li><a href="{{ path('san_competences_homepage') }}"><i class="fa fa-angle-right"></i> Gestion des compétences</a></li>
+                            <li><a href="{{ path('san_statuts_homepage') }}"><i class="fa fa-angle-right"></i> Gestion des statuts</a></li>
+                            <li><a href="{{ path('san_contrats_homepage') }}"><i class="fa fa-angle-right"></i> Gestion des contrats</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('san_cvtheque_homepage') }}">CVthèque</a></li>
 		</ul>
                     
 		</div>
@@ -119,10 +123,11 @@
 
 		</div>
 		<footer class="pull-left footer">
-			<p class="col-md-12">
+		
 				<hr class="divider">
-				Copyright &COPY; 2017 <a href="http://technosan.online.fr">San</a>
-			</p>
+				<div class="dark">&copy; Galax-IT 2017 - Tous droits réservés - <a href="{{ path('san_legal_homepage') }}">Informations légales</a>
+         </div>
+			
 		</footer>
 	</div>
 <!-- Required JavaScript Libraries -->

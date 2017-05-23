@@ -15,6 +15,7 @@
       <tr>
         <th>Titre</th>
         <th></th>
+        <th></th>
          <th>Publié par</th>
       </tr>
     </thead>
@@ -23,7 +24,7 @@
       <tr>
         <td><a href="{{ path('san_news_view', {'id': news.id}) }}">{{ news.titre }}</a></td>
         <td><a href="{{ path('san_news_edit', {'id': news.id}) }}" role="button" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i> Modifier</a>
-        <a href="{{ path('san_news_delete', {'id': news.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+        </td><td><a href="{{ path('san_news_delete', {'id': news.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
         <td> {{ news.user.username }}, le {{ news.pubDate|date('d/m/Y') }}</td>
       </tr>
       {% endfor %}

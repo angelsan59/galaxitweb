@@ -8,6 +8,9 @@
 {% block body %}
 
   <h3 class="bgblue">Liste des offres</h3>
+  {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
 <div class="well">
    <a href="{{ path('san_offre_add') }}" role="button" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Ajouter une offre</a>
     <table class="table table-striped">

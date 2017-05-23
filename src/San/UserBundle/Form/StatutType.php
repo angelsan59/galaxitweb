@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class StatutType extends AbstractType
 {
@@ -17,6 +18,8 @@ class StatutType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('nom',     TextType::class, array('label' => 'Nom'))
+                ->add('cvtheque',     CheckboxType::class, array(
+                    'label' => 'Cochez pour que le statut apparaisse dans la CVthèque', 'required' => false))
                ->add('content',     TextareaType::class, array('label' => 'Description', 'required' => false))
                 ->add('Enregistrer',      SubmitType::class, array(
     'attr' => array('class' => 'btn btn-info'),));

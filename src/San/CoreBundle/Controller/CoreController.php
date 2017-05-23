@@ -52,11 +52,8 @@ class CoreController extends Controller
     {
        $form = $this->get('form.factory')->create(ContactType::class);  
        
-        if ($request->isMethod('POST')) {
-            
-            $form->bind($request);
-           
-        $messagemail = \Swift_Message::newInstance()
+       if ($request->isMethod('post') && $form->handleRequest($request)->isValid()) {
+         $messagemail = \Swift_Message::newInstance()
         ->setContentType('text/html')
         ->setSubject('GalaxIT - message Contact')
         ->setFrom($form->get('email')->getData())
@@ -64,7 +61,7 @@ class CoreController extends Controller
         ->setBody(
             $this->renderView(
                 'SanCoreBundle:Core:mailcontact.html.twig',
-                array('name' => $form->get('name')->getData(),
+                array('name' => $form->get('nom')->getData(),
                     'sujet' => $form->get('sujet')->getData(),
                     'message' => $form->get('message')->getData(),
                     'email' => $form->get('email')->getData()
@@ -73,10 +70,10 @@ class CoreController extends Controller
     );
     $this->get('mailer')->send($messagemail);
  $this->addFlash('info', 'Message bien envoyé.');
-    return $this->redirectToRoute('san_carriere_homepage');
+    return $this->redirectToRoute('san_core_contact');
+           
             } 
-            
-        
+
         return $this->render('SanCoreBundle:Core:contact.html.twig', array(
       'form' => $form->createView(),
     ));

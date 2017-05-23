@@ -2,24 +2,23 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 
 {% block title %}
-  Supprimer un evenement - {{ parent() }}
+  Supprimer un utilisateur - {{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-  <h2>Supprimer un évènement</h2>
+  <h2>Supprimer un utilisateur</h2>
 {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
   <p>
-    Etes-vous certain de vouloir supprimer l'évènement "{{ event.titre }}" ?
+    Etes-vous certain de vouloir supprimer l'utilisateur "{{ user.prenom }} {{ user.nom }}" ?
   </p>
 
-  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
-  <form action="{{ path('san_event_delete', {'id': event.id}) }}" method="post">
-    <a href="{{ path('san_event_view', {'id': event.id}) }}" class="btn btn-default">
+  <form action="{{ path('san_user_delete', {'id': user.id}) }}" method="post">
+    <a href="{{ path('san_user_view', {'id': user.id}) }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'évènement
+      Retour à l'utilisateur
     </a>
     {# Ici j'ai écrit le bouton de soumission à la main #}
     <input type="submit" value="Supprimer" class="btn btn-danger" />

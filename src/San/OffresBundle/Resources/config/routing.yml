@@ -95,7 +95,15 @@ san_candidats_liste:
         _controller: SanOffresBundle:Candidature:index
         page: 1
     requirements:
-        page: \d*   
+        page: \d* 
+        
+san_cvtheque_homepage:
+    path:     /admin/cvtheque/{page}
+    defaults:
+        _controller: SanOffresBundle:Candidature:cvtheque
+        page: 1
+    requirements:
+        page: \d*         
         
 san_candidats_statutlist:
     path: /admin/candidats/statut/{id}

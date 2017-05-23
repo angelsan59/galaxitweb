@@ -84,7 +84,7 @@ class OffreController extends Controller
         $em->persist($offre);
         $em->flush();
 
-        $this->addFlash('notice', 'Offre bien enregistrée.');
+        $this->addFlash('info', 'Offre bien enregistrée.');
 
         return $this->redirectToRoute('san_offre_view', array('id' => $offre->getId()));
       }
@@ -111,7 +111,7 @@ class OffreController extends Controller
       
       $em->flush();
  
-      $this->addFlash('notice', 'Offre bien modifiée.');
+      $this->addFlash('info', 'Offre bien modifiée.');
 
       return $this->redirectToRoute('san_offre_view', array('id' => $offre->getId()));
     }
