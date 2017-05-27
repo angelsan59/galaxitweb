@@ -1,12 +1,12 @@
 {% for news in listNews %}
-<div class="panel panel-primary">
+    <div class="col-md-4 service-item">
+      <div class="panel panel-primary">
       <div class="panel-heading"><b>{{ news.titre }}</b>  </div>
     <div class="panel-body">
         {% if news.imageName is not null %}
   <img src="{{ vich_uploader_asset(news, 'imageFile') }}" alt="{{ news.imageName }}" width="200px" align="right">
 {% endif %}
-        {{ news.content | raw }}
- 
+       
         {% if is_granted("ROLE_ADMIN") %}
             <p class="text-right"><a href="{{ path('san_news_edit', {'id': news.id}) }}">
       <i class="glyphicon glyphicon-edit"></i>
@@ -24,5 +24,7 @@
   </div>
 {% endif %}
       </div></div>  
+    </div>
+  
 {% endfor %}
 <p class="section-description"><a href="{{ path('san_news_page') }}" class="btn btn-info btn-lg">Toutes les news</a></p>

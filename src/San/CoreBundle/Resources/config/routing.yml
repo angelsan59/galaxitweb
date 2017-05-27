@@ -5,6 +5,18 @@ san_core_homepage:
 san_carriere_homepage:
     path:     /carriere
     defaults: { _controller: SanCoreBundle:Core:carriere }
+
+san_conseil_homepage:
+    path:     /conseil
+    defaults: { _controller: SanCoreBundle:Core:conseil }
+    
+san_services_homepage:
+    path:     /services
+    defaults: { _controller: SanCoreBundle:Core:services }
+    
+san_solutions_homepage:
+    path:     /solutions
+    defaults: { _controller: SanCoreBundle:Core:solutions }
     
 san_legal_homepage:
     path:     /legal
