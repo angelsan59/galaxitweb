@@ -54,7 +54,7 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
 
     // Enfin, on retourne l'objet Paginator correspondant à la requête construite
     // (n'oubliez pas le use correspondant en début de fichier)
-    return new Paginator($query, true);
+    return new Paginator($query, false);
    
   }
   
@@ -62,7 +62,7 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
   {
      $query = $this->createQueryBuilder('a')     
       ->orderBy('a.pubDate', 'DESC')
-      ->setMaxResults(5)
+      ->setMaxResults(3)
       ->getQuery()
     ;
 return $query

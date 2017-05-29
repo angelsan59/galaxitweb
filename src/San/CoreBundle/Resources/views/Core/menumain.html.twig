@@ -15,29 +15,25 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#hero">Accueil</a></li>
-          <li><a href="#news">News</a></li>
           <li class="menu-has-children"><a href="#about">Qui sommes-nous ?</a>
           <ul>
-              <li><a href="#societe">La Société</a></li>
-              <li><a href="#team">Notre équipe</a></li>
+              <li><a href="#about">Notre Histoire</a></li>
+               <li><a href="#secteurs">Nos Secteurs et Références</a></li>
+               
+              <li><a href="#team">La Team</a></li>
           </ul></li>
-         {{ render(controller("SanEventBundle:Event:lienevent")) }}
-          <li><a href="{{ path('san_carriere_homepage') }}"><b>Rejoignez-nous</b></a></li>
-          
-          <li class="menu-has-children"><a href="#services">Nos activités</a>
-            <ul>
-              <li><a href="#secteurs">Nos Secteurs</a></li>
-              <li class="menu-has-children"><a href="#metiers">Nos métiers</a>
+          <li class="menu-has-children"><a href="#services">Nos métiers</a>
+           
                 <ul>
                   <li><a href="#conseil">Conseil</a></li>
                   <li><a href="#service">Services</a></li>
                   <li><a href="#solutions">Solutions</a></li>
-                </ul>
-              </li>
-            <li><a href="#testimonials">Nos Clients</a></li>
-            <li><a href="#collaborateurs">Nos Collaborateurs</a></li>
+              
             </ul>
           </li>
+          <li><a href="{{ path('san_carriere_homepage') }}"><b>Nous rejoindre</b></a></li>
+          <li><a href="#news">Actualités</a></li>
+           {{ render(controller("SanEventBundle:Event:lienevent")) }}
           <li><a href="{{ path('san_core_contact') }}">Contactez-nous</a></li>
          
 <li class="menu-has-children">

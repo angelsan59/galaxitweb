@@ -18,6 +18,20 @@ class CoreController extends Controller
         return $this->render('SanCoreBundle:Core:carriere.html.twig');
     }
     
+     public function conseilAction()
+    {
+        return $this->render('SanCoreBundle:Core:conseil.html.twig');
+    }
+    
+     public function servicesAction()
+    {
+        return $this->render('SanCoreBundle:Core:services.html.twig');
+    }
+     public function solutionsAction()
+    {
+        return $this->render('SanCoreBundle:Core:solutions.html.twig');
+    }
+    
     public function legalAction()
     {
         return $this->render('SanCoreBundle:Core:legal.html.twig');
@@ -61,7 +75,9 @@ class CoreController extends Controller
         ->setBody(
             $this->renderView(
                 'SanCoreBundle:Core:mailcontact.html.twig',
-                array('name' => $form->get('nom')->getData(),
+                array('nom' => $form->get('nom')->getData(),
+                    'prenom' => $form->get('prenom')->getData(),
+                    'civilite' => $form->get('civilite')->getData(),
                     'sujet' => $form->get('sujet')->getData(),
                     'message' => $form->get('message')->getData(),
                     'email' => $form->get('email')->getData()

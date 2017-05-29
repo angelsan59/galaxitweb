@@ -9,7 +9,7 @@ jQuery(document).ready(function( $ ) {
   $(".rotating").Morphext({
     animation: "flipInX",
     separator: ",",
-    speed: 3000
+    speed: 30000
   });
   
   // Initiate the wowjs
