@@ -21,6 +21,7 @@
         "friendsofsymfony/user-bundle": "~2.0",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
+        "leblanc-simon/eu-cookie-law-bundle": "^0.9.2",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "snilius/twig-sort-by-field": "^0.1.5",
