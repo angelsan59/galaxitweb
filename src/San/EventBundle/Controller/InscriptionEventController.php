@@ -36,7 +36,7 @@ class InscriptionEventController extends Controller {
     if ($page > $nbPages) {
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
-     return $this->render('SanEventBundle:Event:inscindex.html.twig', array(
+     return $this->render('SanEventBundle:Event:inscriptions.html.twig', array(
       'listInscriptions' => $listInscriptions,
       'nbPages'     => $nbPages,
       'page'        => $page,
@@ -142,7 +142,7 @@ class InscriptionEventController extends Controller {
       return $this->redirectToRoute('san_insc_homepage');
     }
     
-    return $this->render('SanEventBundle:Event:inscdelete.html.twig', array(
+    return $this->render('SanEventBundle:Event:inscdeladmin.html.twig', array(
       'inscription' => $inscription,
       'form'   => $form->createView(),
     ));

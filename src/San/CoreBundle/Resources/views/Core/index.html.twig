@@ -38,23 +38,9 @@
 {{ include("SanCoreBundle:Core:menumain.html.twig") }}
 
 <!--==========================
-  News Section
-============================-->
-<section id="news">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="section-title">Actualités</h3>
-          <div class="section-title-divider"></div>
-          </div>
-    </div>
-           <div class="row">
-         
-         {{ render(controller("SanNewsBundle:News:menu")) }}
-        
-      </div>
-    </div>
-</section>    
+  Events Section
+============================-->  
+  {{ render(controller("SanEventBundle:Event:menu")) }}
 <!--==========================
   About Section
 ============================-->
@@ -101,11 +87,102 @@ Mise à disposition de compétences informatiques et Maintenance et service aux 
       </div>
     </div>
   </section>
-          
 <!--==========================
-  Events Section
-============================-->  
-  {{ render(controller("SanEventBundle:Event:menu")) }}
+  Team Section
+============================-->    
+  <section id="team">
+    <div class="container wow fadeInUp">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="section-title">Notre équipe</h3>
+          <div class="section-title-divider"></div>
+          <p class="section-description">Une relation de confiance avec notre équipe d’experts.
+Nous restons à votre écoute !
+</p>
+        </div>
+      </div>
+      <div class="row">
+           <div class="col-md-3">
+          <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			 <img src="img/jcmachin.jpg" height="260px" alt="">
+		</div>
+		<div class="back">
+			<h4>Jean Claude Machin</h4>
+            <span>Président fondateur</span>
+            <div class="social">
+              <a href=""><i class="fa fa-twitter"></i></a>
+              <a href=""><i class="fa fa-facebook"></i></a>
+              <a href=""><i class="fa fa-google-plus"></i></a>
+              <a href=""><i class="fa fa-linkedin"></i></a>
+            </div>
+		</div>
+	</div>
+</div>
+           </div>
+          <div class="col-md-3">
+          <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			 <img src="img/sophie.jpg" height="260px" alt="">
+		</div>
+		<div class="back">
+			<h4>Sophie</h4>
+            <span>Commercial - Marketing</span>
+            <div class="social">
+              <a href=""><i class="fa fa-twitter"></i></a>
+              <a href=""><i class="fa fa-facebook"></i></a>
+              <a href=""><i class="fa fa-google-plus"></i></a>
+              <a href=""><i class="fa fa-linkedin"></i></a>
+            </div>
+		</div>
+	</div>
+</div>
+           </div>
+          <div class="col-md-3">
+          <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			 <img src="img/team-3.jpg" height="260px" alt="">
+		</div>
+		<div class="back">
+			<h4>William Anderson</h4>
+            <span>dev</span>
+            <div class="social">
+              <a href=""><i class="fa fa-twitter"></i></a>
+              <a href=""><i class="fa fa-facebook"></i></a>
+              <a href=""><i class="fa fa-google-plus"></i></a>
+              <a href=""><i class="fa fa-linkedin"></i></a>
+            </div>
+		</div>
+	</div>
+</div>
+           </div>
+          <div class="col-md-3">
+          <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			  <img src="img/team-4.jpg" height="260px" alt="">
+		</div>
+		<div class="back">
+			<h4>Amanda Jepson</h4>
+            <span>Accountant</span>
+            <div class="social">
+              <a href=""><i class="fa fa-twitter"></i></a>
+              <a href=""><i class="fa fa-facebook"></i></a>
+              <a href=""><i class="fa fa-google-plus"></i></a>
+              <a href=""><i class="fa fa-linkedin"></i></a>
+            </div>
+		</div>
+	</div>
+</div>
+           </div>
+      </div>
+  
+    </div>
+  </section>          
+
 <!--==========================
   Activités Section
 ============================-->
@@ -122,35 +199,15 @@ Mise à disposition de compétences informatiques et Maintenance et service aux 
         </div>
       </div>
        <div class="row">
-           <div class="col-md-4 service-item"><h3 class="service-title"><a href="{{ path('san_conseil_homepage') }}"><button type="button" class="button btn btn-success btn-lg"><i class="fa fa-desktop"></i> Conseil</button></a></h3>
+           <div class="col-md-4 service-item" id="conseil"><h3 class="service-title"><a href="{{ path('san_conseil_homepage') }}"><button type="button" class="button btn btn-success btn-lg"><i class="fa fa-desktop"></i> Conseil</button></a></h3>
            </div>
-           <div class="col-md-4 service-item"><h3 class="service-title"><a href="{{ path('san_services_homepage') }}"><button type="button" class="button btn btn-primary btn-lg"><i class="fa fa-desktop"></i> Services</button></a></h3>
+           <div class="col-md-4 service-item" id="service"><h3 class="service-title"><a href="{{ path('san_services_homepage') }}"><button type="button" class="button btn btn-primary btn-lg"><i class="fa fa-desktop"></i> Services</button></a></h3>
            </div>
-            <div class="col-md-4 service-item"><h3 class="service-title"><a href="{{ path('san_solutions_homepage') }}"><button type="button" class="button btn btn-danger btn-lg"><i class="fa fa-desktop"></i> Solutions</button></a></h3>
+            <div class="col-md-4 service-item" id="solutions"><h3 class="service-title"><a href="{{ path('san_solutions_homepage') }}"><button type="button" class="button btn btn-danger btn-lg"><i class="fa fa-desktop"></i> Solutions</button></a></h3>
            </div>
        </div> 
      
     </div>  
-  </section>
-  
-<!--==========================
-  Subscrbe Section
-============================-->  
-  <section id="subscribe">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-8">
-          <h3 class="subscribe-title">Inscrivez-vous à notre newsletter ! </h3>
-          <p class="subscribe-text">Toutes les actualités de l'entreprise, les 
-              opportunités, les articles, les offres d'emploi, et bien plus encore !</p>
-        </div>
-        <div class="col-md-4 subscribe-btn-container">
-          
-<a href="{{ path('san_newsletter_abo') }}" class="btn btn-info btn-lg">Abonnez-vous</a>   
- 
-        </div>
-      </div>
-    </div>
   </section>
    
 <!--==========================
@@ -160,7 +217,7 @@ Mise à disposition de compétences informatiques et Maintenance et service aux 
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Nos clients</h3>
+          <h3 class="section-title">Nos secteurs et références</h3>
           <div class="section-title-divider"></div>
           <p class="section-description">Pourquoi nous choisir plutôt qu'une autre SSII? 
               Ne nous prenez pas au mot, écoutez plutôt ce que nos clients ont à dire sur nous avec <a href="{{ path('san_catnews_page', {'cat': 4}) }}"><b>ces témoignages</b></a></p>
@@ -192,104 +249,41 @@ Mise à disposition de compétences informatiques et Maintenance et service aux 
     </div>
   </section>
 
-<!--==========================
-  Team Section
-============================-->    
-  <section id="team">
+ <!--==========================
+  News Section
+============================-->
+<section id="news">
     <div class="container wow fadeInUp">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="section-title">Notre équipe</h3>
+          <h3 class="section-title">Actualités</h3>
           <div class="section-title-divider"></div>
-          <p class="section-description">Une relation de confiance avec notre équipe d’experts.
-Nous restons à votre écoute !
-</p>
+          </div>
+    </div>
+           <div class="row">
+         
+         {{ render(controller("SanNewsBundle:News:menu")) }}
+        
+      </div>
+    </div>
+</section>   
+<!--==========================
+  Subscrbe Section
+============================-->  
+  <section id="subscribe">
+    <div class="container wow fadeInUp">
+      <div class="row">
+        <div class="col-md-8">
+          <h3 class="subscribe-title">Inscrivez-vous à notre newsletter ! </h3>
+          <p class="subscribe-text">Toutes les actualités de l'entreprise, les 
+              opportunités, les articles, les offres d'emploi, et bien plus encore !</p>
+        </div>
+        <div class="col-md-4 subscribe-btn-container">
+          
+<a href="{{ path('san_newsletter_abo') }}" class="btn btn-info btn-lg">Abonnez-vous</a>   
+ 
         </div>
       </div>
-      
-      <div class="row">
-        <div class="col-md-3">
-          <div class="member">
-              <div class="flip-card">
-    <div class="card-front pic">
-      <img src="img/jcmachin.jpg" height="260px" alt="">
     </div>
-    <div class="card-back">
-       <h4>Jean Claude Machin</h4>
-            <span>Président fondateur</span>
-            <div class="social">
-              <a href=""><i class="fa fa-twitter"></i></a>
-              <a href=""><i class="fa fa-facebook"></i></a>
-              <a href=""><i class="fa fa-google-plus"></i></a>
-              <a href=""><i class="fa fa-linkedin"></i></a>
-            </div>
-    </div>
-  </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="member">
-               <div class="flip-card">
-    <div class="card-front pic">
-      <img src="img/sophie.jpg" height="260px" alt="">
-    </div>
-    <div class="card-back">
-       <h4>Sophie</h4>
-            <span>Commercial - Marketing</span>
-            <div class="social">
-              <a href=""><i class="fa fa-twitter"></i></a>
-              <a href=""><i class="fa fa-facebook"></i></a>
-              <a href=""><i class="fa fa-google-plus"></i></a>
-              <a href=""><i class="fa fa-linkedin"></i></a>
-            </div>
-    </div>
-  </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="member">
-               <div class="flip-card">
-    <div class="card-front pic">
-      <img src="img/team-3.jpg" alt="">
-    </div>
-    <div class="card-back">
-       <h4>William Anderson</h4>
-            <span>CTO</span>
-            <div class="social">
-              <a href=""><i class="fa fa-twitter"></i></a>
-              <a href=""><i class="fa fa-facebook"></i></a>
-              <a href=""><i class="fa fa-google-plus"></i></a>
-              <a href=""><i class="fa fa-linkedin"></i></a>
-            </div>
-    </div>
-  </div>
-          </div>
-        </div>
-        
-        <div class="col-md-3">
-          <div class="member">
-              <div class="flip-card">
-    <div class="card-front pic">
-      <img src="img/team-4.jpg" alt="">
-    </div>
-    <div class="card-back">
-       <h4>Amanda Jepson</h4>
-            <span>Accountant</span>
-            <div class="social">
-              <a href=""><i class="fa fa-twitter"></i></a>
-              <a href=""><i class="fa fa-facebook"></i></a>
-              <a href=""><i class="fa fa-google-plus"></i></a>
-              <a href=""><i class="fa fa-linkedin"></i></a>
-            </div>
-    </div>
-  </div>
-          </div>
-        </div>
-        
-      </div>  
-    </div>
-  </section>
-             
+  </section>         
 {% endblock %}

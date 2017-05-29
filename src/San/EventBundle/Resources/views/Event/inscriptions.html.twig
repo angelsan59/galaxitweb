@@ -1,0 +1,46 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil Inscription Evenements - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h3 class="bgblue">Liste des évènements</h3>
+  {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
+<div class="well">
+ 
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Evènement</th>
+        <th></th>
+        <th>Inscrit</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for insc in listInscriptions %}
+     <tr>
+         <td><a href="{{ path('san_event_view', {'id': insc.event.id}) }}">{{ insc.event.titre }}</a></td>
+         <td> <a href="{{ path('san_insc_delete', {'id': insc.id}) }}" role="button" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></td>
+         <td><a href="{{ path('san_user_view', {'id': insc.user.id}) }}">{{ insc.user.prenom }} {{ insc.user.nom }} - {{ insc.user.username }}</a></td>
+         
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    
+</div>
+  <ul class="pagination">
+    {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
+    {% for p in range(1, nbPages) %}
+      <li{% if p == page %} class="active"{% endif %}>
+        <a href="{{ path('san_insc_homepage', {'page': p}) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

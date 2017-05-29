@@ -7,7 +7,7 @@
     <div class="container col-sm-12">
     
       <div id="logo" class="pull-left">
-        <a href="{{ path('san_core_homepage') }}#hero"><img src="{{ asset('img/logoclear.png') }}" alt="" title="" /></a>
+        <a href="#hero"><img src="{{ asset('img/logoclear.png') }}" alt="" title="" /></a>
         <!-- Uncomment below if you prefer to use a text image -->
         <!--<h1><a href="#hero">Header 1</a></h1>-->
       </div>
@@ -15,29 +15,25 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="{{ path('san_core_homepage') }}#hero">Accueil</a></li>
-          <li><a href="{{ path('san_core_homepage') }}#news">News</a></li>
-          <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#about">Qui sommes-nous ?</a>
+          <li class="menu-has-children"><a href="">Qui sommes-nous ?</a>
           <ul>
-              <li><a href="{{ path('san_core_homepage') }}#societe">La Société</a></li>
-              <li><a href="{{ path('san_core_homepage') }}#team">Notre équipe</a></li>
+              <li><a href="{{ path('san_core_homepage') }}#about">Notre Histoire</a></li>
+               <li><a href="{{ path('san_core_homepage') }}#testimonials">Nos Secteurs et Références</a></li>
+               
+              <li><a href="{{ path('san_core_homepage') }}#team">La Team</a></li>
           </ul></li>
-         {{ render(controller("SanEventBundle:Event:lienevent")) }}
-          <li><a href="{{ path('san_carriere_homepage') }}"><b>Rejoignez-nous</b></a></li>
-          
-          <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#services">Nos activités</a>
-            <ul>
-              <li><a href="#secteurs">Nos Secteurs</a></li>
-              <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#metiers">Nos métiers</a>
+          <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#services">Nos métiers</a>
+           
                 <ul>
                   <li><a href="{{ path('san_core_homepage') }}#conseil">Conseil</a></li>
                   <li><a href="{{ path('san_core_homepage') }}#service">Services</a></li>
-                  <li><a href="{{ path('san_core_homepage') }}#solutions">Solutions</a></li>
-                </ul>
-              </li>
-            <li><a href="{{ path('san_core_homepage') }}#testimonials">Nos Clients</a></li>
-            <li><a href="{{ path('san_core_homepage') }}#collaborateurs">Nos Collaborateurs</a></li>
+                  <li><a href={{ path('san_core_homepage') }}"#solutions">Solutions</a></li>
+              
             </ul>
           </li>
+          <li><a href="{{ path('san_carriere_homepage') }}"><b>Nous rejoindre</b></a></li>
+          <li><a href="{{ path('san_core_homepage') }}#news">Actualités</a></li>
+           {{ render(controller("SanEventBundle:Event:lienevent")) }}
           <li><a href="{{ path('san_core_contact') }}">Contactez-nous</a></li>
          
 <li class="menu-has-children">
@@ -46,9 +42,9 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li class="compte">Connecté en tant que {{ app.user.username }}</li>
                         <li class="compte"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
-                    <li class="compte"><a href="{{ path('san_user_profil') }}">Profil</a></li>
+                        <li class="compte"><a href="{{ path('san_user_profil') }}">Profil</a></li>
                         {% if is_granted("ROLE_ADMIN") %}
-                    <li><a href="{{ path('san_admin_homepage') }}"><i class="fa fa-lock"></i> Section Administration</a></li>
+                    <li><a href="admin"><i class="fa fa-lock"></i> Section Administration</a></li>
                     {% endif %}
                     {% else %}    
                     <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>

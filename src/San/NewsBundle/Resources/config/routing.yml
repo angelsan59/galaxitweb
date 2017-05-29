@@ -30,6 +30,13 @@ san_news_view:
     requirements:
         id: \d+
         
+san_newssolo_view:
+    path: /newssolo/{id}
+    defaults:
+        _controller: SanNewsBundle:News:viewsolo
+    requirements:
+        id: \d+        
+        
 san_news_add:
     path: /admin/news/add
     defaults:

@@ -14,25 +14,25 @@
         
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#hero">Accueil</a></li>
-          <li class="menu-has-children"><a href="#about">Qui sommes-nous ?</a>
+          <li class="menu-active"><a href="{{ path('san_core_homepage') }}#hero">Accueil</a></li>
+          <li class="menu-has-children"><a href="">Qui sommes-nous ?</a>
           <ul>
-              <li><a href="#about">Notre Histoire</a></li>
-               <li><a href="#secteurs">Nos Secteurs et Références</a></li>
+              <li><a href="{{ path('san_core_homepage') }}#about">Notre Histoire</a></li>
+               <li><a href="{{ path('san_core_homepage') }}#testimonials">Nos Secteurs et Références</a></li>
                
-              <li><a href="#team">La Team</a></li>
+              <li><a href="{{ path('san_core_homepage') }}#team">La Team</a></li>
           </ul></li>
-          <li class="menu-has-children"><a href="#services">Nos métiers</a>
+          <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#services">Nos métiers</a>
            
                 <ul>
-                  <li><a href="#conseil">Conseil</a></li>
-                  <li><a href="#service">Services</a></li>
-                  <li><a href="#solutions">Solutions</a></li>
+                  <li><a href="{{ path('san_core_homepage') }}#conseil">Conseil</a></li>
+                  <li><a href="{{ path('san_core_homepage') }}#service">Services</a></li>
+                  <li><a href={{ path('san_core_homepage') }}"#solutions">Solutions</a></li>
               
             </ul>
           </li>
           <li><a href="{{ path('san_carriere_homepage') }}"><b>Nous rejoindre</b></a></li>
-          <li><a href="#news">Actualités</a></li>
+          <li><a href="{{ path('san_core_homepage') }}#news">Actualités</a></li>
            {{ render(controller("SanEventBundle:Event:lienevent")) }}
           <li><a href="{{ path('san_core_contact') }}">Contactez-nous</a></li>
          

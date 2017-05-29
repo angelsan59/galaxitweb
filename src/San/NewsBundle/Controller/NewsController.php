@@ -50,6 +50,20 @@ class NewsController extends Controller
     ));
     }
     
+    public function viewsoloAction($id){
+     $em = $this->getDoctrine()->getManager();
+     
+     $news = $em->getRepository('SanNewsBundle:News')->find($id);
+     
+     if (null === $news){
+         throw new NotFoundHttpException("La news d'id ".$id." n'existe pas.");
+     }
+      
+    return $this->render('SanNewsBundle:News:viewsolo.html.twig', array(
+      'news' => $news  
+    ));
+    }
+    
      public function addAction(Request $request){
          $news= new News();
 
@@ -58,7 +72,7 @@ class NewsController extends Controller
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $news->getImage()->upload();
+    
      $news->setUser($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($news);

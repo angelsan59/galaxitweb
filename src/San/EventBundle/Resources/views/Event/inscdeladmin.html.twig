@@ -1,0 +1,27 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+{% block title %}
+  Supprimer une inscription evenement - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h3 class="bgblue">Désinscrire d'un évènement</h3>
+  <p>
+    Etes-vous certain de vouloir supprimer l'inscription de {{ inscription.user.prenom }} {{ inscription.user.nom }}  à "{{ inscription.event.titre }}" ?
+  </p>
+
+  {# On met l'id de la news dans la route de l'action du formulaire #}
+  <form action="{{ path('san_insc_delete', {'id': inscription.id}) }}" method="post">
+    <a href="{{ path('san_insc_homepage') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste des inscrits
+    </a>
+    {# Ici j'ai écrit le bouton de soumission à la main #}
+    <input type="submit" value="Supprimer" class="btn btn-danger" />
+    {# Ceci va générer le champ CSRF #}
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}
+
+

@@ -18,7 +18,7 @@ class NewscatType extends AbstractType
     {
         $builder
                 ->add('nom',     TextType::class)
-                ->add('content',     TextareaType::class)
+                ->add('content',     TextareaType::class, array('required' => false))
         ->add('Enregistrer',      SubmitType::class, array(
     'attr' => array('class' => 'btn btn-info'),));
     }
