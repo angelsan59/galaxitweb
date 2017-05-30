@@ -40,6 +40,7 @@ class CandidatureController extends Controller {
     if ($page > $nbPages) {
       throw $this->createNotFoundException("La page ".$page." n'existe pas.");
     }
+    
      return $this->render('SanOffresBundle:Candidature:index.html.twig', array(
       'listCandidatures' => $listCandidatures,
       'nbPages'     => $nbPages,
@@ -237,9 +238,9 @@ class CandidatureController extends Controller {
       
        $em->flush();
  
-      $this->addFlash('notice', 'Candidature bien modifiée.');
+      $this->addFlash('info', 'Candidature bien modifiée.');
 
-      return $this->redirectToRoute('san_candidature_succes', array('id' => $candidature->getId()));
+      return $this->redirectToRoute('san_candidats_view', array('id' => $candidature->getId()));
     } 
       
     return $this->render('SanOffresBundle:Candidature:adminview.html.twig', array(
@@ -302,4 +303,31 @@ class CandidatureController extends Controller {
     return new Response ($dompdf->stream());
 }
 
+public function changestatutAction($id, Request $request) {
+     $em = $this->getDoctrine()->getManager();
+     
+     $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
+    
+     if (null === $candidature){
+         throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
+     }
+     
+    $form = $this->get('form.factory')->create(StatutcandType::class, $candidature);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+      
+       $em->flush();
+ 
+      $this->addFlash('info', 'Candidature bien modifiée.');
+
+     return $this->redirectToRoute('san_candidats_view', array('id' => $candidature->getId()));
+    } 
+      
+    return $this->render('SanOffresBundle:Candidature:statutform.html.twig', array(
+      'candidature' => $candidature,
+         'form'   => $form->createView(),
+       
+    ));
+}
 }

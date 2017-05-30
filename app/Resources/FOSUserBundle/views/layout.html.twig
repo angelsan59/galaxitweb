@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="">
   
   <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
- <link href="{{ asset('favicon.ico') }}" rel="shortcut icon">
+ <link href="{{ asset('favicon.png') }}" rel="shortcut icon">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"> 
@@ -49,13 +49,15 @@
    
   {{ include("SanCoreBundle:Core:menupages.html.twig") }}
   <section id="pages">
+      <h3 class="section-title">Compte utilisateur</h3>
        <div class="container containerpages">
       <div class="row">
   <div class="col-sm-8">
          {% block fos_user_content %}
             {% endblock fos_user_content %}
   </div></div></div></section>
-    copyright AngelSan Creation 2017
+  <div class="dark">&copy; Galax-IT 2017 - Tous droits réservés - <a href="{{ path('san_legal_homepage') }}">Informations légales</a>
+         </div>
      <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   
   <!-- Required JavaScript Libraries -->

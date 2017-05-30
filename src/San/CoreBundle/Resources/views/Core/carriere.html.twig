@@ -16,12 +16,14 @@
         </div>
         
         <h1>Bienvenue dans l'espace carrière de Galax-IT</h1>
-        <h2><span class="rotating">Envie d'intégrer une équipe à la pointe ?, Envie de changer de carrière ?</span>
-</h2>
+        <h4 class="txtlight"><b>Rejoignez la Team Galax IT : nos consultants sont nos clients !</b><br/><br/>
+
+Salarié ou freelance nous prenons le temps de comprendre votre ambition rejoignant nos valeurs : 
+<br/><br/>L’adéquation Homme, projet et contexte
+</h4>
         <div class="actions">
-          <a href="#about" class="btn-services">Missions</a>
-          <a href="#services" class="btn-services">Offres d'emploi</a>
-          <a href="{{ path('san_candidature_add', {'id': 9}) }}" class="btn-services">Candidature spontanée</a>
+          <a href="#services" class="btn-services">Nos Offres</a>
+          <a href="{{ path('san_candidature_add', {'id': 9}) }}" class="btn-services">Candidature Spontanée</a>
         </div>
         <div class="actions">
           <a href="https://www.linkedin.com/company-beta/10938554/" target="_blank"><i class="fa fa-linkedin-square fa-4x"></i></a>
@@ -31,30 +33,8 @@
     </div>
   </section>
   
-  {{ include("SanCoreBundle:Core:menupages.html.twig") }}
+  {{ include("SanCoreBundle:Core:menumain.html.twig") }}
   
-  <!--==========================
-  About Section
-============================-->
-  <section id="about">
-    <div class="container wow fadeInUp">
-      <div class="row">
-        <div class="col-md-12">
-          <h3 class="section-title">Missions</h3>
-          <div class="section-title-divider"></div>
-          <p class="section-description">
-             Rejoignez la Team Galax IT : nos consultants sont nos clients !<br/>
-
-Nous prenons le temps de bien comprendre votre projet d’avenir afin de vous proposer des missions en correspondance avec vos ambitions et celle de nos clients. En effet, l’adéquation Homme projet et contexte fait partie de nos valeurs partagées par nos équipes.
-Nos consultants parlent de leur métier et témoignent de leur relation de proximité avec Galax IT.
-
-</p>
-        </div>
-      </div>
-    </div>
-   
-  </section>
- 
 <!--==========================
   Offres d'emploi Section
 ============================-->  
@@ -62,7 +42,7 @@ Nos consultants parlent de leur métier et témoignent de leur relation de proxi
     <div class="container wow fadeInUp">
       <div class="row">
          <div class="col-md-12">
-          <h3 class="section-title">Nos offres d'emploi</h3>
+          <h3 class="section-title">Nos offres</h3>
           <div class="section-title-divider"></div>
           <p class="section-description">
               Toujours à l'écoute du marché, Galax-IT a un besoin pressant des profils qui suivent. 

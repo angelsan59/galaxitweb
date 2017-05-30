@@ -1,5 +1,5 @@
 {% for offre in listOffres %}
-    
+    {% if offre.id !=9 %}
     <tr>
           <td><a href="{{ path('san_offre_offre', {'id': offre.id}) }}"><b>{{ offre.titre }}</b></a></td>
         <td>{% for category in offre.categories %}
@@ -8,4 +8,5 @@
         <td>{{ offre.contrat.nom }}</td>
         <td>France</td>
     </tr>
+    {% endif %}
 {% endfor %}

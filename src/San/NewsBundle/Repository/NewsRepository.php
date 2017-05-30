@@ -60,7 +60,9 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
   
   public function getLastNews()
   {
-     $query = $this->createQueryBuilder('a')     
+     $query = $this->createQueryBuilder('a')
+             ->innerjoin('a.newscats', 'newscat')
+           ->where('newscat.id = 4')
       ->orderBy('a.pubDate', 'DESC')
       ->setMaxResults(3)
       ->getQuery()

@@ -19,7 +19,7 @@
           <ul>
               <li><a href="{{ path('san_core_homepage') }}#about">Notre Histoire</a></li>
                <li><a href="{{ path('san_core_homepage') }}#testimonials">Nos Secteurs et Références</a></li>
-               
+               <li><a href="{{ path('san_core_homepage') }}#news">Ils nous font confiance</a></li>
               <li><a href="{{ path('san_core_homepage') }}#team">La Team</a></li>
           </ul></li>
           <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#services">Nos métiers</a>
@@ -31,8 +31,13 @@
               
             </ul>
           </li>
-          <li><a href="{{ path('san_carriere_homepage') }}"><b>Nous rejoindre</b></a></li>
-          <li><a href="{{ path('san_core_homepage') }}#news">Actualités</a></li>
+          <li class="menu-has-children"><a href="{{ path('san_carriere_homepage') }}"><b>Nous rejoindre</b></a>
+          <ul>
+              <li><a href="{{ path('san_carriere_homepage') }}#services">Nos offres</a></li>
+               <li><a href="{{ path('san_candidature_add', {'id': 9}) }}">Candidature Spontanée</a></li>
+          </ul>
+          </li>
+          
            {{ render(controller("SanEventBundle:Event:lienevent")) }}
           <li><a href="{{ path('san_core_contact') }}">Contactez-nous</a></li>
          
@@ -44,7 +49,7 @@
                         <li class="compte"><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
                         <li class="compte"><a href="{{ path('san_user_profil') }}">Profil</a></li>
                         {% if is_granted("ROLE_ADMIN") %}
-                    <li><a href="admin"><i class="fa fa-lock"></i> Section Administration</a></li>
+                    <li><a href="{{ path('san_admin_homepage') }}"><i class="fa fa-lock"></i> Section Administration</a></li>
                     {% endif %}
                     {% else %}    
                     <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>

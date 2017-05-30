@@ -7,10 +7,13 @@
 {% block body %}
 
         <div class="col-md-12">
-          <h3 class="section-title">News -{{ nomcat.nom }}</h3>
+          <h3 class="section-title">{{ nomcat.nom }}</h3>
           <div class="section-title-divider"></div>
-          <p class="section-description text-center"> Toutes les news {{ render(controller("SanNewsBundle:Newscat:listnewscat")) }}  </p> 
-    
+           {% if nomcat.id == 4 %}
+              
+               {% else %}
+          <p class="section-description text-center"> <a href="{{ path('san_news_page') }}">Toutes les news</a> {{ render(controller("SanNewsBundle:Newscat:listnewscat")) }}  </p> 
+    {% endif %}
           {% for news in listNews %}
 <div class="panel panel-primary">
       <div class="panel-heading"><b>{{ news.titre }}</b>  </div>
@@ -28,15 +31,7 @@
          </div>
     
       <div class="panel-footer">
-          Posté le {{ news.pubDate|date('d/m/Y') }} - 
-        {% if not news.newscats.empty %}
-  <div class="label label-primary small">
-    Catégories :
-    {% for newscat in news.newscats %}
-      {{ newscat.nom }}{% if not loop.last %}, {% endif %}
-    {% endfor %}
-  </div>
-{% endif %}
+          Posté le {{ news.pubDate|date('d/m/Y') }}
       </div></div>  
 {% endfor %}
      

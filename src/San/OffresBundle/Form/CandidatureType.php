@@ -55,6 +55,7 @@ class CandidatureType extends AbstractType
                     'label' => 'Compétences (sélectionnez-en autant que vous voulez)',
                     'choice_label' => 'nom',
                     'multiple'     => true,
+                    'attr'=> array('class'=> 'js-example-basic-multiple'),
                     'expanded' => false,
                     'query_builder' =>  function (CompetenceRepository $er) {
         return $er->createQueryBuilder('cc')

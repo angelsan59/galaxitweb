@@ -1,5 +1,8 @@
 {% extends "SanAdminBundle::layout.html.twig" %}
 {% block body %}
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
      <div class="row">
         
           <div class="col-sm-8">

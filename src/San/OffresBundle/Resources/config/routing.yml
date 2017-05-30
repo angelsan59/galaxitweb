@@ -124,7 +124,14 @@ san_candidats_pdf:
     defaults:
         _controller: SanOffresBundle:Candidature:toPdf
     requirements:
-        id: \d+          
+        id: \d+ 
+        
+san_change_statut:
+    path: /admin/candidat/statut/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:changestatut
+    requirements:
+        id: \d+
         
 san_categories_homepage:
     path:     /admin/categories/{page}

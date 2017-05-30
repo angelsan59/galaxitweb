@@ -44,7 +44,7 @@ registration:
             Ce lien ne peut être utilisé qu'une seule fois pour valider votre compte.
 
             Cordialement,
-            L'équipe
+            L'équipe de Galax-IT http://galax-it.com
 
 resetting:
     check_email: |
@@ -61,14 +61,14 @@ resetting:
     flash:
         success: 'Le mot de passe a été réinitialisé avec succès.'
     email:
-        subject: 'Réinitialisation de votre mot de passe'
+        subject: 'Réinitialisation de votre mot de passe galax-IT'
         message: |
             Bonjour %username% !
 
             Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
 
             Cordialement,
-            L'équipe
+            L'équipe de Galax-IT http://galax-it.com
 
 layout:
     logout: Déconnexion

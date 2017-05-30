@@ -19,7 +19,7 @@
           <ul>
               <li><a href="{{ path('san_core_homepage') }}#about">Notre Histoire</a></li>
                <li><a href="{{ path('san_core_homepage') }}#testimonials">Nos Secteurs et Références</a></li>
-               
+                <li><a href="{{ path('san_core_homepage') }}#news">Ils nous font confiance</a></li>
               <li><a href="{{ path('san_core_homepage') }}#team">La Team</a></li>
           </ul></li>
           <li class="menu-has-children"><a href="{{ path('san_core_homepage') }}#services">Nos métiers</a>
@@ -32,7 +32,7 @@
             </ul>
           </li>
           <li><a href="{{ path('san_carriere_homepage') }}"><b>Nous rejoindre</b></a></li>
-          <li><a href="{{ path('san_core_homepage') }}#news">Actualités</a></li>
+          
            {{ render(controller("SanEventBundle:Event:lienevent")) }}
           <li><a href="{{ path('san_core_contact') }}">Contactez-nous</a></li>
          

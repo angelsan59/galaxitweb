@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block body %}
-
+{% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info">Message flash : {{ message }}</div>
+      {% endfor %}
   <h2 class="bgblue">Liste des candidatures</h2>
 <div class="well table-responsive">
     <table class="table table-striped">
@@ -24,9 +26,10 @@
      <tr>
         <td>{{ cand.pubDate|date('d/m/Y') }}</td>
         <td> <a href="{{ path('san_offre_view', {'id': cand.offre.id}) }}">{{ cand.offre.titre }}</a></td>
-        <td><a href="{{ path('san_candidats_view', {'id': cand.id}) }}">{{ cand.user.prenom }} {{ cand.user.nom }}</a></td>
+        <td><a href="{{ path('san_candidats_view', {'id': cand.id}) }}">{{ cand.user.prenom }} {{ cand.user.nom }}</a>
+            <br/><small>{{ cand.content }}</small></td>
         <td>{{ cand.dateDispo|date('d/m/Y') }}</td>
-        <td>{{ cand.statut.nom }}</td>
+        <td>{{ cand.statut.nom }} {{ render(controller("SanOffresBundle:Candidature:changestatut", {'id': cand.id})) }}</td>
       </tr>
        {% endfor %} 
         

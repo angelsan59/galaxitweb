@@ -9,7 +9,7 @@
   <h2>Modifier une candidature à l'offre {{ candidature.offre.titre }}</h2>
   
   {% for message in app.session.flashbag.get('info') %}
-        <div class="alert alert-info">Message flash : {{ message }}</div>
+        <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
 
        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
