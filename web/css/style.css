@@ -69,6 +69,9 @@ h1, h2, h3, h4, h5, h6 {
     background:#e5e8ed;
     color:#000;
     padding:10px;
+    border: 2px solid #e5e8ed;
+    border-radius: 10px;
+    margin-bottom:20px;
 }
 
 .bord{
@@ -232,6 +235,32 @@ h2 .rotating {
 }
 
 #hero .btn-services:hover, #carriere .btn-services:hover {
+  background: #03C4EB;
+  border: 2px solid #03C4EB;
+}
+/*--------------------------------------------------------------
+# Boutons pages activités
+--------------------------------------------------------------*/
+#activite .actions a, #actititre button {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 2px;
+  transition: 0.5s;
+  margin: 10px;
+}
+
+#activite .btn-services, #actititre .btn-services {
+    background: #01768d;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+#activite .btn-services:hover {
   background: #03C4EB;
   border: 2px solid #03C4EB;
 }

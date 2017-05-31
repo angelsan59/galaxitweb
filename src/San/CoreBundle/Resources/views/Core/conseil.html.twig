@@ -1,1 +1,92 @@
-{# empty Twig template #}
+{% extends "SanCoreBundle::layoutpages.html.twig" %}
+
+{% block title %}
+  Galax-IT Conseil
+{% endblock %}
+
+{% block body %}
+     <!--==========================
+  Presentation generale
+============================--> 
+    
+      <div class="col-md-12 clear" id="activite">
+          <h3 class="section-title">Galax-IT Conseil</h3>
+          <div class="section-title-divider"></div>
+          <p class="section-description">Nos services informatiques et notre manière 
+de manager sont régulièrement mis à l’épreuves en raison de l’évolution des attentes de notre équipe et du digital.<br/><br/>
+Dans un monde où tout va plus vite, l’anticipation des compétences est un enjeu 
+stratégique pour la réussite de nos projets informatiques.<br/><br/>
+ En effet, nos entreprises et nos équipes évoluent vers des méthodes agile. La génération 
+ y est en recherche de sens, d’adaptation et de collaboratif . Ainsi, nos sociétés se doivent 
+ de devenir apprenante et nos managers y jouent un rôle primordial.<br/><br/>
+ GALAX IT Conseil  vous accompagne dans le développement durable de vos projets à la 
+ fois humains et digital via une offre à votre mesure : </p>
+          
+            <div class="actions text-center">
+          <a href="#audit" class="btn-services">Audit conseil</a>
+          <a href="#coaching" class="btn-services">Coaching compétences</a>
+          <a href="#management" class="btn-services">Management de transition</a>
+        </div>
+      </div>
+    <!--==========================
+  Audit Conseil
+============================--> 
+     <div class="container" id="audit">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h3 class="section-heading" id="actititre"> <button class="btn-services">Audit Conseil</button></h3>
+                    <p>Vos enjeux stratégiques sont essentiels pour 
+l’évolution de vos services informatiques en relation avec votre équipe métier et votre projet digital.<br/><br/>
+Notre expert dédié à votre activité  vous propose notre méthodologie d’audit en prenant 
+en compte vos processus métier ainsi que vos projets informatiques et vous accompagne 
+dans la définition de votre cahier des charges.
+ </p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="../img/caudit.jpg" alt="">
+                </div>
+            </div> </div><br/>
+<!--==========================
+  Coaching compétences
+============================--> 
+     <div class="container" id="coaching">
+            <div class="row">
+               
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h3 class="section-heading" id="actititre"> <button class="btn-services">Coaching compétences</button></h3>
+                    <p>Les compétences informatiques de votre équipe 
+                        sont primordiales pour la réussite de votre projet digital.<br/><br/>
+ Nous vous proposons une  méthodologie d’accompagnement de vos managers à la gestion dynamique 
+ de vos compétences et de vos équipes. Notre manager expert vous accompagne dans gestion agile de 
+ votre service informatique.</p>
+                </div>
+                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="../img/ccoaching.jpg" alt="">
+                </div>
+            </div> </div> <br/>
+   <!--==========================
+  Management de transition
+============================--> 
+     <div class="container" id="management">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h3 class="section-heading" id="actititre"> <button class="btn-services">Management de transition</button></h3>
+                    <p>Nos services informatiques sont en constante évolution. 
+                        Le changement fait partie de la vie de nos entreprises et doit parfois 
+                        nécessiter la mise en œuvre de solutions temporaires rapides.<br/><br/>
+Dans ce contexte, les Hommes sont souvent plus difficiles à mobiliser ou remplacer que les machines.<br/><br/>
+Notre pôle d’experts rompus aux situations complexes et d’urgence interviennent dans le cadre 
+de missions de management de transition pour la performance de vos services informatiques. 
+</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="../img/cmanagement.jpg" alt="">
+                </div>
+            </div> </div>
+{% endblock %}      
