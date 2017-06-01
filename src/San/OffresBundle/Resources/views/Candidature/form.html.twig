@@ -2,67 +2,137 @@
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    <h4 class="text-center"><i class="fa fa-user"></i> Bienvenue {{ app.user.username }}</h4>
+    <div class="row">
+        <h4 class="text-center"><i class="fa fa-user"></i> Bienvenue {{ app.user.username }}</h4>
     
     <p class="section-description">Si ce n'est pas vous, <a href="{{ path('fos_user_security_logout') }}">déconnectez-vous</a></p>
     <div class="section-title-divider"></div>
-    <div class="col-md-12 text-center">
+    </div>
 
 {% else %}
-    
+    <div class="col-md-12 text-center">
         <p class="section-description"> Vous devez d'abord vous inscrire avant de postuler.</p>
         <p class="section-description"> Déjà inscrit? Loggez-vous ! {{ render(controller("FOSUserBundle:Security:login")) }}</p>   
- {% endif %} </div> 
- 
+</div> {% endif %}  
+<div class="row">
+ <div class="col-md-8">
   {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
   {# Les erreurs générales du formulaire. #}
   {{ form_errors(form) }}
  <div class="container">
  <div class="row">
-      <div class="col-sm-7">
-    {{ form_row(form.content) }}
-    <div class="panel panel-primary">
-        <div class="panel-heading"><b>Coordonnées</b></div>
-  <div class="panel-body"> 
-      <div class="candform">{{ form_row(form.adresse) }}
-    {{ form_row(form.ville) }}
-    {{ form_row(form.cp) }}
-    {{ form_row(form.pays) }}
+      <div class="col-sm-9 col-sm-offset-1">
+          {{ form_row(form.content) }}</div></div>
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">   
+          <div class="col-md-5">{{ form_row(form.dateDispo) }}
+          {{ form_row(form.cvFile) }}</div>
+          <div class="col-md-5 col-md-offset-2">{{ form_row(form.contrats) }}</div>
+      </div></div> 
+       <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          {{ form_row(form.competences) }}</div></div>
+           <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+         
+          <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#web"><b><i class="fa fa-globe"></i> Web et Media</b></a>
+      </h4>
+    </div>
+    <div id="web" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+          <div class="row">
+      <div class="col-md-5">{{ form_row(form.web) }}
+    {{ form_row(form.linkdn) }}</div>
+    <div class="col-md-5 col-md-offset-2">{{ form_row(form.viadeo) }}
+    {{ form_row(form.twitter) }}
+      </div></div></div> </div>
+    </div>
+  </div>
+</div>
+       </div></div>
+      
+   <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+   <p>Galax-IT demande à tous les candidats de répondre aux questions 
+              suivantes afin d'élaborer votre profil candidat. </p>
+    </div></div>
+       <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#formation"><b><i class="fa fa-graduation-cap"></i> Certifications et Formation</b></a>
+      </h4>
+    </div>
+    <div id="formation" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+          {{ form_widget(form.formation) }}</div> </div>
+    </div>
+  </div>
+</div>
+</div></div>
+   <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#realisation"><b><i class="fa fa-laptop"></i> Réalisations</b></a>
+      </h4>
+    </div>
+    <div id="realisation" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+          {{ form_widget(form.realisations) }}</div> </div>
+    </div>
+  </div>
+</div>
       </div></div>
+  <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+           <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#techno"><b><i class="fa fa-hdd-o"></i> Technologies et Infrastructures</b></a>
+      </h4>
+    </div>
+    <div id="techno" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+         {{ form_widget(form.techno) }}</div> </div>
+    </div>
+  </div>
 </div>
    
-   <div class="panel panel-primary">
-        <div class="panel-heading"><b>Web et Media</b></div>
-  <div class="panel-body"> 
-      <div class="candform"> {{ form_row(form.web) }}
-    {{ form_row(form.linkdn) }}
-    {{ form_row(form.viadeo) }}
-    {{ form_row(form.twitter) }}
-      </div></div>
-</div>
-    
-      <div class="panel panel-primary">
-        <div class="panel-heading"><b>Fiche "Profil Candidat"</b></div>
-  <div class="panel-body"> 
-      <div class="candform">  
-          <p>Galax-IT demande à tous les candidats de répondre aux questions 
-              suivantes afin d'élaborer votre profil candidat. </p>        
-    {{ form_row(form.formation) }}
-    {{ form_row(form.realisations) }}
-    {{ form_row(form.techno) }}
-    {{ form_row(form.evolution) }}
-      </div></div>
-</div>
+      </div></div>   
+ <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+           <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#techno"><b><i class="fa fa-line-chart"></i> Projets d'évolution</b></a>
+      </h4>
     </div>
-    <div class="col-sm-4 col-sm-offset-1">
-       
+    <div id="techno" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+         {{ form_widget(form.evolution) }}</div> </div>
+    </div>
+  </div>
+</div>
+      </div></div>       
+  <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
           {{ form_rest(form) }}
       
-   {{ form_row(form.competences) }}
-    {{ form_end(form) }}
+    {{ form_end(form) }}</div></div>
     </div></div></div>
 <script type="text/javascript">
          
 $('.js-example-basic-multiple').select2();
-</script> 
+</script>

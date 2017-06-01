@@ -1,7 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-     <div>
+     <div class="row">
          <h2>Inscription au site Galax-IT</h2>
               
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -15,8 +15,9 @@
                 <p class="section-description">Remplissez le formulaire ci-dessous pour vous inscrire. 
                     Cela vous permettra de vous abonner à la newsletter, vous inscrire aux évènements et postuler pour les offres d'emploi</p>
                 <p class="section-description">Si vous êtes déjà inscrit(e), <a href="{{ path('fos_user_security_login') }}"><b>identifiez-vous ici</b></a>.</p>
-                
+                <div class="col-md-8 col-md-offset-2">
                {% include "@FOSUser/Registration/register_content.html.twig" %}
+                </div>
             {% endif %}
         </div>
 

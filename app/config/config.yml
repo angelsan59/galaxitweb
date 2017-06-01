@@ -90,7 +90,7 @@ vich_uploader:
     mappings:
         offre_image:
             uri_prefix:         /web/images/offres
-            upload_destination: '%kernel.root_dir%/../web/images/offres'
+            upload_destination: '%kernel.root_dir%/web/images/offres'
         event_image:
             uri_prefix:         /web/images/events
             upload_destination: '%kernel.root_dir%/../web/images/events' 

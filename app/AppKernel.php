@@ -25,7 +25,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new San\NewsBundle\SanNewsBundle(),
             new LeblancSimon\EUCookieLawBundle\LeblancSimonEUCookieLawBundle(),
-            
+            new Onurb\Bundle\YumlBundle\OnurbYumlBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

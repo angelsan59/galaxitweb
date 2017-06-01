@@ -20,17 +20,16 @@
     <div class="col-md-8">  
         <div class="panel panel-primary">
   <div class="panel-heading profil"> 
-     {{ user.prenom }} {{ user.nom }}
+    <i class="fa fa-user"></i> {{ user.prenom }} {{ user.nom }}
      </div>
   <div class="panel-body">
    <i>Inscription le {{ user.dateInsc|date('d/m/Y') }} et Modification le {{ user.dateMod|date('d/m/Y') }}</i>    
       <table class="table table-striped">
-          <tr><td>UserName</td><td>{{ user.username }}<td></tr>
-        <tr><td>Adresse email</td><td>{{ user.email }}<td></tr>
-        <tr><td>Société</td><td>{{ user.societe }}<td></tr>
-        <tr><td>Téléphone</td><td>{{ user.telephone }}<td></tr>
-        <tr><td>Portable</td><td>{{ user.portable }}<td></tr>
+          <tr><td>UserName : {{ user.username }}</td><td>Adresse email : {{ user.email }}</td></tr>
+          <tr><td>Adresse : {{ user.adresse }} {{ user.cp }} {{ user.ville }} {{ user.pays }}</td></tr>
         
+        <tr><td>Téléphone : {{ user.telephone }}</td><td>Portable : {{ user.portable }}<td></tr>
+        <tr><td>Société : {{ user.societe }}<td></tr>
     </table>
   </div>
 </div>
@@ -46,6 +45,9 @@
 {% endif %}
     </div>
     
+    <!-- Panel Candidatures -->
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% else %} 
      <div class="panel panel-primary">
   <div class="panel-heading">Candidatures</div>
   <div class="panel-body">
@@ -85,6 +87,7 @@
 
   </div>
    </div>
+
 
  <div class="row">
     <div class="col-md-6">  
@@ -136,5 +139,5 @@
       {% endif %}
   </div>
     </div>
-
+{% endif %}
 {% endblock %}

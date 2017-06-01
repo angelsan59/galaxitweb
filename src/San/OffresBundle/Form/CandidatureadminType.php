@@ -39,10 +39,7 @@ class CandidatureadminType extends AbstractType {
                     'multiple'     => true,
                     'expanded'     => true,
             ))
-                ->add('adresse',     TextType::class, array('label' => 'Adresse'))
-                ->add('cp',     TextType::class, array('label' => 'Code Postal'))
-                ->add('ville',     TextType::class, array('label' => 'Ville'))
-                ->add('pays',     TextType::class, array('label' => 'Pays'))
+               
                 ->add('web',     TextType::class, array('label' => 'Site web', 'required' => false))
                 ->add('linkdn',     TextType::class, array('label' => 'Linkdn', 'required' => false))
                 ->add('viadeo',     TextType::class, array('label' => 'Viadeo', 'required' => false))
@@ -58,6 +55,7 @@ class CandidatureadminType extends AbstractType {
                     'label' => 'Compétences (sélectionnez-en autant que vous voulez)',
                     'choice_label' => 'nom',
                     'multiple'     => true,
+            'attr'=> array('class'=> 'js-example-basic-multiple'),
                     'expanded' => false,
                      'query_builder' =>  function (CompetenceRepository $er) {
         return $er->createQueryBuilder('cc')

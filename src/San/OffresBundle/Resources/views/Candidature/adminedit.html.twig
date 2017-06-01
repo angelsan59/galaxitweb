@@ -25,16 +25,7 @@
       <div class="candform">{{ form_widget(form.content) }}
       </div></div>
 </div>
-        
-    <div class="panel panel-primary">
-        <div class="panel-heading"><b>Coordonnées</b></div>
-  <div class="panel-body"> 
-      <div class="candform">{{ form_row(form.adresse) }}
-    {{ form_row(form.ville) }}
-    {{ form_row(form.cp) }}
-    {{ form_row(form.pays) }}
-      </div></div>
-</div>
+  
    
    <div class="panel panel-primary">
         <div class="panel-heading"><b>Web et Media</b></div>
@@ -64,6 +55,9 @@
    
     {{ form_end(form) }}
     </div></div></div>
-
+<script type="text/javascript">
+         
+$('.js-example-basic-multiple').select2();
+</script>
 
 {% endblock %}

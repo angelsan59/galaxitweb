@@ -36,10 +36,7 @@ class CandidatureType extends AbstractType
                     'multiple'     => true,
                     'expanded'     => true,
             ))
-                ->add('adresse',     TextType::class, array('label' => 'Adresse'))
-                ->add('cp',     TextType::class, array('label' => 'Code Postal'))
-                ->add('ville',     TextType::class, array('label' => 'Ville'))
-                ->add('pays',     TextType::class, array('label' => 'Pays'))
+                
                 ->add('web',     TextType::class, array('label' => 'Site web', 'required' => false))
                 ->add('linkdn',     TextType::class, array('label' => 'Linkdn', 'required' => false))
                 ->add('viadeo',     TextType::class, array('label' => 'Viadeo', 'required' => false))

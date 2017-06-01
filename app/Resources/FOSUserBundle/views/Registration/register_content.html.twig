@@ -1,9 +1,47 @@
 {% trans_default_domain 'FOSUserBundle' %}
-<div class="col-md-8 col-sm-offset-2">
+
 {{ form_start(form, {'method': 'post', 'id': 'fos_user_registration_form', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
+ 
+       
+   <div class="panel panel-primary">
+        <div class="panel-heading"><b> <i class="fa fa-user"></i> Données de connexion</b></div>
+  <div class="panel-body"> 
+      <div class="candform">
+          <div class="row">
+              
+              <div class="col-md-5">
+                  <div class="form-group">{{ form_widget(form.civilite) }}</div>
+                 {{ form_row(form.nom) }}
+              {{ form_row(form.prenom) }}
+              {{ form_row(form.email) }}</div>
+              <div class="col-md-5 col-md-offset-1">{{ form_row(form.username) }}
+              {{ form_row(form.plainPassword) }}
+              {{ form_row(form.imagefile) }}</div></div>
+    
+    
+      </div></div>
+</div>         
+       
+      
+<div class="panel panel-primary">
+        <div class="panel-heading"><b><i class="fa fa-home"></i> Coordonnées</b></div>
+  <div class="panel-body"> 
+      <div class="candform">
+          <div class="row">
+              
+              <div class="col-md-5">{{ form_row(form.adresse) }}
+                  {{ form_row(form.cp) }}
+              {{ form_row(form.telephone) }}
+              {{ form_row(form.societe) }}</div>
+               <div class="col-md-5 col-md-offset-1">{{ form_row(form.pays) }}
+              {{ form_row(form.ville) }}
+              {{ form_row(form.portable) }}</div></div>   
+
+      
+      </div></div>
+</div>
+{{ form_widget(form) }}
     <div>
         <input type="submit" class="btn btn-info" id="submitForm" value="{{ 'registration.submit'|trans }}" />
     </div>
 {{ form_end(form) }}
-</div>

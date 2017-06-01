@@ -31,7 +31,7 @@
   <div class="panel-heading">Coordonnées</div>
   <div class="panel-body"> 
       <div class="col-sm-6">
-          <b>Adresse</b> : {{ candidature.adresse }} {{ candidature.cp }} {{ candidature.ville }} {{ candidature.pays }}<br/>
+          <b>Adresse</b> : {{ candidature.user.adresse }} {{ candidature.user.cp }} {{ candidature.user.ville }} {{ candidature.user.pays }}<br/>
           <b>Téléphone</b> : {{ candidature.user.telephone }}<br/>
           <b>Portable</b> : {{ candidature.user.portable }}</div>
       <div class="col-sm-6">
@@ -79,19 +79,19 @@
 
     <div class="panel panel-primary">
   <div class="panel-heading">Formation</div>
-  <div class="panel-body">{{ candidature.formation }}</div>
+  <div class="panel-body">{{ candidature.formation | raw }}</div>
     </div> 
     <div class="panel panel-primary">
   <div class="panel-heading">Réalisations</div>
-  <div class="panel-body">{{ candidature.realisations }}</div>
+  <div class="panel-body">{{ candidature.realisations | raw }}</div>
     </div>
     <div class="panel panel-primary">
   <div class="panel-heading">Technologies</div>
-  <div class="panel-body">{{ candidature.techno }}</div>
+  <div class="panel-body">{{ candidature.techno | raw }}</div>
     </div>   
     <div class="panel panel-primary">
   <div class="panel-heading">Evolution</div>
-  <div class="panel-body">{{ candidature.evolution }}</div>
+  <div class="panel-body">{{ candidature.evolution | raw }}</div>
     </div>   
     
     
