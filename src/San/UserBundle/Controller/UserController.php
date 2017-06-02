@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use San\UserBundle\Entity\User;
 use San\EventBundle\Entity\Inscription;
 use San\UserBundle\Form\UserType;
+use San\UserBundle\Form\UserModType;
 use San\UserBundle\Form\UseraboType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -211,8 +212,7 @@ $dateMod = new \Datetime();
  
       $this->addFlash('notice', 'Profil modifié.');
 
-      return $this->redirectToRoute('san_user_profil', array('user' => $user,
-        'listInscriptions' => $listInscriptions));
+      return $this->redirectToRoute('san_user_profil', array('user' => $user));
     }
 
     return $this->render('SanUserBundle:User:modprofil.html.twig', array(

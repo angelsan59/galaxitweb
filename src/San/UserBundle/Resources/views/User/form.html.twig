@@ -1,13 +1,50 @@
-<div class="well col-sm-6">
-  
+
       {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-{{ form_end(form) }}
+
   {# Les erreurs générales du formulaire. #}
   {{ form_errors(form) }}
+
+  <div class="panel panel-primary">
+        <div class="panel-heading"><b> <i class="fa fa-user"></i> Données de connexion</b></div>
+  <div class="panel-body"> 
+      <div class="candform">
+          <div class="row">
+              
+              <div class="col-md-5">
+                  <div class="form-group">{{ form_widget(form.civilite) }}</div>
+                 {{ form_row(form.nom) }}
+              {{ form_row(form.prenom) }}
+              {{ form_row(form.email) }}</div>
+              <div class="col-md-5 col-md-offset-1">{{ form_row(form.username) }}
+              {{ form_row(form.plainPassword) }}
+              {{ form_row(form.imagefile) }}</div></div>
+    
+    
+      </div></div>
+</div>         
+       
+      
+<div class="panel panel-primary">
+        <div class="panel-heading"><b><i class="fa fa-home"></i> Coordonnées</b></div>
+  <div class="panel-body"> 
+      <div class="candform">
+          <div class="row">
+              
+              <div class="col-md-5">{{ form_row(form.adresse) }}
+                  {{ form_row(form.cp) }}
+              {{ form_row(form.telephone) }}
+              {{ form_row(form.societe) }}</div>
+               <div class="col-md-5 col-md-offset-1">{{ form_row(form.pays) }}
+              {{ form_row(form.ville) }}
+              {{ form_row(form.portable) }}</div></div>   
+
+      
+      </div></div>
 </div>
-  
+{{ form_widget(form) }}
  
   {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
   {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-primary'}}) }}
   {# Fermeture de la balise <form> du formulaire HTML #}
   
+{{ form_end(form) }}

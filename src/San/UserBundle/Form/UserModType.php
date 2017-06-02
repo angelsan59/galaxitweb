@@ -9,11 +9,17 @@ class UserModType extends AbstractType {
     
     public function buildForm(FormBuilderInterface $builder, array $options)
   {
-    $builder->remove('dateInsc');
+    $builder->remove('dateInsc')
+             
+       ;
   }
 
   public function getParent()
   {
     return UserType::class;
   }
+    public function getBlockPrefix()
+    {
+        return 'app_user_registration';
+    }
 }

@@ -1,3 +1,4 @@
+
 {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-info">Message flash : {{ message }}</div>
       {% endfor %}
@@ -116,10 +117,10 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#techno"><b><i class="fa fa-line-chart"></i> Projets d'évolution</b></a>
+        <a data-toggle="collapse" href="#evolution"><b><i class="fa fa-line-chart"></i> Projets d'évolution</b></a>
       </h4>
     </div>
-    <div id="techno" class="panel-collapse collapse">
+    <div id="evolution" class="panel-collapse collapse">
       <div class="panel-body">  <div class="candform"> 
          {{ form_widget(form.evolution) }}</div> </div>
     </div>

@@ -27,7 +27,12 @@ class CandidatureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('dateDispo',      DateType::class, array('label' => 'Date de disponibilité', 'widget' => 'single_text'))
+                ->add('dateDispo',      DateType::class, array(
+                    'label' => 'Date de disponibilité', 
+                    'widget' => 'single_text', 
+                    'html5' => false,
+                    'format' => 'dd-mm-yyyy',
+                    'attr' => ['class' => 'js-datepicker'],))
                 ->add('content', TextareaType::class, array('label' => 'Présentez-vous (Par ex. web développer, 5 ans d\'expérience)'))
                  ->add('contrats', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Contrat',
@@ -42,10 +47,10 @@ class CandidatureType extends AbstractType
                 ->add('viadeo',     TextType::class, array('label' => 'Viadeo', 'required' => false))
                 ->add('twitter',     TextType::class, array('label' => 'Twitter', 'required' => false))
                 ->add('cvFile', FileType::class, array('label' => 'CV', 'required' => false))
-                ->add('realisations', TextareaType::class, array('label' => 'Réalisations'))
-                ->add('formation', TextareaType::class, array('label' => 'Formation'))
-                ->add('techno', TextareaType::class, array('label' => 'Technologies'))
-                ->add('evolution', TextareaType::class, array('label' => 'Evolution'))
+                ->add('realisations', TextareaType::class, array('label' => 'Réalisations', 'required' => false))
+                ->add('formation', TextareaType::class, array('label' => 'Formation', 'required' => false))
+                ->add('techno', TextareaType::class, array('label' => 'Technologies', 'required' => false))
+                ->add('evolution', TextareaType::class, array('label' => 'Evolution', 'required' => false))
                  
         ->add('competences', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Competence',

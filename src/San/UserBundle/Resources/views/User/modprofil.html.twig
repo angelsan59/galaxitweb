@@ -9,9 +9,11 @@
 {% for message in app.session.flashbag.get('notice') %}
         <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
+      <div class="row">
+       <div class="col-md-8 col-md-offset-2">
   {{ include("SanUserBundle:User:form.html.twig") }}
 
-
+       </div></div>
   <p>
     <a href="{{ path('san_user_profil') }}" class="btn btn-default">
       <i class="glyphicon glyphicon-chevron-left"></i>
