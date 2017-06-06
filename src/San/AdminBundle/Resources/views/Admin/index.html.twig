@@ -7,19 +7,35 @@
  
  
 {% block body %}
+    <div class="row">
+        <div class="col-md-5">
 <div class="panel panel-default">
                 <div class="panel-heading">
-                    Dashboard
+                    Rendez-vous à venir
                 </div>
                 <div class="panel-body">
-                    <a href="profil.html">Ex. fiche profil</a>
-                    Ici viendront les dernières inscriptions, les dernières offres, évènements, etc...<br/><br/>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    			    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <ul>
+                    {% for rdv in listRdvs %}
+                        <li> {{ rdv.dateRdv|date('d/m/Y H:i') }} <a href="{{ path('san_user_view', {'id': rdv.id}) }}">{{ rdv.prenom }} {{ rdv.nom }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
-            </div>
+            </div></div>
+        <div class="col-md-5">
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    Nouvelles candidatures
+                </div>
+                <div class="panel-body">
+                    <ul>
+                   {% for cand in listCandidatures %}
+                       <li>
+                       <a href="{{ path('san_candidats_view', {'id': cand.id}) }}">{{ cand.user.prenom }} {{ cand.user.nom }}</a>
+            <br/><small>{{ cand.content }}</small> pour l'offre <a href="{{ path('san_offre_view', {'id': cand.offre.id}) }}">{{ cand.offre.titre }}</a>
+                       </li> 
+                       {% endfor %} 
+                    </ul>
+                </div>
+        </div></div>
+    </div>
 {% endblock %}

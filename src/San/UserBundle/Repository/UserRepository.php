@@ -67,4 +67,19 @@ return $query
     // (n'oubliez pas le use correspondant en début de fichier)
     return new Paginator($query, false);
   }
+  
+  public function getRdvs()
+  {
+     $query = $this->createQueryBuilder('a')
+             ->where('a.dateRdv IS NOT NULL')
+           
+      ->orderBy('a.dateRdv', 'ASC')
+      ->getQuery()
+    
+    ;
+return $query
+    
+    ->getResult()
+  ;
+  }
 }

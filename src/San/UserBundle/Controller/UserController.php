@@ -9,6 +9,7 @@ use San\EventBundle\Entity\Inscription;
 use San\UserBundle\Form\UserType;
 use San\UserBundle\Form\UserModType;
 use San\UserBundle\Form\UseraboType;
+use San\UserBundle\Form\DateRdvType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -107,6 +108,34 @@ $dateMod = new \Datetime();
     ));
   }
   
+  public function rdveditAction($id, Request $request)
+  {
+    $em = $this->getDoctrine()->getManager();
+$dateMod = new \Datetime();
+    $user = $em->getRepository('SanUserBundle:User')->find($id);
+
+    if (null === $user) {
+      throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+    }
+
+    $form = $this->get('form.factory')->create(DateRdvType::class, $user);
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      // Inutile de persister ici, Doctrine connait déjà notre annonce
+   $user->setDateMod($dateMod);
+      $em->flush();
+ 
+      $this->addFlash('notice', 'Rendez vous bien enregistré.');
+
+      return $this->redirectToRoute('san_user_view', array('id' => $user->getId()));
+    }
+
+    return $this->render('SanUserBundle:User:rdvedit.html.twig', array(
+      'user' => $user,
+      'form'   => $form->createView(),
+    ));
+  }
+   
    public function deleteAction(Request $request, $id)
   {
     $em = $this->getDoctrine()->getManager();

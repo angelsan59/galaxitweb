@@ -19,7 +19,7 @@ class User extends BaseUser
 {
       public function __construct()
     {
-        $this->dateMod = new \Datetime();
+        $this->dateInsc = new \Datetime();
        
         $this->candidatures = new ArrayCollection();
         parent::__construct();
@@ -87,6 +87,13 @@ class User extends BaseUser
      * @ORM\Column(name="date_insc", type="datetimetz", nullable=true)
      */
     private $dateInsc;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_rdv", type="datetimetz", nullable=true)
+     */
+    private $dateRdv;
 
     /**
      * @var \DateTime
@@ -592,5 +599,29 @@ class User extends BaseUser
     public function getCandidatures()
     {
         return $this->candidatures;
+    }
+
+    /**
+     * Set dateRdv
+     *
+     * @param \DateTime $dateRdv
+     *
+     * @return User
+     */
+    public function setDateRdv($dateRdv)
+    {
+        $this->dateRdv = $dateRdv;
+
+        return $this;
+    }
+
+    /**
+     * Get dateRdv
+     *
+     * @return \DateTime
+     */
+    public function getDateRdv()
+    {
+        return $this->dateRdv;
     }
 }

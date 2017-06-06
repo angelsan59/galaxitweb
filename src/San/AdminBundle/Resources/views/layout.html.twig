@@ -17,7 +17,7 @@
   <!-- Libraries CSS Files -->
   <link href="{{ asset('lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
   <link href="{{ asset('lib/animate-css/animate.min.css') }}" rel="stylesheet">
-  
+  <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" media="screen">
   <!-- Main Stylesheet File -->
   <link href="{{ asset('css/adminstyle.css') }}" rel="stylesheet">
    <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
@@ -70,7 +70,7 @@
 	<div class="container-fluid main-container clear">
             <div class="col-md-3 sidebar">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li class="active"><a href="{{ path('san_admin_homepage') }}">Dashboard</a></li>
                     <li><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> Offres d'emploi<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('san_offre_add') }}"><i class="fa fa-plus"></i> Nouvelle offre</a></li>
@@ -138,6 +138,40 @@
 		</footer>
 	</div>
 <!-- Required JavaScript Libraries -->
- 
+ <script type="text/javascript" src="{{ asset('js/bootstrap-datetimepicker.js') }}" charset="UTF-8"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-datetimepicker.fr.js') }}" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 0
+    });
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
     </body>
 </html>

@@ -80,14 +80,21 @@ san_candidats_edit:
     defaults:
         _controller: SanOffresBundle:Candidature:adminedit
     requirements:
-        id: \d+        
-        
+        id: \d+ 
+             
 san_candidature_delete:
     path: /carriere/candidature/delete/{id}
     defaults:
         _controller: SanOffresBundle:Candidature:delete
     requirements:
         id: \d+
+        
+san_candidats_delete:
+    path: /admin/candidats/delete/{id}
+    defaults:
+        _controller: SanOffresBundle:Candidature:admindelete
+    requirements:
+        id: \d+        
         
 san_candidats_liste:
     path:     /admin/candidats/{page}

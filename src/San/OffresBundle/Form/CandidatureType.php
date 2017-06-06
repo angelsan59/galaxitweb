@@ -31,7 +31,7 @@ class CandidatureType extends AbstractType
                     'label' => 'Date de disponibilité', 
                     'widget' => 'single_text', 
                     'html5' => false,
-                    'format' => 'dd-mm-yyyy',
+                    'format' => 'dd-mm-yyyy hh:mm',
                     'attr' => ['class' => 'js-datepicker'],))
                 ->add('content', TextareaType::class, array('label' => 'Présentez-vous (Par ex. web développer, 5 ans d\'expérience)'))
                  ->add('contrats', EntityType::class, array(

@@ -277,6 +277,35 @@ class CandidatureController extends Controller {
       'form'   => $form->createView(),
     ));
   }
+  
+  public function admindeleteAction(Request $request, $id)
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $candidature = $em->getRepository('SanOffresBundle:Candidature')->find($id);
+
+    if (null === $candidature) {
+      throw new NotFoundHttpException("La candidature d'id ".$id." n'existe pas.");
+    }
+
+    // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+    // Cela permet de protéger la suppression d'annonce contre cette faille
+    $form = $this->get('form.factory')->create();
+
+    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+      $em->remove($candidature);
+      $em->flush();
+
+      $this->addFlash('info', "La candidature a bien été supprimée.");
+
+      return $this->redirectToRoute('san_user_view', array('id' => $candidature->getUser()->getId()));
+    }
+    
+    return $this->render('SanOffresBundle:Candidature:admindelete.html.twig', array(
+      'candidature' => $candidature,
+      'form'   => $form->createView(),
+    ));
+  }
     
     public function toPdfAction($id) {
     // On récupère l'objet à afficher (rien d'inconnu jusque là)

@@ -15,8 +15,8 @@
     <thead>
       <tr>
         <th>Date</th>
-        <th>Offre</th>
         <th>Candidat</th>
+        <th>Offre</th>
         <th>Disponibilité</th>
         <th>Statut</th>
       </tr>
@@ -25,9 +25,14 @@
        {% for cand in listCandidatures %}
      <tr>
         <td>{{ cand.pubDate|date('d/m/Y') }}</td>
-        <td> <a href="{{ path('san_offre_view', {'id': cand.offre.id}) }}">{{ cand.offre.titre }}</a></td>
         <td><a href="{{ path('san_candidats_view', {'id': cand.id}) }}">{{ cand.user.prenom }} {{ cand.user.nom }}</a>
-            <br/><small>{{ cand.content }}</small></td>
+            <br/><small>{{ cand.content }}</small>
+            {% if cand.user.dateRdv is not null %}
+         <div class="alert alert-danger"><b>Rendez vous le   {{ cand.user.dateRdv|date('d/m/Y H:i') }}</b></div>
+    {% endif %}
+        </td>
+        <td> <a href="{{ path('san_offre_view', {'id': cand.offre.id}) }}">{{ cand.offre.titre }}</a></td>
+        
         <td>{{ cand.dateDispo|date('d/m/Y') }}</td>
         <td>{{ cand.statut.nom }} {{ render(controller("SanOffresBundle:Candidature:changestatut", {'id': cand.id})) }}</td>
       </tr>

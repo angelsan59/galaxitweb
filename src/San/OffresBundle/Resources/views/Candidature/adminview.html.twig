@@ -24,7 +24,9 @@
      </div>
   <div class="well">
      <p class="section-description">{{ candidature.content }}</p>
-     <p><a href="{{ vich_uploader_asset(candidature, 'cvFile') }}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o" style="font-size:18px;color:red;"></i> Voir le cv</a></p>
+     <p><a href="{{ vich_uploader_asset(candidature, 'cvFile') }}" target="_blank" class="btn btn-info">
+             <i class="fa fa-file-pdf-o" style="font-size:18px;color:red;"></i> Voir le cv</a>
+             <a href="{{ path('san_rdv_edit', {'id': candidature.user.id}) }}" class="btn btn-info">Prendre rendez-vous</a> </p>
   </div>
      
     <div class="panel panel-primary">
@@ -33,7 +35,8 @@
       <div class="col-sm-6">
           <b>Adresse</b> : {{ candidature.user.adresse }} {{ candidature.user.cp }} {{ candidature.user.ville }} {{ candidature.user.pays }}<br/>
           <b>Téléphone</b> : {{ candidature.user.telephone }}<br/>
-          <b>Portable</b> : {{ candidature.user.portable }}</div>
+          <b>Portable</b> : {{ candidature.user.portable }}<br/>
+          <b>Email</b> : {{ candidature.user.email }}</div>
       <div class="col-sm-6">
       <ul>
           <li><b>Web</b> : {{ candidature.web }}</li>

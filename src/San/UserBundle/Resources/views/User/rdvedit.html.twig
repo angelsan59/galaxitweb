@@ -1,0 +1,16 @@
+
+{% extends "SanAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Prise de rendez vous - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h3 class="bgblue">Prise de rendez-vous</h3>
+{% for message in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info">Message flash : {{ message }}</div>
+      {% endfor %}
+      
+{{ form(form) }}
+
+{% endblock %}

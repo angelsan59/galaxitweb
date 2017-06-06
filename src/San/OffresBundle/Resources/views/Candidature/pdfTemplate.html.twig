@@ -71,29 +71,11 @@
   
     <!-- Maintenant on rempli le document -->        
     <div id="content">
-      <h1>{{ candidature.user.prenom }} {{ candidature.user.nom }}</h1>
+      <h1>{{ candidature.user.prenom }}</h1>
       <h2>{{candidature.content}}</h2>
       
     <p>Candidature à l'offre {{ candidature.offre.titre }} - Disponible le {{ candidature.dateDispo|date('d/m/Y') }}</p>
        
-         <h3 class="bgblue">Coordonnées</h3>
-         <table>
-             <tr>
-                 <td valign="top">
-                     <ul>
-          <li><b>Adresse</b> : {{ candidature.adresse }} {{ candidature.cp }} {{ candidature.ville }} {{ candidature.pays }}</li>
-          <li><b>Téléphone</b> : {{ candidature.user.telephone }}</li>
-          <li><b>Portable</b> : {{ candidature.user.portable }}</li>
-                     </ul>
-                 </td>
-                 <td valign="top">
-      <ul>
-          <li><b>Web</b> : {{ candidature.web }}</li>
-      <li><b>Linkdn</b> : {{ candidature.linkdn }}</li>
-      <li><b>Viadeo</b> : {{ candidature.viadeo }}</li>
-      <li><b>Twitter</b> : {{ candidature.twitter }}</li>
-      </ul>
-                 </td></tr></table>
    <h3 class="bgblue">Catégories et compétences</h3>
   
       {% if not candidature.competences.empty %}

@@ -32,7 +32,14 @@ san_user_edit:
         _controller: SanUserBundle:User:edit
     requirements:
         id: \d+
-        
+
+san_rdv_edit:
+    path: /admin/candidats/rdvedit/{id}
+    defaults:
+        _controller: SanUserBundle:User:rdvedit
+    requirements:
+        id: \d+             
+   
 san_user_delete:
     path: /admin/user/delete/{id}
     defaults:
