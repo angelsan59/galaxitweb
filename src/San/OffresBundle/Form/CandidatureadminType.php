@@ -30,7 +30,12 @@ class CandidatureadminType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('dateDispo',      DateType::class, array('label' => 'Date de disponibilité', 'widget' => 'single_text'))
+                ->add('dateDispo',      DateType::class, array(
+                    'label' => 'Date de disponibilité', 
+                    'widget' => 'single_text', 
+                    'html5' => false,
+                    'format' => 'dd-mm-yyyy',
+                    'attr' => ['class' => 'js-datepicker'],))
                 ->add('content', TextareaType::class, array('label' => 'Présentez-vous (Par ex. web développer, 5 ans d\'expérience)'))
                  ->add('contrats', EntityType::class, array(
                     'class'        => 'SanOffresBundle:Contrat',

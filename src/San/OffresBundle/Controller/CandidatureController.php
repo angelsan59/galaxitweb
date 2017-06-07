@@ -118,7 +118,8 @@ class CandidatureController extends Controller {
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    
+    $user= $this->getUser();
+    // Entrée des données dans la base
         $candidature->setUser($this->getUser());
       $candidature->setOffre($offre);
       $candidature->setStatut($statut);
@@ -126,6 +127,39 @@ class CandidatureController extends Controller {
         $em->persist($candidature);
         $em->flush();
 
+    // envoi du mail à l'admin    
+          $messagemail = \Swift_Message::newInstance()
+        ->setContentType('text/html')
+        ->setSubject('Galax-IT - nouvelle candidature')
+        ->setFrom($this->getUser()->getEmail())
+        ->setTo('galaxitwebmaster@gmail.com')
+        ->setBody(
+            $this->renderView(
+                'SanOffresBundle:Candidature:mailnouveaucandidat.html.twig',
+                array('user' => $user,
+                    'offre' => $offre,
+                    'candidature' => $candidature)
+        )
+    );
+    $this->get('mailer')->send($messagemail);
+    
+    // envoi confirmation au candidat
+     $messagemail1 = \Swift_Message::newInstance()
+        ->setContentType('text/html')
+        ->setSubject('Galax-IT - Votre candidature a bien été enregistrée')
+        ->setFrom('galaxitwebmaster@gmail.com')
+        ->setTo($this->getUser()->getEmail())
+        ->setBody(
+            $this->renderView(
+                'SanOffresBundle:Candidature:mailcandidaturesucces.html.twig',
+                array('user' => $user,
+                    'offre' => $offre,
+                    'candidature' => $candidature)
+        )
+    );
+    $this->get('mailer')->send($messagemail1);
+    
+    
         $this->addFlash('notice', 'Candidature bien enregistrée.');
 
         return $this->redirectToRoute('san_candidature_succes', array('id' => $candidature->getId(), 'offre' => $offre,));
@@ -238,6 +272,22 @@ class CandidatureController extends Controller {
       
        $em->flush();
  
+       $statut= $candidature->getStatut()->getId();
+       $user= $candidature->getUser()->getEmail();
+       if ($statut==20){
+          // envoi confirmation au candidat
+     $messagemail = \Swift_Message::newInstance()
+        ->setContentType('text/html')
+        ->setSubject('Galax-IT - Votre candidature a rejetée')
+        ->setFrom('galaxitwebmaster@gmail.com')
+        ->setTo($user)
+        ->setBody(
+            $this->renderView(
+                'SanOffresBundle:Candidature:mailcandidaturerefusee.html.twig' )
+        );
+    $this->get('mailer')->send($messagemail); 
+    $this->addFlash('info', 'Message de refus envoyé.');
+       }
       $this->addFlash('info', 'Candidature bien modifiée.');
 
       return $this->redirectToRoute('san_candidats_view', array('id' => $candidature->getId()));
@@ -347,7 +397,7 @@ public function changestatutAction($id, Request $request) {
       // Inutile de persister ici, Doctrine connait déjà notre annonce
       
        $em->flush();
- 
+      
       $this->addFlash('info', 'Candidature bien modifiée.');
 
      return $this->redirectToRoute('san_candidats_view', array('id' => $candidature->getId()));

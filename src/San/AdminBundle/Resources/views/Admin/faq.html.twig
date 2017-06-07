@@ -1,0 +1,78 @@
+{% extends "SanAdminBundle::layout.html.twig" %}
+{% block title %}
+  Foire aux questions - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+   <div class="containerpages">
+ <div class="row">
+      <h3>Foire aux questions</h3>
+          
+ </div>
+   <div class="panel panel-primary">
+  <div class="panel-heading">Comment créer un administrateur ?</div>
+  <div class="panel-body">Pour donner l’accès et les pouvoirs administratifs à quelqu’un, il faut que :
+      <ul>
+          <li>Il ou elle se crée un compte via l’<a href="{{ path('fos_user_registration_register') }}"><b>interface publique</b></a> (site visible par tous)</li>
+          <li>Un administrateur se rende sur <a href="{{ path('san_user_homepage') }}">Gestion des utilisateurs</a>, clique sur le nom de la nouvelle personne, et sur "donner le rôle d’administrateur"</li>
+      </ul>
+  </div>
+</div>
+   <div class="panel panel-primary">
+  <div class="panel-heading">Comment prendre rendez-vous ?</div>
+  <div class="panel-body">
+      A partir de la <a href="{{ path('san_candidats_liste') }}">Gestion des candidats</a> :
+      <ul>
+          <li>Cliquer sur la fiche candidat</li>
+          <li>Cliquer sur "Prendre rendez-vous"</li>
+      </ul>
+  </div>
+</div>
+    <div class="panel panel-primary">
+  <div class="panel-heading">Comment créer des fiches compétences ?</div>
+  <div class="panel-body">
+      A partir de la <a href="{{ path('san_candidats_liste') }}">Gestion des candidats</a> :
+      <ul>
+          <li>Cliquer sur la fiche candidat</li>
+          <li>Cliquer "Modifier" si besoin d'éditer le contenu de la fiche candidat</li>
+          <li>Cliquer sur "Fiche en pdf"</li>
+      </ul>
+  </div>
+</div>
+      <div class="panel panel-primary">
+  <div class="panel-heading">Comment créer une newsletter ?</div>
+  <div class="panel-body">
+     
+      <ul>
+          <li>Cliquer  <a href="{{ path('san_newsletter_add') }}">Nouvelle newsletter</a> dans "Newsletter"</li>
+          <li>Remplir le formulaire</li>
+          <li>Cliquer sur "Envoyer" enverra automatiquement la newsletter par email aux adresses des <a href="{{ path('san_abonnes_homepage') }}">abonnés</a></li>
+      </ul>
+  </div>
+</div>
+       <div class="panel panel-primary">
+  <div class="panel-heading">Comment créer un évènement ?</div>
+  <div class="panel-body">
+     La section "Evènements" n'est pas visible sur le site côté public. Les liens 
+     et évènements s'activeront automatiquement lorsqu'un évènement futur est créé. 
+     Lorsque la date est passée, l'évènement disparait aux yeux du public, mais pas des administrateurs.
+  </div>
+</div>
+      <div class="panel panel-primary">
+  <div class="panel-heading">Comment entrer un candidat dans la CVthèque ?</div>
+  <div class="panel-body">
+     Seuls certains statuts de candidature sont visibles dans la cvthèque. On peut déterminer lesquels
+     en consultant la <a href="{{ path('san_statuts_homepage') }}">Gestion des statuts</a>. 
+     On peut aussi choisir les status qui seront visibles dans la cvthèque.
+      Il suffit donc de changer le statut d'une candidature pour un des statuts sélectionnés.
+  </div>
+</div>
+      <div class="panel panel-primary">
+  <div class="panel-heading">Une candidature n'est pas retenue, que faire ?</div>
+  <div class="panel-body">
+     Lorsqu'on consulte une candidature, utiliser le menu déroulant et choisir "non retenu". 
+     Cela enverra un mail automatiquement au candidat.
+  </div>
+</div>
+   </div>
+{% endblock %}

@@ -21,6 +21,11 @@ font-size: 1.2em;
 
 }
 
+.required:after {
+    content: " *";
+    color:red;
+}
+
 .candform{
    
     padding-right:20px;

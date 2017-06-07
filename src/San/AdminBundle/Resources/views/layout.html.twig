@@ -25,8 +25,19 @@
   <script src="{{ asset('lib/jquery/jquery-migrate.min.js') }}"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.fr.min.js"></script>
+
   {% endblock %}
-  
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('.js-datepicker').datepicker({
+            language: 'fr',
+            locale: 'fr'
+            
+        });
+    });
+</script>
   </head>
 <body>
         <nav class="navbar navbar-default navbar-static-top">
@@ -121,6 +132,7 @@
                         </ul>
                     </li>
                     <li><a href="{{ path('san_cvtheque_homepage') }}">CVthèque</a></li>
+                     <li><a href="{{ path('san_faq_homepage') }}">FAQ</a></li>
 		</ul>
                     
 		</div>

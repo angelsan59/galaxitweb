@@ -7,7 +7,7 @@
 {% block body %}
 
   <h2>Modifier une candidature à l'offre {{ candidature.offre.titre }}</h2>
-  
+   
   {% for message in app.session.flashbag.get('info') %}
         <div class="alert alert-success">{{ message }}</div>
       {% endfor %}
@@ -16,45 +16,118 @@
 
   {# Les erreurs générales du formulaire. #}
   {{ form_errors(form) }}
- <div class="container">
- <div class="row">
-      <div class="col-sm-7">
-           <div class="panel panel-primary">
-        <div class="panel-heading"><b>Profil professionnel</b></div>
-  <div class="panel-body"> 
-      <div class="candform">{{ form_widget(form.content) }}
-      </div></div>
-</div>
-  
-   
-   <div class="panel panel-primary">
-        <div class="panel-heading"><b>Web et Media</b></div>
-  <div class="panel-body"> 
-      <div class="candform"> {{ form_row(form.web) }}
-    {{ form_row(form.linkdn) }}
-    {{ form_row(form.viadeo) }}
-    {{ form_row(form.twitter) }}
-      </div></div>
-</div>
-    
-      <div class="panel panel-primary">
-        <div class="panel-heading"><b>Fiche "Profil Candidat"</b></div>
-  <div class="panel-body"> 
-      <div class="candform">  
-          <p>Galax-IT demande à tous les candidats de répondre aux questions 
-              suivantes afin d'élaborer votre profil candidat. </p>        
-    {{ form_row(form.formation) }}
-    {{ form_row(form.realisations) }}
-    {{ form_row(form.techno) }}
-    {{ form_row(form.evolution) }}
-      </div></div>
-</div>
+ <div class="containerpages"><h3>{{ candidature.user.prenom }} {{ candidature.user.nom }}</h3>
+ <div class="row">    
+      <div class="col-sm-9 col-sm-offset-1">
+          {{ form_row(form.content) }}</div></div>
+          <div class="row">
+<div class="col-sm-9 col-sm-offset-1">   
+          <div class="col-md-5">{{ form_row(form.dateDispo) }}
+          {{ form_row(form.cvFile) }}</div>
+          <div class="col-md-5 col-md-offset-2">{{ form_row(form.contrats) }}</div>
+      </div></div> 
+       <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          {{ form_row(form.competences) }}</div>
+           <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          <br/><p style="font-size:20px;"> <strong>Cliquez sur les sections suivantes pour les remplir:</strong></p>  
+          <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#web"><b><i class="fa fa-globe"></i> Web et Media</b></a>
+      </h4>
     </div>
-    <div class="col-sm-4">
-          {{ form_rest(form) }}
+    <div id="web" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+          <div class="row">
+      <div class="col-md-5">{{ form_row(form.web) }}
+    {{ form_row(form.linkdn) }}</div>
+    <div class="col-md-5 col-md-offset-2">{{ form_row(form.viadeo) }}
+    {{ form_row(form.twitter) }}
+      </div></div></div> </div>
+    </div>
+  </div>
+</div>
+       </div></div>
+      
+   <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+  <div class="alert alert-info"> <p><b>Galax-IT demande à tous les candidats de répondre aux questions 
+              suivantes afin d'élaborer votre profil candidat.</b> </p></div>
+    </div></div>
+       <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#formation"><b><i class="fa fa-graduation-cap"></i> Certifications et Formation</b></a>
+      </h4>
+    </div>
+    <div id="formation" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+          {{ form_widget(form.formation) }}</div> </div>
+    </div>
+  </div>
+</div>
+</div></div>
+   <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#realisation"><b><i class="fa fa-laptop"></i> Réalisations</b></a>
+      </h4>
+    </div>
+    <div id="realisation" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+          {{ form_widget(form.realisations) }}</div> </div>
+    </div>
+  </div>
+</div>
+      </div></div>
+  <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+           <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#techno"><b><i class="fa fa-hdd-o"></i> Technologies et Infrastructures</b></a>
+      </h4>
+    </div>
+    <div id="techno" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+         {{ form_widget(form.techno) }}</div> </div>
+    </div>
+  </div>
+</div>
    
-    {{ form_end(form) }}
-    </div></div></div>
+      </div></div>   
+ <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+           <div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#evolution"><b><i class="fa fa-line-chart"></i> Projets d'évolution</b></a>
+      </h4>
+    </div>
+    <div id="evolution" class="panel-collapse collapse">
+      <div class="panel-body">  <div class="candform"> 
+         {{ form_widget(form.evolution) }}</div> </div>
+    </div>
+  </div>
+</div>
+      </div></div>       
+  <div class="row">
+      <div class="col-sm-9 col-sm-offset-1">
+          {{ form_rest(form) }}
+      
+    {{ form_end(form) }}</div></div>
+    </div>
 <script type="text/javascript">
          
 $('.js-example-basic-multiple').select2();

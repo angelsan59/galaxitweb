@@ -34,4 +34,9 @@ class AdminController extends Controller
         'statut' => $statut,
     ));
     }
+    
+    public function faqAction()
+    {
+        return $this->render('SanAdminBundle:Admin:faq.html.twig');
+    }
 }

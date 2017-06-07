@@ -20,7 +20,7 @@ class NewsletterType extends AbstractType
                 ->add('titre',     TextType::class)
             ->add('content', CKEditorType::class, array('config_name' => 'my_config',
 ))
-                ->add('Enregistrer',      SubmitType::class, array(
+                ->add('Envoyer',      SubmitType::class, array(
     'attr' => array('class' => 'btn btn-info'),));
     }
     

@@ -3,14 +3,11 @@
 namespace San\EventBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use San\CoreBundle\Form\ImageType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
@@ -24,8 +21,12 @@ class EventType extends AbstractType
     {
         $builder
    
-            ->add('eventDate', DateType::class, array('label' => 'Date', 'widget' => 'single_text'))
-           
+            ->add('eventDate',      DateTimeType::class, array(
+                    'label' => 'Date évènement', 
+                    'widget' => 'single_text', 
+                    'html5' => false,
+                    'format' => 'dd-MM-yyyy hh:mm',
+                    'attr' => ['class' => 'form_datetime'],))
             ->add('titre',     TextType::class)
             ->add('adresse',     TextType::class)
             ->add('content', CKEditorType::class, array('config_name' => 'my_config',

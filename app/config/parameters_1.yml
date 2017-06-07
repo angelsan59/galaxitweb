@@ -7,6 +7,6 @@ parameters:
     database_password: Skem@2017!!!
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: sandrine.ociepka@gmail.com
+    mailer_user: galaxitwebmaster@gmail.com
     mailer_password: Sandrine201703!!!
     secret: ThisTokenIsNotSoSecretChangeIt

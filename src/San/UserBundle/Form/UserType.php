@@ -44,13 +44,7 @@ class UserType extends AbstractType
                 ->add('telephone',     TextType::class, array('label' => 'Téléphone'))
                 ->add('portable',     TextType::class, array('label' => 'Portable', 'required' => false))
                 ->add('imagefile', FileType::class, array('label' => 'Photo ou avatar', 'required' => false))
-                ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
-                'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
-                'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'form.password'),
-                'second_options' => array('label' => 'form.password_confirmation'),
-                'invalid_message' => 'fos_user.password.mismatch',
-            ))
+                
                  ->add('Enregistrer',      SubmitType::class);
        ;}
     

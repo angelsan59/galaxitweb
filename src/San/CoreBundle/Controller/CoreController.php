@@ -41,7 +41,7 @@ class CoreController extends Controller
     {
         return $this->render('SanCoreBundle:Core:offre.html.twig');
     }
-    
+   // fonction de test d'envoi d'emails 
     public function sendmailAction()
     {
         $name = 'moi';
@@ -71,7 +71,7 @@ class CoreController extends Controller
         ->setContentType('text/html')
         ->setSubject('GalaxIT - message Contact')
         ->setFrom($form->get('email')->getData())
-        ->setTo('sandrine.ociepka@gmail.com')
+        ->setTo('galaxitwebmaster@gmail.com')
         ->setBody(
             $this->renderView(
                 'SanCoreBundle:Core:mailcontact.html.twig',

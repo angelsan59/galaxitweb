@@ -1,6 +1,10 @@
 san_admin_homepage:
     path:     /admin
     defaults: { _controller: SanAdminBundle:Admin:index }
+    
+san_faq_homepage:
+    path:     /admin/faq
+    defaults: { _controller: SanAdminBundle:Admin:faq }
 
 san_newsletter_homepage:
     path:     /admin/newsletters/{page}

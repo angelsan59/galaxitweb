@@ -36,7 +36,7 @@
          </div>
     
       <div class="clear">
-      <i class="fa fa-calendar"></i>  {{ event.eventDate|date('d/m/Y') }} - {{ event.adresse }} 
+      <i class="fa fa-calendar"></i>  {{ event.eventDate|date('d/m/Y h:i') }} - {{ event.adresse }} 
       </div></div>  
       
     {% if listinscrits|length > 0 %}

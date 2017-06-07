@@ -82,7 +82,7 @@ fos_user:
         form:
             type: San\UserBundle\Form\RegistrationType    
         confirmation:
-            enabled:    false
+            enabled:    true
 
 vich_uploader:
     db_driver: orm

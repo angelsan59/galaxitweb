@@ -32,8 +32,8 @@ monolog:
 
 swiftmailer:
     transport: gmail
-    username:  sandrine.ociepka
+    username:  galaxitwebmaster
     encryption: ssl
     port: 465
-    password:  22trustno22
+    password:  Skem@2017!!!
     

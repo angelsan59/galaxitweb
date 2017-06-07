@@ -7,7 +7,7 @@
 {% block body %}
 
  
- 
+ <h3 class="section-title">Compte utilisateur</h3>
  {% for flash_message in app.session.flashBag.get('notice') %}
     <div class="alert alert-success">
         {{ flash_message }}
@@ -102,7 +102,8 @@
                 Vous n'êtes pas encore abonné(e) à la newsletter. - <a href="{{ path('san_newsletter_abo') }}" class="btn btn-success">Je m'abonne !</a> 
             {% endif%}
   </div>
-   </div>
+   </div></div>
+  <div class="col-md-6"> 
    <div class="panel panel-primary">
   <div class="panel-heading">Suppression du compte utilisateur</div>
   <div class="panel-body">
@@ -120,6 +121,7 @@
   </div>
    </div>
     </div>
+ </div>
    <div class="col-md-6"> 
        {% if listInscriptions %}
   <div class="panel panel-primary">

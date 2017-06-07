@@ -11,13 +11,13 @@ group:
         deleted: 'Le groupe a été supprimé.'
 security:
     login:
-        username: 'Nom d''utilisateur'
+        username: 'Pseudo'
         password: 'Mot de passe'
         remember_me: 'Se souvenir de moi'
         submit: Connexion
 profile:
     show:
-        username: 'Nom d''utilisateur'
+        username: 'Pseudo'
         email: 'Adresse e-mail'
     edit:
         submit: 'Mettre à jour'
@@ -54,7 +54,7 @@ resetting:
         Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.
 
     request:
-        username: 'Nom d''utilisateur ou adresse e-mail'
+        username: 'Pseudo ou adresse e-mail'
         submit: 'Réinitialiser le mot de passe'
     reset:
         submit: 'Modifier le mot de passe'
@@ -77,7 +77,7 @@ layout:
     logged_in_as: 'Connecté en tant que %username%'
 form:
     group_name: 'Nom du groupe'
-    username: 'Nom d''utilisateur'
+    username: 'Pseudo'
     email: 'Adresse e-mail'
     current_password: 'Mot de passe actuel'
     password: 'Mot de passe'

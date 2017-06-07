@@ -70,7 +70,7 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fin", type="datetimetz")
+     * @ORM\Column(name="fin", type="datetimetz", nullable=true)
      */
     private $fin;
 

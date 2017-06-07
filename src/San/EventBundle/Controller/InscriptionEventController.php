@@ -72,13 +72,27 @@ class InscriptionEventController extends Controller {
 
      // Si la requête est en POST
     if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-    
+    $user= $this->getUser();
         $inscription->setUser($this->getUser());
       $inscription->setEvent($event);
         $em = $this->getDoctrine()->getManager();
         $em->persist($inscription);
         $em->flush();
 
+        $messagemail = \Swift_Message::newInstance()
+        ->setContentType('text/html')
+        ->setSubject('GalaxIT - nouvelle inscription aux evenements')
+        ->setFrom($this->getUser()->getEmail())
+        ->setTo('sandrine.ociepka@gmail.com')
+        ->setBody(
+            $this->renderView(
+                'SanOffresBundle:Candidature:mailcandidaturesucces.html.twig',
+                array('user' => $user,
+                    'event' => $event)
+        )
+    );
+    $this->get('mailer')->send($messagemail);
+    
         $this->addFlash('notice', 'Inscription bien enregistrée.');
 
         return $this->redirectToRoute('san_insc_view', array('id' => $inscription->getId(), 'event' => $event,));
